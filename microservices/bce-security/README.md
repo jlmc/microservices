@@ -47,17 +47,6 @@ And the output is the base64 encoded password. For the password "admin" with the
 Now it's time to do some inserts into the Database:
 ```
 
-	CREATE TABLE USERS (
-	  USERID VARCHAR(255) NOT NULL,
-	  PASSWORD VARCHAR(255) NOT NULL,
-	  PRIMARY KEY (USERID)
-	);
-	
-	CREATE TABLE USERS_GROUPS (
-	  GROUPID VARCHAR(20) NOT NULL,
-	  USERID VARCHAR(255) NOT NULL,
-	  PRIMARY KEY (GROUPID)
-	);
 
 	INSERT INTO `wildfly`.`user` (`username`, `passwd`) VALUES ('myfear', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=');
 
