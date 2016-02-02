@@ -30,12 +30,14 @@ public class BookResource {
 	@Inject
 	java.util.logging.Logger logger;
 
-	@GET
-	@Path("/")
+	
 	// @Path("json")
 	// @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	// @Wrapped(element = "books")
+	
+	@GET
+	@Path("/")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response list() {
 
 		this.logger.info("get the List...");
@@ -43,9 +45,6 @@ public class BookResource {
 		final org.xine.microservices.business.book.entity.Books wrapper = new org.xine.microservices.business.book.entity.Books();
 		wrapper.addBooks(this.service.search());
 		return Response.ok(wrapper).build();
-
-		// public List<Book> search() {
-		// return Response.ok(this.service.search()).build();
 	}
 
 	@GET
@@ -74,7 +73,6 @@ public class BookResource {
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response read(@PathParam("id") final Integer id, @Context final UriInfo uriInfo) {
-		// public Book search(@PathParam("id") Long id) {
 		this.logger.info("read the ID : " + id);
 
 		try {
@@ -95,7 +93,7 @@ public class BookResource {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createBook(Book book) {
+	public Response createBook(final Book book) {
 
 		this.logger.info("POST Request: " + book);
 
@@ -108,7 +106,7 @@ public class BookResource {
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateBook(Book book) {
+	public Response updateBook(final Book book) {
 		this.logger.info("PUT Request: " + book);
 
 		try {
@@ -118,12 +116,5 @@ public class BookResource {
 		}
 	}
 
-	// @POST
-	// @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	// @Produces(MediaType.TEXT_HTML)
-	// public String wisdom(@FormParam("wisdom") String wisdom) {
-	// this.storage.wisdom(wisdom);
-	// return "thanks!";
-	// }
 
 }
