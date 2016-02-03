@@ -1,12 +1,12 @@
 # Preparations
-First step is to download and unzip latest WildFly 8.2.0.Final (I'm using the Java EE7 Full & Web Distribution) to a location of your choice. Also make sure, that you have the MySQL Community Server (5.6.22) installed, up and running. I'm going to use NetBeans 8.0.2 because the version-number just fits nicely with WildFly :) And you also should download latest MySQL Connector/J (5.1.34).
+First step is to download and unzip latest WildFly 8.2.0.Final (I'm using the Java EE7 Full & Web Distribution) to a location of your choice. Also make sure, that you have the MySQL Community Server (5.6.22) installed, up and running. You also should download latest MySQL Connector/J (5.1.34).
 
 #Some Basics
 WildFly 8.x uses a combination of <a href="http://picketbox.jboss.org/">PicketBox</a> and JAAS as the WildFly client and  server security mechanism. The configuration is completely covered by the so-called Security Subsystem. The security subsystem operates by using a security context associated with the current request, this security context then makes available to the relevant container a number of capabilities from the configured security domain, the capabilities exposed are an authentication manager, an authorization manager, an audit manager and a mapping manager.
 
  More details can be found in the <a href="https://docs.jboss.org/author/display/WFLY8/Security+subsystem+configuration#Securitysubsystemconfiguration-securitydomains">WildFly documentation</a>. The good news is, that you don't have to dig into all the details at once, because I am focusing on the one element of configuration, which is really needed for the deployment specific configuration. These are the <a href="https://docs.jboss.org/author/display/WFLY8/Security+subsystem+configuration#Securitysubsystemconfiguration-securitydomains">security domains</a>. The configuration needs to be done in any of the relevant server configuration files (standalone.xml / standalone-full.xml / etc.). 
  
-By default, the "other", "jboss-ejb-policy" and the "jboss-web-policy" security domains are configured. Please note, that this is totally relevant for your applications and I am going to look into the configuration into a minute. If you are looking for a way to secure other interfaces, you want to look into how to <a href="https://docs.jboss.org/author/display/AS7/Securing+the+Management+Interfaces">secure the management interfaces </a>. I have a recent blog-post about how to setup ssl/tls with undertow.
+By default, the "other", "jboss-ejb-policy" and the "jboss-web-policy" security domains are configured. Please note, that this is totally relevant for your applications and I am going to look into the configuration into a minute. If you are looking for a way to secure other interfaces, you want to look into how to <a href="https://docs.jboss.org/author/display/AS7/Securing+the+Management+Interfaces">secure the management interfaces </a>. 
  
  
 #Add A User
