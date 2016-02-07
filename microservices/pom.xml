@@ -8,6 +8,7 @@
   	<module>microservices-basic</module>
   	<module>microservices-basic-client</module>
   	<module>bce-security</module>
+  	<module>microservices-paginatorAndFastlaneReader</module>
   </modules>
   
   
