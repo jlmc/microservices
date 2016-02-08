@@ -15,9 +15,9 @@
        		However this line may not be necessary if the @Alternative Bean has a 
        		higher priority APPLICATION
        -->
-       <alternatives>
-       		<class>
-       			org.xine.cdidemos.business.resourcesmanager.control.UbuntuOneRepository
-       		</class>
-       </alternatives>
+<!--        <alternatives> -->
+<!--        		<class> -->
+<!--        			org.xine.cdidemos.business.resourcesmanager.control.UbuntuOneRepository -->
+<!--        		</class> -->
+<!--        </alternatives> -->
 </beans>
