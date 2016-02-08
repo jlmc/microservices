@@ -1,4 +1,4 @@
-package org.xine.stackbooks.business;
+package org.xine.business;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
