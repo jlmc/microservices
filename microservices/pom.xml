@@ -10,6 +10,7 @@
   	<module>bce-security</module>
   	<module>microservices-paginatorAndFastlaneReader</module>
   	<module>configurator</module>
+  	<module>asyncWorker-Parallelizer</module>
   </modules>
   
   

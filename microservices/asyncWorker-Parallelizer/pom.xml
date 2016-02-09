@@ -6,9 +6,12 @@
 		<artifactId>microservices</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>configurator</artifactId>
-	<description>Convention over Configuration</description>
+	<artifactId>asyncWorker-Parallelizer</artifactId>
 	<packaging>war</packaging>
+	<name>Async Worker and Parallelizer</name>
+	<description>Async Worker (Service Activator) and Parallelizer</description>
+
+
 
 	<dependencies>
 		<dependency>
@@ -42,7 +45,7 @@
 
 
 	<build>
-		<finalName>configuration</finalName>
+		<finalName>asyncWorker-Parallelizer</finalName>
 	</build>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -50,5 +53,4 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
-
 </project>
