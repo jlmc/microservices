@@ -1,7 +1,10 @@
 package org.xine.presentation;
 
+import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.inject.Inject;
 
 import org.xine.business.registations.boundary.WorkshopRegistration;
 import org.xine.business.registations.entity.Workshop;
@@ -12,12 +15,15 @@ public class Index {
 	@EJB
 	WorkshopRegistration ws;
 
+	@Inject
+	Logger logger;
+
 	private final Workshop workshop = new Workshop();
 
 	@PostConstruct
 	public void onInitialize() {
 		// not needed -> workshop
-		System.out.println("Initialized !");
+		this.logger.info("Initialized !");
 	}
 
 	public Workshop getWorkshop() {
