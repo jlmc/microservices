@@ -4,7 +4,9 @@ import java.net.URI;
 import java.util.Date;
 
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -20,11 +22,15 @@ import org.xine.business.configuration.boundary.Configurable;
 import org.xine.business.registations.entity.Workshop;
 
 @Stateless
+@Interceptors(LoggingInterceptor.class)
 // @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class WorkshopRegistration {
 
 	@PersistenceContext // (unitName="NovaShopPU")
 	EntityManager em;
+
+	@Inject
+	Event<Workshop> registrationService;
 
 	@Inject
 	@Configurable("maxNumberOfRegistrations")
@@ -34,11 +40,16 @@ public class WorkshopRegistration {
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response register(final Workshop workshop) {
 		this.em.persist(workshop);
-		// registrationService.fire(workshop);
+		this.registrationService.fire(workshop);
 		final URI create = URI.create(String.valueOf(workshop.getId()));
 		// sc.setRollbackOnly();
 		return Response.created(create).build();
+	}
 
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Workshop getAllRegistrations() {
+		return new Workshop("bald pause", 99);
 	}
 
 	@GET
