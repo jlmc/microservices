@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
+/**
+ * A Transfer Object doesn’t require major rethinking, except the fact that it became superfuous for the majority of all use cases.
+ * JPA entities do a great job transferring data between layers, especially in a single JVM.
+ * A TO use to be common as a general best practice in J2EE to hide CMP-specifc details, which is no longer necessary.
+ * @author jcosta
+ */
 public class BookDTO implements Externalizable {
 
     private static final long serialVersionUID = 1L;
