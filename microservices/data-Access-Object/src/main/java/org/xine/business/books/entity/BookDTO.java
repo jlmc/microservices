@@ -1,8 +1,11 @@
 package org.xine.business.books.entity;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
-public class BookDTO implements Serializable {
+public class BookDTO implements Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,6 +31,18 @@ public class BookDTO implements Serializable {
 
     public void setNumberOfPages(final int numberOfPages) {
         this.numberOfPages = numberOfPages;
+    }
+
+    @Override
+    public void writeExternal(final ObjectOutput out) throws IOException {
+        out.writeUTF(this.name);
+        out.writeInt(this.numberOfPages);
+    }
+
+    @Override
+    public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
+        this.name = in.readUTF();
+        this.numberOfPages = in.readInt();
     }
 
 }
