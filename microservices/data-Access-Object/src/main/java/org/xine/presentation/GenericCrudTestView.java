@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.xine.business.books.BookManager;
+import org.xine.business.books.boundary.BookManager;
 
 @WebServlet("/book")
 public class GenericCrudTestView extends HttpServlet {

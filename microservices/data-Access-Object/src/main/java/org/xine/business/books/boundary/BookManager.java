@@ -1,4 +1,4 @@
-package org.xine.business.books;
+package org.xine.business.books.boundary;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
