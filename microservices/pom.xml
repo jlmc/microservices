@@ -13,6 +13,7 @@
   	<module>asyncWorker-Parallelizer</module>
   	<module>fat-entity-strategy</module>
   	<module>data-Access-Object</module>
+  	<module>decorators</module>
   </modules>
   
   
