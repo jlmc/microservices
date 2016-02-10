@@ -8,9 +8,10 @@
   	<module>microservices-basic</module>
   	<module>microservices-basic-client</module>
   	<module>bce-security</module>
-  	<module>microservices-paginatorAndFastlaneReader</module>
+<!--   	<module>microservices-paginatorAndFastlaneReader</module> -->
   	<module>configurator</module>
   	<module>asyncWorker-Parallelizer</module>
+  	<module>fat-entity-strategy</module>
   </modules>
   
   
