@@ -14,6 +14,7 @@
   	<module>fat-entity-strategy</module>
   	<module>data-Access-Object</module>
   	<module>decorators</module>
+  	<module>http-events-real-time-strategy</module>
   </modules>
   
   

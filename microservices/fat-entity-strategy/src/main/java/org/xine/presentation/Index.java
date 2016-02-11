@@ -21,8 +21,6 @@ public class Index implements Serializable {
 	@Inject
 	ShipmentService bo;
 
-	private Load.Builder loadBuilder;
-
 	private String product;
 	private Integer qty = 1;
 
