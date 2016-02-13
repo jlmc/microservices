@@ -15,6 +15,7 @@
   	<module>data-Access-Object</module>
   	<module>decorators</module>
   	<module>http-events-real-time-strategy</module>
+  	<module>http-events-batch-strategy</module>
   </modules>
   
   
