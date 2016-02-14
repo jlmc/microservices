@@ -18,6 +18,7 @@
   	<module>http-events-batch-strategy</module>
   	<module>http-events-channels-strategy</module>
   	<module>aspect-interceptors</module>
+  	<module>cdi-demos</module>
   </modules>
   
   
