@@ -17,6 +17,7 @@
   	<module>http-events-real-time-strategy</module>
   	<module>http-events-batch-strategy</module>
   	<module>http-events-channels-strategy</module>
+  	<module>aspect-interceptors</module>
   </modules>
   
   
