@@ -19,6 +19,7 @@
   	<module>http-events-channels-strategy</module>
   	<module>aspect-interceptors</module>
   	<module>cdi-demos</module>
+  	<module>scheduler</module>
   </modules>
   
   
