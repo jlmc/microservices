@@ -12,5 +12,4 @@ public class LoggerExposer {
         final String loggerName = ip.getMember().getDeclaringClass().getName();
         return Logger.getLogger(loggerName);
     }
-
 }

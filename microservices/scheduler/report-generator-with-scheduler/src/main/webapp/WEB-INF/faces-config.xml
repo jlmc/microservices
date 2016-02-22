@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+	<render-kit>
+		<renderer>
+			<component-family>javax.faces.Messages</component-family>
+			<renderer-type>javax.faces.Messages</renderer-type>
+			<renderer-class>org.xine.navigator.presentation.infrastructure.render.BootstrapMessagesRenderer</renderer-class>
+		</renderer>
+		<renderer>
+			<component-family>javax.faces.Message</component-family>
+  			<renderer-type>javax.faces.Message</renderer-type>
+			<renderer-class>org.xine.navigator.presentation.infrastructure.render.BootstrapMessageRenderer</renderer-class>
+		</renderer>
+	</render-kit>
+
+</faces-config>
