@@ -20,6 +20,7 @@
   	<module>aspect-interceptors</module>
   	<module>cdi-demos</module>
   	<module>scheduler</module>
+  	<module>binary-REST-Serializer</module>
   </modules>
   
   
