@@ -6,11 +6,44 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
 	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
 
+	<ui:define name="left-side">
+		<li class="nav-header">Reports</li>
+		<li class="active"><h:link outcome="/reports/reportList">lista</h:link></li>
+		<li><h:link outcome="/reports/reportManager">create</h:link></li>
+
+	</ui:define>
+
 	<ui:define name="contentBody">
 
-		<h1>Reports</h1>
-
+		<div class="text-center">
+			<h2>List of Reports</h2>
+		</div>
 		
+		<h:messages  />
+		<h:form>
+			<h:dataTable value="#{reportList.reports}" var="report" styleClass="table table-striped table-bordered">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Code" />
+					</f:facet>
+					<h:outputText value="#{report.id}" />
+					<f:facet name="footer">
+						<h:outputText value="Code ID" />
+					</f:facet>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Report Name" />
+					</f:facet>
+					<h:outputText value="#{report.name}" />
+					<f:facet name="footer">
+						<h:outputText value="Tutorial Description" />
+					</f:facet>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+
+
 
 	</ui:define>
 </ui:composition>

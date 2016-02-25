@@ -1,13 +1,14 @@
 package org.xine.navigator.presentation.reports;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.xine.navigator.business.reports.boundary.ReportMngr;
 import org.xine.navigator.business.reports.entity.Report;
 
 @Named
@@ -16,6 +17,9 @@ public class ReportList implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Inject
+	ReportMngr bo;
+
 	private Collection<Report> reports;
 
 	private int pageNum = 0;
@@ -23,7 +27,8 @@ public class ReportList implements Serializable {
 
 	@PostConstruct
 	public void initialize() {
-		this.reports = new ArrayList<>();
+		next();
+
 	}
 
 	public Collection<Report> getReports() {
@@ -44,6 +49,10 @@ public class ReportList implements Serializable {
 
 	public void setPageSize(final int pageSize) {
 		this.pageSize = pageSize;
+	}
+
+	public void next() {
+		this.reports = this.bo.loadReport(this.pageNum, this.pageSize);
 	}
 
 }

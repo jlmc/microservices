@@ -6,10 +6,17 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
 	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
 
+
+	<ui:define name="left-side">
+		<li class="nav-header">Reports</li>
+        <li class="active"><h:link outcome="/reports/reportList">lista</h:link></li>
+        <li><h:link outcome="/reports/reportManager">create</h:link></li>
+	</ui:define>
+
 	<ui:define name="contentBody">
 
 		<div class="text-center">
-			<h1>Report</h1>
+			<h2>List of Reports</h2>
 		</div>
 		<h:messages  />
 		<h:form id="_reportForm">

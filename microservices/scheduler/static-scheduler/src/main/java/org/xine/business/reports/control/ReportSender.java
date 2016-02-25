@@ -29,5 +29,4 @@ public class ReportSender {
 		reports.forEach(System.out::println);
 
 	}
-
 }

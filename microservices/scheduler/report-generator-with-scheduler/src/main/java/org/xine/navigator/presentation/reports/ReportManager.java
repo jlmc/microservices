@@ -35,16 +35,24 @@ public class ReportManager implements Serializable {
 	}
 
 	public Object save() {
-		System.out.println(this.report);
-		// save the thing
 
-		this.bo.save(this.report);
+		try {
+			System.out.println(this.report);
+			// save the thing
 
-		this.report = new Report();
+			this.bo.save(this.report);
 
-		this.messagesHelper.addMessageFlash(new FacesMessage("Report created with sucess."));
+			this.report = new Report();
 
-		return null;
+			this.messagesHelper.addMessageFlash(new FacesMessage("Report created with sucess."));
+
+			return "/reports/reportList?faces-redirect=true";
+		} catch (final Exception e) {
+			System.out.println(e.getCause());
+			this.messagesHelper.addMessageFlash(
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getCause().getMessage(), null));
+			return null;
+		}
 	}
 
 	public Report getReport() {
