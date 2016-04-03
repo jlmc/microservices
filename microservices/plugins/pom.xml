@@ -5,12 +5,12 @@
     <artifactId>microservices</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>plugins</artifactId>
+  <artifactId>plugins</artifactId>    
   <packaging>pom</packaging>
   <modules>
   	<module>serializer-api</module>
   	<module>java-serializer</module>
   	<module>hessian-serializer</module>
-  	<module>xebuy</module>
+  	<module>xebuy</module>    
   </modules>
 </project>
