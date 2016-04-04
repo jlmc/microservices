@@ -4,11 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.xine.xebuy.business.plugin.serializer.Serialization;
+import org.xine.xebuy.business.plugin.serializer.Serialization.PlanType;
 import org.xine.xebuy.business.plugin.serializer.Serializer;
 
 import com.caucho.hessian.io.Hessian2StreamingOutput;
 
-@Serialization(Serialization.Type.OPTIMIZED)
+@Serialization(plantype = PlanType.OPTIMIZED)
 public class HessianSerializer implements Serializer {
 
 	@Override

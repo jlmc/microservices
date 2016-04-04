@@ -6,7 +6,8 @@
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
-		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+<!-- 		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source> -->
+		<jta-data-source>java:jboss/datasources/demoDS</jta-data-source>
 <!-- 		<exclude-unlisted-classes>false</exclude-unlisted-classes> -->
 		
 		<properties>
@@ -21,7 +22,7 @@
 				
 		<!-- none | create | drop-and-create | drop-->		
 			<property name="javax.persistence.schema-generation.database.action"
-				value="drop-and-create" />
+				value="none" />
 			<property name="javax.persistence.schema-generation.create-source"
 				value="metadata" />
 			<property name="javax.persistence.schema-generation.drop-source"
@@ -32,7 +33,8 @@
 			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" /> -->
 
 		</properties>
 

@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import org.xine.xebuy.business.plugin.serializer.Serialization;
+import org.xine.xebuy.business.plugin.serializer.Serialization.PlanType;
 import org.xine.xebuy.business.plugin.serializer.Serializer;
 
-@Serialization(Serialization.Type.DEFAULT)
+@Serialization(plantype = PlanType.DEFAULT)
 public class JavaSerializer implements Serializer {
 
 	@Override
