@@ -5,13 +5,9 @@
 	version="3.1">
 	<display-name>decorators</display-name>
 
-
-	
-
-
-	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
-	</welcome-file-list>
+<!-- 	<welcome-file-list> -->
+<!-- 		<welcome-file>index.xhtml</welcome-file> -->
+<!-- 	</welcome-file-list> -->
 
 
 	<context-param>

@@ -35,5 +35,4 @@ public class ReferrerScavengerTimer {
 	public void garbageCollectorReferrers() {
 		this.referredScanvenger.removeInactiveReferrers();
 	}
-
 }

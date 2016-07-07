@@ -16,6 +16,7 @@ public class BigMessenger implements Messenger {
     @Delegate
     Messenger messenger;
 
+    @SuppressWarnings("cdi-ambiguous-dependency")
     @Inject
     @Decorated
     private Bean<Messenger> bean;

@@ -1,5 +1,7 @@
 package org.xine.bookshop.business.books.boundary;
 
+import static org.junit.Assert.assertNotNull;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -37,9 +39,10 @@ public class BookResourceIT {
 
 	@Test
 	public void post() {
-		final Response post = this.client.target(RESOURCE_URI).path("book")
+		final Response postResponse = this.client.target(RESOURCE_URI).path("book")
 				.request(CustomMediaType.SERIALIZATION_JAVA)
 				.post(Entity.entity(new Book(123L, "xyz"), CustomMediaType.SERIALIZATION_JAVA));
+		assertNotNull(postResponse);
 
 	}
 

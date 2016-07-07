@@ -12,13 +12,12 @@ import javax.enterprise.inject.spi.InjectionPoint;
 @Startup
 @Singleton
 public class Configurator {
-
-	private final int interval = 5;
+	// private final int interval = 5;
 	private Map<String, String> configuration;
 
 	@PostConstruct
 	public void initialize() {
-		this.configuration = new HashMap();
+		this.configuration = new HashMap<>();
 		this.configuration.put("location", "localhost:4848");
 		this.configuration.put("jdbcPoolNames", "SamplePool");
 		this.configuration.put("interval", "2");
