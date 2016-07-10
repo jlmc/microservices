@@ -23,7 +23,7 @@
   	<module>binary-REST-Serializer</module>
   	
   	<module>plugins</module>
-  	<module>validation-jsonobjects</module>
+  	
   	<module>jaxrs-validations</module>
   </modules>
   
