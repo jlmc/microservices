@@ -71,7 +71,7 @@ public class BrowserWindow {
 	}
 
 	public void send() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 	}
 

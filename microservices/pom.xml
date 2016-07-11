@@ -21,9 +21,7 @@
   	<module>cdi-demos</module>
   	<module>scheduler</module>
   	<module>binary-REST-Serializer</module>
-  	
   	<module>plugins</module>
-  	
   	<module>jaxrs-validations</module>
   </modules>
   

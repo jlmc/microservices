@@ -1,7 +1,5 @@
 package org.xine.presentation;
 
-import java.util.List;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -30,7 +28,8 @@ public class Index {
 	}
 
 	public Object basicexecution() {
-		final List<Long> execute = this.parallelizer.execute(this.number);
+		// final List<Long> execute =
+		this.parallelizer.execute(this.number);
 		return null;
 	}
 

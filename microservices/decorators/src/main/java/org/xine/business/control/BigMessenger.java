@@ -16,12 +16,12 @@ public class BigMessenger implements Messenger {
     @Delegate
     Messenger messenger;
 
-    @SuppressWarnings("cdi-ambiguous-dependency")
     @Inject
     @Decorated
     private Bean<Messenger> bean;
 
-    public String morning() {
+    @Override
+	public String morning() {
 
         final Class beanClass = this.bean.getBeanClass();
         final Set<InjectionPoint> injectionPoints = this.bean.getInjectionPoints();

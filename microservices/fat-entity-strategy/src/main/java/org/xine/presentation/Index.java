@@ -39,6 +39,7 @@ public class Index implements Serializable {
 	}
 
 	public String save() {
+		@SuppressWarnings("unused")
 		final Load.Builder builder = new Load.Builder();
 		this.itens.forEach(oi -> {
 			this.bo.createLoad(oi.getProduct(), oi.getQty());

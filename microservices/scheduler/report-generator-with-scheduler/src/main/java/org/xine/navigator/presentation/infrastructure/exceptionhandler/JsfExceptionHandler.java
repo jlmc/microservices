@@ -44,7 +44,6 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 			// the throws exception
 			final Throwable exceptionThrows = context.getException();
 
-			// TODO:: when we define the general business exception
 			// final BusinessException businessException =
 			// getBusinessException(exceptionThrows);
 
@@ -62,7 +61,7 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 					this.logger.log(Level.SEVERE, "SYSTEM ERROR: " + exceptionThrows.getMessage(), exceptionThrows);
 					redirect("/error.xhtml");
 				}
-				// TODO:: we goes to here others exeptions types that we want to
+				// we goes to here others exeptions types that we want to
 				// treat
 			} finally {
 				// we just want to remove the handled exception

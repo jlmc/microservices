@@ -11,6 +11,8 @@ import javax.enterprise.inject.spi.InjectionPoint;
 @ApplicationScoped
 public class LoggerExposer implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	@Produces
 	@Dependent
 	public Logger exposer(InjectionPoint ip) {

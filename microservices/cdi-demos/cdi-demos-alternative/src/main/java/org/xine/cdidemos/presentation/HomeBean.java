@@ -52,7 +52,6 @@ public class HomeBean implements Serializable {
 			this.bo.deposit(this.fileName, photoAsBytes);
 
 		} catch (final IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

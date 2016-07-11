@@ -10,7 +10,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.xine.business.books.entity.Book;
 import org.xine.business.crud.control.DAO;
@@ -22,6 +22,7 @@ public class BookDao implements DAO<Integer, Book> {
 
     @PersistenceContext
     private EntityManager em;
+	private TypedQuery<Book> query;
 
     @Override
     public Book create(final Book t) {
@@ -72,15 +73,15 @@ public class BookDao implements DAO<Integer, Book> {
             , final Map<String, Object> parameters
             , final int resultLimit) {
 
-        final Query query = this.em.createNamedQuery(namedQueryName, Book.class);
+		this.query = this.em.createNamedQuery(namedQueryName, Book.class);
 
-        parameters.entrySet().forEach(entry -> query.setParameter(entry.getKey(), entry.getValue()));
+        parameters.entrySet().forEach(entry -> this.query.setParameter(entry.getKey(), entry.getValue()));
 
         if (resultLimit > 0) {
-            query.setMaxResults(resultLimit);
+            this.query.setMaxResults(resultLimit);
         }
 
-        return query.getResultList();
+        return this.query.getResultList();
     }
 
 }

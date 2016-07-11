@@ -1,6 +1,8 @@
 package org.xine.channels.beanlocator;
 
 public class BeanLocationException extends Exception {
+	private static final long serialVersionUID = 1L;
+
 	public BeanLocationException() {
 	}
 
