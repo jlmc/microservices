@@ -56,6 +56,26 @@ Now it's time to do some inserts into the Database:
 This was the last step outside of WildFly. Back to the server configuration and on to the sample application.
 
 
+#Configuring The Security Domain in WildFly
+Make sure, your WildFly instance is shut down and open the configuration xml (e.g. standalone.xml) for editing. Now find the <security-domains> tag and add a new security domain to it:
+
+```
+
+ <security-domain name="SECUREDOMAIN" cache-type="default">
+                    <authentication>
+                        <login-module code="Database" flag="required">
+                            <module-option name="dsJndiName" value="java:jboss/datasources/UserDS"/>
+                            <module-option name="principalsQuery" value="select passwd from Users where username=?"/>
+                            <module-option name="rolesQuery" value="select role, 'Roles' from UserRoles where username=?"/>
+                            <module-option name="hashAlgorithm" value="SHA-256"/>
+                            <module-option name="hashEncoding" value="base64"/>
+                        </login-module>
+                    </authentication>
+                </security-domain>
+
+```
+
+
 #Adjusting The WebApplication
 You notice, that there isn't a lot specific stuff to see in this web-application. It contains two different folders in the Web Pages folder, "admin" and "users". The "admin" folder should be protected, and this is done in the web.xml by adding the relevant <security-constraint>.  The <auth-contraint> is the role-name "admin". Compare the complete web.xml for details and make sure to check back with my older posting about how everything works in detail if you have questions. The only thing, that still is open is, how to link the deployment to the security domain "SECUREDOMAIN". This is done in the jboss-web.xml descriptor.
 
@@ -82,3 +102,5 @@ Error-Messages are another helpful too. For security reasons, not much is logged
 	        <level name="TRACE"/>
 	 </logger>
 ```
+
+
