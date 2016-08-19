@@ -23,6 +23,8 @@
   	<module>binary-REST-Serializer</module>
   	<module>plugins</module>
   	<module>jaxrs-validations</module>
+  	<module>cdi-custom-scope</module>
+  	<module>async-pom</module>
   </modules>
   
   
