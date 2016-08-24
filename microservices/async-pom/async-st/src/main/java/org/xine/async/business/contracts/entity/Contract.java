@@ -21,6 +21,15 @@ public class Contract implements Serializable {
 	private BigDecimal balance;
 	private Set<Part> parts = new HashSet<>(0);
 
+
+	public static Contract of(Long id, String client, BigDecimal balance) {
+		final Contract c = new Contract();
+		c.id = id;
+		c.client = client;
+		c.balance = balance;
+		return c;
+	}
+
 	public Contract() {
 		super();
 	}   

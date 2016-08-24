@@ -19,7 +19,7 @@ curl -i -v -X DELETE -H "Content-Type: application/json" -H "Accept: application
 
 #POST
 
-curl -v -X POST -H "Accept: application/json" -H "Accept-Language: en" -H "Content-Type: application/json" --data @request.json http://localhost:8080/async-0.0.1-SNAPSHOT/resources/contracts
+curl -v -X POST -H "Accept: application/json" -H "Accept-Language: en" -H "Content-Type: application/json" --data @request.json http://localhost:8080/async/resources/contracts
 
 
 ------------------------------------------------------------------

@@ -1,5 +1,7 @@
 package org.xine.async.business.contracts;
 
+import java.math.BigDecimal;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,6 +30,13 @@ public class ContractClientTest {
 		final Contract result = this.client.get(2L);
 
 		System.out.println(result);
+	}
+
+	@Test
+	public void shouldCreateNewContract() {
+		final Contract contract = Contract.of(121212L, "abcde", new BigDecimal(345.78));
+
+		final Contract createdContract = this.client.create(contract);
 	}
 
 }

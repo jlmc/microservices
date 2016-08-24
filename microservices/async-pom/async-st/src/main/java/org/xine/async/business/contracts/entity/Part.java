@@ -2,26 +2,28 @@ package org.xine.async.business.contracts.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Objects;
 
 public class Part implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String dueDate;
+	private LocalDateTime dueDate;
 	private BigDecimal value;
 
 	protected Part() {
 	}
 
-	public static Part of(String dueDate, BigDecimal value) {
+	public static Part of(LocalDateTime dueDate, BigDecimal value) {
 		final Part part = new Part();
 		part.dueDate = dueDate;
 		part.value = value;
 		return part;
 	}
 
-	public String getDueDate() {
+	public LocalDateTime getDueDate() {
 		return this.dueDate;
 	}
 
@@ -64,6 +66,7 @@ public class Part implements Serializable {
 	}
 
 	public Part plus(BigDecimal plus) {
-		return of(this.dueDate, this.value.add(plus));
+		return of(LocalDateTime.ofInstant(this.dueDate.atZone(ZoneId.systemDefault()).toInstant(),
+				ZoneId.systemDefault()), this.value.add(plus));
 	}
 }

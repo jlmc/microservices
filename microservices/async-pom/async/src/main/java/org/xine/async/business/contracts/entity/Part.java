@@ -78,6 +78,12 @@ public class Part implements Serializable {
 		return true;
 	}
 
+	public BigDecimal add(Double percentage) {
+		final BigDecimal multiply = this.value.multiply(BigDecimal.valueOf(percentage));
+		this.value = this.value.add(multiply);
+		return this.value;
+	}
+
 	public Part plus(BigDecimal plus) {
 		return of(LocalDateTime.of(this.dueDate.toLocalDate(), this.dueDate.toLocalTime()), this.value.add(plus));
 	}

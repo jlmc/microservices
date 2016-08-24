@@ -89,5 +89,11 @@ public class Contract implements Serializable {
 		final Contract other = (Contract) obj;
 		return Objects.equals(this.id, other.id);
 	}
+
+	public BigDecimal ajuster(Double percentage) {
+		final BigDecimal multiply = this.balance.multiply(BigDecimal.valueOf(percentage));
+		this.balance = this.balance.add(multiply);
+		return this.balance;
+	}
    
 }
