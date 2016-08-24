@@ -34,8 +34,8 @@ public class ContractFinancial {
 	 * this solution is not so good because, using this way we will have just
 	 * one Transaction.
 	 * 
-	 * As a consequence we are required to put all the tasks at the end so they
-	 * can be persisted
+	 * As a consequence we are required to join all the tasks at the end so they
+	 * can be persisted. So if you can choise the implementation ajusterAllContractsAsync.
 	 */
 	public BigDecimal ajusterAllContractsAsyncWithCallable(Double percentage)
 			throws InterruptedException, ExecutionException {
