@@ -5,26 +5,27 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
-  	<module>microservices-basic</module>
-  	<module>microservices-basic-client</module>
-  	<module>bce-security</module>
- 	<module>paginatorAndFastlaneReader-pom</module> 
-  	<module>configurator</module>
-  	<module>asyncWorker-Parallelizer</module>
-  	<module>fat-entity-strategy</module>
-  	<module>data-Access-Object</module>
-  	<module>decorators</module>
-  	<module>http-events-real-time-strategy</module>
-  	<module>http-events-batch-strategy</module>
-  	<module>http-events-channels-strategy</module>
-  	<module>aspect-interceptors</module>
-  	<module>cdi-demos</module>
-  	<module>scheduler</module>
-  	<module>binary-REST-Serializer</module>
-  	<module>plugins</module>
-  	<module>jaxrs-validations</module>
-  	<module>cdi-custom-scope</module>
-  	<module>async-pom</module>
+    	<module>microservices-basic</module>
+    	<module>microservices-basic-client</module>
+    	<module>bce-security</module>
+   	  <module>paginatorAndFastlaneReader-pom</module> 
+    	<module>configurator</module>
+    	<module>asyncWorker-Parallelizer</module>
+    	<module>fat-entity-strategy</module>
+    	<module>data-Access-Object</module>
+    	<module>decorators</module>
+    	<module>http-events-real-time-strategy</module>
+    	<module>http-events-batch-strategy</module>
+    	<module>http-events-channels-strategy</module>
+    	<module>aspect-interceptors</module>
+    	<module>cdi-demos</module>
+    	<module>scheduler</module>
+    	<module>binary-REST-Serializer</module>
+    	<module>plugins</module>
+    	<module>jaxrs-validations</module>
+    	<module>cdi-custom-scope</module>
+    	<module>async-pom</module>
+      <module>jax-rs-async</module>
   </modules>
   
   
