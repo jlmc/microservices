@@ -13,5 +13,4 @@ import javax.enterprise.context.NormalScope;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD, ElementType.FIELD, ElementType.TYPE })
 public @interface ManualScoped {
-
 }
