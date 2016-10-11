@@ -26,6 +26,7 @@
     	<module>cdi-custom-scope</module>
     	<module>async-pom</module>
       <module>jax-rs-async</module>
+      <module>extendable</module>
   </modules>
   
   
