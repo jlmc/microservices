@@ -25,7 +25,7 @@ public class Newsletter {
 		// Attention, The order of the cast matter
 		{
 			final Serializable sendSimpleNewsletterMethod = (Runnable & Serializable) this::sendSimpleNewsletter;
-			timerService.createCalendarTimer(new ScheduleExpression().hour(0).minute(5).dayOfWeek("5–1"),
+			timerService.createCalendarTimer(new ScheduleExpression().hour(0).minute(5).dayOfWeek(5),
 					new TimerConfig(sendSimpleNewsletterMethod, false));
 		}
 
