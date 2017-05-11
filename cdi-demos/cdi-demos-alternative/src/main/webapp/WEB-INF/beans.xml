@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
+       bean-discovery-mode="all">
+       
+       <!-- 
+       		disabling a bean enabling another,
+       		annotated with @Alternative,
+       		leaving the latter with a higher priority than the bean is no alternative  
+       		
+       		No entanto esta linha pode não ser necessaria se a Bean
+       		
+       		
+       		However this line may not be necessary if the @Alternative Bean has a 
+       		higher priority APPLICATION
+       -->
+       <alternatives>
+       		<class>
+       			org.xine.cdidemos.business.resourcesmanager.control.UbuntuOneRepository
+       		</class>
+       </alternatives>
+</beans>

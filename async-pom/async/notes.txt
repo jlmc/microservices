@@ -1,0 +1,37 @@
+#GET All
+
+curl -i -v -X GET -H "Content-Type: application/xml" -H "Accept: application/json" http://localhost:8080/simplejaxrs-0.0.1-SNAPSHOT/resources/books
+
+
+------------------------------------------------------------------
+#GET id
+
+curl -i -v -X GET -H "Content-Type: application/json" -H "Accept: application/json" http://localhost:8080/async/resources/contracts/4
+
+------------------------------------------------------------------
+
+
+#DELETE id
+
+curl -i -v -X DELETE -H "Content-Type: application/json" -H "Accept: application/json" http://localhost:8080/simplejaxrs-0.0.1-SNAPSHOT/resources/books/1
+
+-------------------------------------------------------------------
+
+#POST
+
+curl -v -X POST -H "Accept: application/json" -H "Accept-Language: en" -H "Content-Type: application/json" --data @request.json http://localhost:8080/async/resources/contracts
+
+
+------------------------------------------------------------------
+
+
+#PUT
+
+curl -v -X PUT -H "Accept: application/json" -H "Accept-Language: en" -H "Content-Type: application/json" --data @request.json http://localhost:8080/simplejaxrs-0.0.1-SNAPSHOT/resources/books
+
+-----------------------------------------------------------------------
+#PATCH #id
+
+curl -v -X PATCH -H "Accept: application/xml" -H "Accept-Language: en" -H "Content-Type: application/xml" --data @request.xml http://localhost:8080/simplejaxrs-0.0.1-SNAPSHOT/resources/books/123
+
+
