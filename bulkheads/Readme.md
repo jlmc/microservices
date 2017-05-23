@@ -1,66 +1,47 @@
 # Bulk Heads
 
-In shipping, a bulkhead is a partition that prevents a leak in one compartment from sinking the entire ship. 
-Bulkheads in microservices are a similar concept. You need to make sure that a failure in one part of your application doesn’t take down the whole thing. The bulkhead pattern is about how you create microservices rather than the use of any specific tool or library. 
-When creating microservices, always ask yourself how you can isolate the different parts and prevent cascading failures.
+In shipping, a bulkhead is a partition that prevents a leak in one compartment from sinking the entire ship.
+Bulkheads in microservices are a similar concept. We need to make sure that a failure in one part of our application doesn’t take down the whole thing. The bulkhead pattern is about how we create microservices rather than the use of any specific tool or library.
+When we create microservices, we should always ask ourselves how you can isolate the different parts and prevent cascading failures.
 
-In this project I'm implementing the Bulk Heads Pattern,
+Taking the text seriously, we can say that BulkHeads Means one ThreadPool for communication channel service (Path).
+In Java EE the simplest way to implement that is to create ExecutersManagerServices manually in the administration console. Then we can access these resources using the @Resources annotation.
 
-BulkHeads mends on thredPool for comunication channel service.
-
-
-254/5000
-
-In Java EE the simplest way to implement that is to create the ExecutersManagerServices manually in the administration console.
-However, this may be impractical in sophisticated applications, where executors are expected to be more flexible and .
-
-
-Problema:
-* Precisamos the o servidor não fique bloqueado, com um serviço
-* O canais de comunicação devem ser independentes, 
-* O servidor torna-se robusto e muito responsivo, isto é, embora o canal esteja subcarregado (overloaded), um outro canal pode continuar a atender pedidos.
-* One Overload Path should not afect the others
-
-
-ganhos extra:
-
-* Com a criação de Executors dedicados ganhamos a capacidade de monitoring mais facilmente.
-* como temos executors dedicados a canais de comunicação pode tornar-se mais simples monutorização de cada um desses canais de comunicação.
-* Fácil atribuir mais recursos, Easy to assign more resources
-
-
----
+```Java
 @Resource
-ManagerExecutorService 
+ManagerExecutorService
+```
+However, this may be impractical in sophisticated applications, where executors are expected to be more flexible.
 
-vem com (do) java EE, foi introduzido pelo Java EE 7.
 
-No entanto essa especificação não diz como deve ser feita a Reject policy,
-apenas sujere que pode ser o Abort ou retry and Abort.
+## Problem
 
-Spec
-Reject Policy: The policy to use when a task is to be rejected by the executor. In this example, two
-policies are available:
-◦ Abort: Throw an exception when rejected.
-◦ Retry and Abort: Automatically resubmit to another instance and abort if it fails.
- 
-In Order to implement a Custom Reject Policy we have to implement our how Thread Pool Executors.
-A custom Reject Policy is in fact a good a idea for more sophisticated Applications 
+* We need the server not to get blocked, with a service.
+* One Overload Path should not affect the others.
+* The communication channels should be independent of each other.
+* The server becomes robust and very responsive, that is, although the channel is underloaded, another channel can continue to accept and respond to requests.
+
+
+## Solution
+
+Fortunately the specification of Concurrency-Utilities 1.0 comes with a solution that is part of the standards, and the solutions is the ManagedThreadFactory, the interface for creating managed Threads.
+
+“_The javax.enterprise.concurrent.ManagedThreadFactory allows applications to create thread instances from a Java EE Product Provider without creating new java.lang.Thread instances directly. This object allows Application Component Providers to use custom executors such as the java.util.concurrent.ThreadPoolExecutor when advanced, specialized execution patterns are required.
+Java EE Product Providers can provide custom Thread implementations to add management capabilities and container contextual information to the thread._”
+
+Using that, the ManagedThreadFactory can be injected easily inject into the Our components, thus allowing the possibility to create Managed Threads.
 
 ---
-Fortunately the EE-Concurrency-Utilities 1.0 cames with a solution that is part of the standards, and the solutions is the 
-__ManagedThreadFactory__  The interface for creating managed threads.
+## Bonus
+* With the creation of dedicated Executors we gain the ability to monitor more easily.
+* With dedicated executers to communication channels can become simpler monotarization of each of these communication channels.
+* Easy to assign more resources
+* Reject Policy, In Order to implement a Custom Reject Policy we have to implement our how Thread Pool Executors.
+* A custom Reject Policy is in fact a good a idea for more sophisticated Applications, that is part of the solution
 
-the ManagedThreadFactory Can be injected easily into the Our components, thus allowing the possibility to create Managed Threads.
+ 
+ 
 
-Spec (EE-concurrency-Utilities 1.0)
-_The javax.enterprise.concurrent.ManagedThreadFactory allows applications to create thread instances from a
-Java EE Product Provider without creating new java.lang.Thread instances directly. This object allows
-Application Component Providers to use custom executors such as the
-java.util.concurrent.ThreadPoolExecutor when advanced, specialized execution patterns are required.
-Java EE Product Providers can provide custom Thread implementations to add management capabilities and
-container contextual information to the thread._
 
-Then, from this assumption, we can use the Thread Managed factory to create new executors services that we can dedicate to Paths 
 
 
