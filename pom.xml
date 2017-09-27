@@ -29,6 +29,7 @@
       <module>extendable</module>
       <module>websocket-between-apps</module>
       <module>bulkheads</module>
+      <module>hibernate-in-payara</module>
   </modules>
   
   
