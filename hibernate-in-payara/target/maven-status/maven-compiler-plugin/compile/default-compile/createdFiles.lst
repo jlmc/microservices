@@ -1,0 +1,9 @@
+org/jcosta/bookstore/JAXRSConfiguration.class
+org/jcosta/bookstore/book/boundary/BookManager.class
+org/jcosta/bookstore/ResourceAlreadyExistsException.class
+org/jcosta/bookstore/book/boundary/BookResource.class
+org/jcosta/bookstore/CorsResponseFilter.class
+org/jcosta/bookstore/NoResultExceptionMapper.class
+org/jcosta/bookstore/Error.class
+org/jcosta/bookstore/book/entity/Book.class
+org/jcosta/bookstore/book/boundary/BookResource$1.class

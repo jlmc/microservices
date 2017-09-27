@@ -1,0 +1,8 @@
+/Users/costa/Documents/dev/microservices/hibernate-in-payara/src/main/java/org/jcosta/bookstore/JAXRSConfiguration.java
+/Users/costa/Documents/dev/microservices/hibernate-in-payara/src/main/java/org/jcosta/bookstore/Error.java
+/Users/costa/Documents/dev/microservices/hibernate-in-payara/src/main/java/org/jcosta/bookstore/book/boundary/BookManager.java
+/Users/costa/Documents/dev/microservices/hibernate-in-payara/src/main/java/org/jcosta/bookstore/ResourceAlreadyExistsException.java
+/Users/costa/Documents/dev/microservices/hibernate-in-payara/src/main/java/org/jcosta/bookstore/book/entity/Book.java
+/Users/costa/Documents/dev/microservices/hibernate-in-payara/src/main/java/org/jcosta/bookstore/book/boundary/BookResource.java
+/Users/costa/Documents/dev/microservices/hibernate-in-payara/src/main/java/org/jcosta/bookstore/NoResultExceptionMapper.java
+/Users/costa/Documents/dev/microservices/hibernate-in-payara/src/main/java/org/jcosta/bookstore/CorsResponseFilter.java
