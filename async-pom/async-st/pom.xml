@@ -13,6 +13,9 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
+
+		<!--If the CI environment is configure then the test should run -->
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 
 	<dependencies>

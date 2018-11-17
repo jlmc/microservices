@@ -4,7 +4,7 @@
         <class>org.xine.paginator.business.registrations.entity.Registration</class>
         <class>org.xine.paginator.business.customers.entity.Customer</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:derby:./workshops;create=true"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:./target/.workshops;create=true"/>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       
