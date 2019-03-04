@@ -1,5 +1,2 @@
-# microservices
-
 ## Real World Java EE Patterns 
-
-rethingking best practices
+**rethingking best practices**
