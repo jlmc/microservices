@@ -26,83 +26,84 @@ import org.xine.channels.presentation.publication.BrowserWindow;
 @ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class SnapshotEventBroker {
 
-	private final ConcurrentLinkedQueue<BrowserWindow> browsers = new ConcurrentLinkedQueue<>();
-	// private final ConcurrentLinkedQueue<BrowserWindow> escalationBrowsers =
-	// new ConcurrentLinkedQueue<>();
-	private final ConcurrentHashMap<String, Snapshot> escalations = new ConcurrentHashMap<>();
+    private final ConcurrentLinkedQueue<BrowserWindow> browsers = new ConcurrentLinkedQueue<>();
+    // private final ConcurrentLinkedQueue<BrowserWindow> escalationBrowsers =
+    // new ConcurrentLinkedQueue<>();
+    private final ConcurrentHashMap<String, Snapshot> escalations = new ConcurrentHashMap<>();
 
-	private Timer timer;
+    @Resource
+    TimerService timerService;
 
-	@Inject
-	private Instance<Integer> intervale;
-	@Resource
-	TimerService timerService;
-	@Inject
-	Serializer serializer;
+    @Inject
+    Serializer serializer;
 
-	@PostConstruct
-	public void startTimer() {
-		final ScheduleExpression expression = new ScheduleExpression()
-				.hour("*")
-				.minute("*")
-				.second("*/"+this.intervale.get());
+    private Timer timer;
 
-		this.timer = this.timerService.createCalendarTimer(expression);
-	}
+    @Inject
+    private Instance<Integer> intervale;
 
-	@Timeout
-	public void notificationEscalationListeners() {
-		this.browsers.forEach(bw -> {
-			final String channel = bw.getChannel();
+    @PostConstruct
+    public void startTimer() {
+        final ScheduleExpression expression = new ScheduleExpression()
+                .hour("*")
+                .minute("*")
+                .second("*/" + this.intervale.get());
 
-			if(channel != null && !channel.isEmpty()) {
-				final Snapshot snapshot = this.escalations.get(channel);
-				try {
+        this.timer = this.timerService.createCalendarTimer(expression);
+    }
 
-					if(snapshot != null) {
-						send(bw, snapshot);
-					} else {
-						bw.nothingToSay();
-					}
+    @Timeout
+    public void notificationEscalationListeners() {
+        this.browsers.forEach(bw -> {
+            final String channel = bw.getChannel();
 
-				} finally {
-					this.browsers.remove(bw);
-				}
-			}
-		});
+            if (channel != null && !channel.isEmpty()) {
+                final Snapshot snapshot = this.escalations.get(channel);
+                try {
 
-	}
+                    if (snapshot != null) {
+                        send(bw, snapshot);
+                    } else {
+                        bw.nothingToSay();
+                    }
 
-	public void onBrowerRequest(@Observes final BrowserWindow browserWindow) {
-		this.browsers.add(browserWindow);
-	}
+                } finally {
+                    this.browsers.remove(bw);
+                }
+            }
+        });
 
-	public void onNewSnapshot(
-			@Observes
-			@Severity(Level.HEARTBEAT)
-			final Snapshot snapshot) {
+    }
 
-		this.browsers.forEach(browserWindow -> {
+    public void onBrowerRequest(@Observes final BrowserWindow browserWindow) {
+        this.browsers.add(browserWindow);
+    }
 
-			if (browserWindow.getChannel() == null) {
-				try {
-					send(browserWindow, snapshot);
-				} finally {
-					this.browsers.remove(browserWindow);
-				}
-			}
+    public void onNewSnapshot(
+            @Observes
+            @Severity(Level.HEARTBEAT) final Snapshot snapshot) {
 
-		});
-	}
+        this.browsers.forEach(browserWindow -> {
 
-	public void onNewEscalation(@Observes @Severity(Level.ESCALATION) final Snapshot escalation) {
-		this.escalations.put(escalation.getEscalationChannel(), escalation);
-	}
+            if (browserWindow.getChannel() == null) {
+                try {
+                    send(browserWindow, snapshot);
+                } finally {
+                    this.browsers.remove(browserWindow);
+                }
+            }
 
-	private void send(final BrowserWindow browserWindow, final Snapshot snapshot) {
-		final Writer writer = browserWindow.getWriter();
-		this.serializer.serialize(snapshot, writer);
-		browserWindow.send();
-	}
+        });
+    }
+
+    public void onNewEscalation(@Observes @Severity(Level.ESCALATION) final Snapshot escalation) {
+        this.escalations.put(escalation.getEscalationChannel(), escalation);
+    }
+
+    private void send(final BrowserWindow browserWindow, final Snapshot snapshot) {
+        final Writer writer = browserWindow.getWriter();
+        this.serializer.serialize(snapshot, writer);
+        browserWindow.send();
+    }
 
 }
