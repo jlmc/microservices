@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    version="3.0">
+
+    <display-name>Demo</display-name>
+
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
+
+    <!-- Fixes an issue where REST endpoints were being incorrectly matched because of problems in the spec -->
+    <!-- http://bill.burkecentral.com/2013/05/29/the-poor-jax-rs-request-dispatching-algorithm/ -->
+    <context-param>
+        <param-name>resteasy.wider.request.matching</param-name>
+        <param-value>true</param-value>
+    </context-param>
+</web-app>
