@@ -16,6 +16,6 @@ import javax.interceptor.InterceptorBinding;
 public @interface Secure {
 
     @Nonbinding
-    boolean enviarNotificacao() default false;
+    boolean sendNotification() default false;
 
 }
