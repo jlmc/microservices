@@ -13,18 +13,18 @@ import org.xine.extendable.business.microscopes.ScopeContext;
 @Interceptor
 @MethodScopeEnabled
 public class MethodScopedInterceptor {
-	@Inject
-	private BeanManager beanManager;
+    @Inject
+    private BeanManager beanManager;
 
-	@AroundInvoke
-	public Object invoke(InvocationContext invocation) throws Exception {
-		final ScopeContext<Method> context = (ScopeContext<Method>) beanManager.getContext(MethodScoped.class);
+    @AroundInvoke
+    public Object invoke(InvocationContext invocation) throws Exception {
+        final ScopeContext<Method> context = (ScopeContext<Method>) beanManager.getContext(MethodScoped.class);
 
-		final Method previous = context.enter(invocation.getMethod());
-		try {
-			return invocation.proceed();
-		} finally {
-			context.exit(previous);
-		}
-	}
+        final Method previous = context.enter(invocation.getMethod());
+        try {
+            return invocation.proceed();
+        } finally {
+            context.exit(previous);
+        }
+    }
 }

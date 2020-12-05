@@ -28,33 +28,33 @@ public class CDIServiceLocator {
         }
     }
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public <T> T getBean(final Class clazz) {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public <T> T getBean(final Class clazz) {
         final BeanManager beanManager = getBeanManager();
         final Set<Bean<?>> beans = beanManager.getBeans(clazz);
         final Bean<?> bean = beanManager.resolve(beans);
         final CreationalContext<?> context = beanManager.createCreationalContext(bean);
         final Object reference = beanManager.getReference(bean, clazz, context);
         return (T) reference;
-	}
+    }
 
-	@SuppressWarnings("unchecked")
-	public <T> T getBean(Class<T> type, Annotation... qualifiers) {
-		final BeanManager beanManager = getBeanManager();
+    @SuppressWarnings("unchecked")
+    public <T> T getBean(Class<T> type, Annotation... qualifiers) {
+        final BeanManager beanManager = getBeanManager();
 
-		final Set<Bean<?>> beans = beanManager.getBeans(type, qualifiers);
-		if (beans == null || beans.isEmpty()) {
-			// if (optional) {
-			// return null;
-			// }
-			throw new IllegalStateException(
-					"Could not find beans for Type=" + type + " and qualifiers:" + Arrays.toString(qualifiers));
-		}
+        final Set<Bean<?>> beans = beanManager.getBeans(type, qualifiers);
+        if (beans == null || beans.isEmpty()) {
+            // if (optional) {
+            // return null;
+            // }
+            throw new IllegalStateException(
+                    "Could not find beans for Type=" + type + " and qualifiers:" + Arrays.toString(qualifiers));
+        }
 
-		final Bean<?> bean = beanManager.resolve(beans);
-		final CreationalContext<?> context = beanManager.createCreationalContext(bean);
-		final Object reference = beanManager.getReference(bean, type, context);
-		return (T) reference;
-	}
+        final Bean<?> bean = beanManager.resolve(beans);
+        final CreationalContext<?> context = beanManager.createCreationalContext(bean);
+        final Object reference = beanManager.getReference(bean, type, context);
+        return (T) reference;
+    }
 
 }

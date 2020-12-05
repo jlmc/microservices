@@ -15,22 +15,22 @@ import org.xine.stackbooks.business.security.entity.Permission;
 @ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class InMemoryPermissionsRealm {
 
-	private Map<String, EnumSet<Permission>> customStore;
+    private Map<String, EnumSet<Permission>> customStore;
 
-	@PostConstruct
-	public void populateRealm() {
-		this.customStore = new HashMap<String, EnumSet<Permission>>();
-		this.customStore.put("costajlmpp@gmail.com", EnumSet.allOf(Permission.class));
-		this.customStore.put("john", EnumSet.allOf(Permission.class));
-		this.customStore.put("blogger", EnumSet.noneOf(Permission.class));
-	}
+    @PostConstruct
+    public void populateRealm() {
+        this.customStore = new HashMap<String, EnumSet<Permission>>();
+        this.customStore.put("costajlmpp@gmail.com", EnumSet.allOf(Permission.class));
+        this.customStore.put("john", EnumSet.allOf(Permission.class));
+        this.customStore.put("blogger", EnumSet.noneOf(Permission.class));
+    }
 
-	public EnumSet<Permission> getPermissionForPrincipal(String userName) {
-		final EnumSet<Permission> configuredPermissions = this.customStore.get(userName);
-		if (configuredPermissions == null) {
-			return EnumSet.noneOf(Permission.class);
-		}
+    public EnumSet<Permission> getPermissionForPrincipal(String userName) {
+        final EnumSet<Permission> configuredPermissions = this.customStore.get(userName);
+        if (configuredPermissions == null) {
+            return EnumSet.noneOf(Permission.class);
+        }
 
-		return configuredPermissions;
-	}
+        return configuredPermissions;
+    }
 }

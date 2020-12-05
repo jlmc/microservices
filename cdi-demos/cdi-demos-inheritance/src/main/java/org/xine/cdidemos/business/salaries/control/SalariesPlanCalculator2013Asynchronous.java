@@ -10,11 +10,11 @@ import org.xine.cdidemos.business.salaries.entity.Employeer;
 @Priority(javax.interceptor.Interceptor.Priority.APPLICATION)
 @Specializes
 public class SalariesPlanCalculator2013Asynchronous extends SalariesPlanCalculator2013 {
-	
-	@Override
-	public double earningsEstimates(final Employeer employee) {
-		System.out.println("SalariesPlanCalculator2013Asynchronous");
-		return 10;
-	}
+
+    @Override
+    public double earningsEstimates(final Employeer employee) {
+        System.out.println("SalariesPlanCalculator2013Asynchronous");
+        return 10;
+    }
 
 }

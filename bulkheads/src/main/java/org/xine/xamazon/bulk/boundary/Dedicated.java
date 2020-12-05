@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Dedicated {
-    public final static String DEFAULT = "-";
+    String DEFAULT = "-";
 
     /**
      * Defines the name for the pipeline (Executor with statistics). If the name

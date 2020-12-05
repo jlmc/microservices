@@ -18,31 +18,31 @@ import org.xine.business.registations.entity.Workshop;
 @Singleton
 public class RegistrationListener {
 
-	private final CopyOnWriteArrayList<Workshop> cache = new CopyOnWriteArrayList<>();
+    private final CopyOnWriteArrayList<Workshop> cache = new CopyOnWriteArrayList<>();
 
-	@Inject
-	Logger logger;
+    @Inject
+    Logger logger;
 
-	@PostConstruct
-	public void onStart() {
-		this.logger.info("---------Started!");
-	}
+    @PostConstruct
+    public void onStart() {
+        this.logger.info("---------Started!");
+    }
 
-	@Asynchronous
-	public Future<Void> onNewRegistration(@Observes final Workshop workshop) {
-		this.logger.info("----------------onNewRegistration");
-		this.cache.add(workshop);
-		return new AsyncResult<Void>(null);
-	}
+    @Asynchronous
+    public Future<Void> onNewRegistration(@Observes final Workshop workshop) {
+        this.logger.info("----------------onNewRegistration");
+        this.cache.add(workshop);
+        return new AsyncResult<Void>(null);
+    }
 
-	@Schedule(minute = "*/1", second = "30", persistent = true)
-	public void sendEmail() {
-		this.logger.info("---------- sendEmail" + new Date());
+    @Schedule(minute = "*/1", second = "30", persistent = true)
+    public void sendEmail() {
+        this.logger.info("---------- sendEmail" + new Date());
 
-		for (final Workshop workshop : this.cache) {
-			this.logger.info("Send workshop via email: " + workshop);
-			this.cache.remove(workshop);
-		}
-	}
+        for (final Workshop workshop : this.cache) {
+            this.logger.info("Send workshop via email: " + workshop);
+            this.cache.remove(workshop);
+        }
+    }
 
 }

@@ -12,10 +12,10 @@ import javax.inject.Qualifier;
 @Target({ ElementType.TYPE, ElementType.FIELD })
 public @interface ProviderType {
 
-	Type value() default Type.LOCAL;
+    Type value() default Type.LOCAL;
 
-	enum Type {
-		LOCAL, REMOTE
-	}
+    enum Type {
+        LOCAL, REMOTE
+    }
 
 }

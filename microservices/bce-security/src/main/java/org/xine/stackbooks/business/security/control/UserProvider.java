@@ -9,18 +9,18 @@ import org.xine.stackbooks.business.security.entity.User;
 
 public class UserProvider {
 
-	@Inject
-	Principal principal;
+    @Inject
+    Principal principal;
 
-	@Inject
-	InMemoryPermissionsRealm realm;
+    @Inject
+    InMemoryPermissionsRealm realm;
 
-	@Produces
-	public User fetch() {
-		final User user = new User(this.principal.getName());
-		// we can map the permissions over here
-		user.setPermissions(this.realm.getPermissionForPrincipal(this.principal.getName()));
-		return user;
-	}
+    @Produces
+    public User fetch() {
+        final User user = new User(this.principal.getName());
+        // we can map the permissions over here
+        user.setPermissions(this.realm.getPermissionForPrincipal(this.principal.getName()));
+        return user;
+    }
 
 }

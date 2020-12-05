@@ -7,10 +7,10 @@ import javax.enterprise.inject.spi.Extension;
 
 public class ManualScopeRegistration implements Extension {
 
-	public void afterBeanDiscovery(@Observes AfterBeanDiscovery event, BeanManager manager) {
+    public void afterBeanDiscovery(@Observes AfterBeanDiscovery event, BeanManager manager) {
         event.addContext(ManualManagedContext.getInstance());
         System.out.println("Context added: " + event);
     }
 }
-	
+
 

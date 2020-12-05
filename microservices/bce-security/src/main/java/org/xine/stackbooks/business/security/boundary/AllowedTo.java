@@ -10,5 +10,5 @@ import org.xine.stackbooks.business.security.entity.Permission;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AllowedTo {
-	Permission[] value();
+    Permission[] value();
 }

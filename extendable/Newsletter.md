@@ -16,50 +16,50 @@ import javax.ejb.TimerService;
 @Startup
 public class Newsletter {
 
-	@Resource
-	TimerService timerService;
+    @Resource
+    TimerService timerService;
 
-	@PostConstruct
-	public void initialization() {
-		// this can be build using configurations
-		final ScheduleExpression scheduleExpression = new ScheduleExpression().hour(0).minute(5).dayOfWeek("5–1");
-		final TimerConfig timerConfig = new TimerConfig("simpleNewsletter", false);
+    @PostConstruct
+    public void initialization() {
+        // this can be build using configurations
+        final ScheduleExpression scheduleExpression = new ScheduleExpression().hour(0).minute(5).dayOfWeek("5–1");
+        final TimerConfig timerConfig = new TimerConfig("simpleNewsletter", false);
 
-		timerService.createCalendarTimer(scheduleExpression, timerConfig);
+        timerService.createCalendarTimer(scheduleExpression, timerConfig);
 
-		// this can be build using configurations
-		final ScheduleExpression scheduleExpressionCrisman = new ScheduleExpression().dayOfMonth(25).month(12).hour(0);
-		final TimerConfig timerConfigCrisman = new TimerConfig("crismanNewsletter", false);
-		timerService.createCalendarTimer(scheduleExpression, timerConfigCrisman);
+        // this can be build using configurations
+        final ScheduleExpression scheduleExpressionCrisman = new ScheduleExpression().dayOfMonth(25).month(12).hour(0);
+        final TimerConfig timerConfigCrisman = new TimerConfig("crismanNewsletter", false);
+        timerService.createCalendarTimer(scheduleExpression, timerConfigCrisman);
 
-		// and can be many mores...
-	}
+        // and can be many mores...
+    }
 
-	@Timeout
-	public void execute(Timer timer) {
-		final Serializable methodName = timer.getInfo();
+    @Timeout
+    public void execute(Timer timer) {
+        final Serializable methodName = timer.getInfo();
 
-		switch (String.valueOf(methodName)) {
-		case "simpleNewsletter":
-			sendSimpleNewsletter();
-			break;
-		case "crismanNewsletter":
-			sendCrismanNewsletter();
-			break;
+        switch (String.valueOf(methodName)) {
+        case "simpleNewsletter":
+            sendSimpleNewsletter();
+            break;
+        case "crismanNewsletter":
+            sendCrismanNewsletter();
+            break;
 
-		default:
-			break;
-		}
-	}
+        default:
+            break;
+        }
+    }
 
-	private void sendCrismanNewsletter() {
-		System.out.println("sendSimpleNewsletter");
-	}
+    private void sendCrismanNewsletter() {
+        System.out.println("sendSimpleNewsletter");
+    }
 
-	private void sendSimpleNewsletter() {
-		System.out.println("Sending simple news letter");
+    private void sendSimpleNewsletter() {
+        System.out.println("Sending simple news letter");
 
-	}
+    }
 
 
 }

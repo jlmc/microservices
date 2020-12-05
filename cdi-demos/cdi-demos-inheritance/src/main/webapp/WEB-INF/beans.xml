@@ -5,16 +5,16 @@
        bean-discovery-mode="all">
        
        <!-- 
-       		disabling a bean enabling another,
-       		annotated with @Alternative,
-       		leaving the latter with a higher priority than the bean is no alternative  
-       		
-       		However this line may not be necessary if the @Alternative Bean has a 
-       		higher priority APPLICATION
+               disabling a bean enabling another,
+               annotated with @Alternative,
+               leaving the latter with a higher priority than the bean is no alternative
+
+               However this line may not be necessary if the @Alternative Bean has a
+               higher priority APPLICATION
        -->
        <alternatives>
-<!--        		<class> -->
-<!--        			org.xine.cdidemos.business.resourcesmanager.control.UbuntuOneRepository -->
-<!--        		</class> -->
+<!--                <class> -->
+<!--                    org.xine.cdidemos.business.resourcesmanager.control.UbuntuOneRepository -->
+<!--                </class> -->
        </alternatives>
 </beans>

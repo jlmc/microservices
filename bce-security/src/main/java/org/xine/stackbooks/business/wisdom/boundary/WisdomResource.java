@@ -17,20 +17,20 @@ import org.xine.stackbooks.business.wisdom.control.CustomSecuredWisdomStorage;
 @Produces(MediaType.TEXT_PLAIN)
 public class WisdomResource {
 
-	@Inject
-	CustomSecuredWisdomStorage storage;
+    @Inject
+    CustomSecuredWisdomStorage storage;
 
-	@GET
-	public String wisdom() {
-		return this.storage.wisdom();
-	}
+    @GET
+    public String wisdom() {
+        return this.storage.wisdom();
+    }
 
-	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.TEXT_HTML)
-	public String wisdom(@FormParam("wisdom") String wisdom) {
-		this.storage.wisdom(wisdom);
-		return "thanks!";
-	}
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_HTML)
+    public String wisdom(@FormParam("wisdom") String wisdom) {
+        this.storage.wisdom(wisdom);
+        return "thanks!";
+    }
 
 }

@@ -15,52 +15,52 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Registration {
 
-	private long id;
+    private long id;
 
-	@XmlTransient
-	private BiFunction<Boolean, Integer, Integer> taxCalculator;
+    @XmlTransient
+    private BiFunction<Boolean, Integer, Integer> taxCalculator;
 
-	private int numberOfDays;
-	private int numberOfAttendees;
-	private boolean vatIdAvailable;
+    private int numberOfDays;
+    private int numberOfAttendees;
+    private boolean vatIdAvailable;
 
-	private final static int DAILY_PRICE = 300;
+    private final static int DAILY_PRICE = 300;
 
-	public Registration(final boolean vatIdAvailable, final int numberOfDays, final int numberOfAttendees) {
-		this.numberOfDays = numberOfDays;
-		this.numberOfAttendees = numberOfAttendees;
-		this.vatIdAvailable = vatIdAvailable;
-	}
+    public Registration(final boolean vatIdAvailable, final int numberOfDays, final int numberOfAttendees) {
+        this.numberOfDays = numberOfDays;
+        this.numberOfAttendees = numberOfAttendees;
+        this.vatIdAvailable = vatIdAvailable;
+    }
 
-	public Registration() {
-	}
+    public Registration() {
+    }
 
-	public int getNetPrice() {
-		return this.numberOfAttendees * this.numberOfDays * DAILY_PRICE;
-	}
+    public int getNetPrice() {
+        return this.numberOfAttendees * this.numberOfDays * DAILY_PRICE;
+    }
 
-	public void setCalculator(final BiFunction<Boolean, Integer, Integer> taxCalculator) {
-		this.taxCalculator = taxCalculator;
-	}
+    public void setCalculator(final BiFunction<Boolean, Integer, Integer> taxCalculator) {
+        this.taxCalculator = taxCalculator;
+    }
 
-	public int getTotalPrice() {
-		return this.taxCalculator.apply(this.vatIdAvailable, getNetPrice());
-	}
+    public int getTotalPrice() {
+        return this.taxCalculator.apply(this.vatIdAvailable, getNetPrice());
+    }
 
-	public boolean isVatIdAvailable() {
-		return this.vatIdAvailable;
-	}
+    public boolean isVatIdAvailable() {
+        return this.vatIdAvailable;
+    }
 
-	public long getId() {
-		return this.id;
-	}
+    public long getId() {
+        return this.id;
+    }
 
-	public int getNumberOfDays() {
-		return this.numberOfDays;
-	}
+    public int getNumberOfDays() {
+        return this.numberOfDays;
+    }
 
-	public int getNumberOfAttendees() {
-		return this.numberOfAttendees;
-	}
+    public int getNumberOfAttendees() {
+        return this.numberOfAttendees;
+    }
 
 }

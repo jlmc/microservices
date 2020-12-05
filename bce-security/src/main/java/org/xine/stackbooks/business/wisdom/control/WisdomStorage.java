@@ -13,24 +13,24 @@ import javax.inject.Inject;
 @DeclareRoles("ADMIN")
 public class WisdomStorage {
 
-	private String wisdom;
+    private String wisdom;
 
-	@Inject
-	Principal principal;
+    @Inject
+    Principal principal;
 
-	@PostConstruct
-	public void initialize() {
-		this.wisdom = "java EE Rosks !!!";
-	}
+    @PostConstruct
+    public void initialize() {
+        this.wisdom = "java EE Rosks !!!";
+    }
 
-	@RolesAllowed("ADMIN")
-	public void wisdom(String wisdom) {
-		this.wisdom = wisdom;
-	}
+    @RolesAllowed("ADMIN")
+    public void wisdom(String wisdom) {
+        this.wisdom = wisdom;
+    }
 
-	@PermitAll
-	public String wisdom() {
-		return this.wisdom;
-	}
+    @PermitAll
+    public String wisdom() {
+        return this.wisdom;
+    }
 
 }

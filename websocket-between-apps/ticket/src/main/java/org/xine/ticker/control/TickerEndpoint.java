@@ -9,26 +9,26 @@ import javax.websocket.Session;
 
 public class TickerEndpoint extends Endpoint {
 
-	private Session session;
+    private Session session;
 
-	private String lastMessage;
+    private String lastMessage;
 
-	@Override
-	public void onOpen(Session session, EndpointConfig config) {
-		this.session = session;
-		this.session.addMessageHandler(new MessageHandler.Whole<String>() {
-			@Override
-			public void onMessage(String message) {
-				System.out.println("RECEIVED:: " + message);
-				lastMessage = message;
-			}
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        this.session = session;
+        this.session.addMessageHandler(new MessageHandler.Whole<String>() {
+            @Override
+            public void onMessage(String message) {
+                System.out.println("RECEIVED:: " + message);
+                lastMessage = message;
+            }
 
-		});
+        });
 
-	}
-	
-	public Optional<String> getLastMessage() {
-		return Optional.ofNullable(this.lastMessage);
-	}
+    }
+    
+    public Optional<String> getLastMessage() {
+        return Optional.ofNullable(this.lastMessage);
+    }
 
 }

@@ -50,8 +50,8 @@ public class ManualManagedContext implements Context {
         final String beanName = ((Bean)contextual).getBeanClass().getName();
         final CDIBean cdiBean = context.get(beanName);
         if(cdiBean == null) {
-			return null;
-		}
+            return null;
+        }
         return (T) cdiBean.getBean();
     }
 

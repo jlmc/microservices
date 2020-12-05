@@ -16,29 +16,29 @@ import org.xine.business.scanvenger.control.ReferrerScavengerTimer;
 @Startup
 public class ScavengerStarted {
 
-	@Resource
-	TimerService timerService;
+    @Resource
+    TimerService timerService;
 
-	@Inject
-	ReferrerScavengerTimer referrerScavengerTimer;
+    @Inject
+    ReferrerScavengerTimer referrerScavengerTimer;
 
-	private final long startDelay = 60 * 1000;
-	private Timer timer;
+    private final long startDelay = 60 * 1000;
+    private Timer timer;
 
-	@PostConstruct
-	public void initiliaseTimer() {
-		final TimerConfig config = new TimerConfig();
-		config.setPersistent(false);
-		this.timer = this.timerService.createSingleActionTimer(this.startDelay, config);
-	}
+    @PostConstruct
+    public void initiliaseTimer() {
+        final TimerConfig config = new TimerConfig();
+        config.setPersistent(false);
+        this.timer = this.timerService.createSingleActionTimer(this.startDelay, config);
+    }
 
-	@Timeout
-	public void startScanvenger() {
-		this.referrerScavengerTimer.initializeTimer();
-	}
+    @Timeout
+    public void startScanvenger() {
+        this.referrerScavengerTimer.initializeTimer();
+    }
 
-	public void cleanupTimer() {
-		this.timer.cancel();
-	}
+    public void cleanupTimer() {
+        this.timer.cancel();
+    }
 
 }

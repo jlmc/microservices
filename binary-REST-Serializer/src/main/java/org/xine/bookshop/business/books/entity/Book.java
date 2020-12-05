@@ -13,39 +13,39 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 public class Book implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	private Long imdb;
-	private String name;
+    @Id
+    private Long imdb;
+    private String name;
 
-	protected Book() {
-	}
+    protected Book() {
+    }
 
-	public Book(final Long imdb, final String name) {
-		this.imdb = imdb;
-		this.name = name;
-	}
+    public Book(final Long imdb, final String name) {
+        this.imdb = imdb;
+        this.name = name;
+    }
 
-	public Long getImdb() {
-		return this.imdb;
-	}
+    public Long getImdb() {
+        return this.imdb;
+    }
 
-	public void setImdb(final Long imdb) {
-		this.imdb = imdb;
-	}
+    public void setImdb(final Long imdb) {
+        this.imdb = imdb;
+    }
 
-	public void setName(final String name) {
-		this.name = name;
-	}
+    public void setName(final String name) {
+        this.name = name;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	@Override
-	public String toString() {
-		return "Book [imdb=" + this.imdb + ", name=" + this.name + "]";
-	}
+    @Override
+    public String toString() {
+        return "Book [imdb=" + this.imdb + ", name=" + this.name + "]";
+    }
 
 }

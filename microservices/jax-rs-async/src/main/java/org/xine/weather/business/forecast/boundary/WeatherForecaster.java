@@ -8,16 +8,16 @@ import org.xine.weather.business.logging.boundary.Log;
 @Stateless
 public class WeatherForecaster {
 
-	@Inject
-	Log LOG;
-	// Consumer<String> LOG;
+    @Inject
+    Log LOG;
+    // Consumer<String> LOG;
 
-	@Inject
-	String password;
+    @Inject
+    String password;
 
-	public String all() {
-		LOG.log("seems to work");
-		//LOG.accept("seems to work");
-		return "storms " + password;
-	}
+    public String all() {
+        LOG.log("seems to work");
+        //LOG.accept("seems to work");
+        return "storms " + password;
+    }
 }

@@ -15,7 +15,7 @@ import javax.interceptor.InterceptorBinding;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Secure {
 
-	@Nonbinding
-	boolean enviarNotificacao() default false;
+    @Nonbinding
+    boolean enviarNotificacao() default false;
 
 }

@@ -21,7 +21,7 @@ public class BigMessenger implements Messenger {
     private Bean<Messenger> bean;
 
     @Override
-	public String morning() {
+    public String morning() {
 
         final Class beanClass = this.bean.getBeanClass();
         final Set<InjectionPoint> injectionPoints = this.bean.getInjectionPoints();

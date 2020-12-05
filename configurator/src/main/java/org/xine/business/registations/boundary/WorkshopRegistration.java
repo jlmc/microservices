@@ -26,41 +26,41 @@ import org.xine.business.registations.entity.Workshop;
 // @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class WorkshopRegistration {
 
-	@PersistenceContext // (unitName="NovaShopPU")
-	EntityManager em;
+    @PersistenceContext // (unitName="NovaShopPU")
+    EntityManager em;
 
-	@Inject
-	Event<Workshop> registrationService;
+    @Inject
+    Event<Workshop> registrationService;
 
-	@Inject
-	@Configurable("maxNumberOfRegistrations")
-	String maxNumberOfRegistrations;
+    @Inject
+    @Configurable("maxNumberOfRegistrations")
+    String maxNumberOfRegistrations;
 
-	@POST
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Response register(final Workshop workshop) {
-		this.em.persist(workshop);
-		this.registrationService.fire(workshop);
-		final URI create = URI.create(String.valueOf(workshop.getId()));
-		// sc.setRollbackOnly();
-		return Response.created(create).build();
-	}
+    @POST
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response register(final Workshop workshop) {
+        this.em.persist(workshop);
+        this.registrationService.fire(workshop);
+        final URI create = URI.create(String.valueOf(workshop.getId()));
+        // sc.setRollbackOnly();
+        return Response.created(create).build();
+    }
 
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Workshop getAllRegistrations() {
-		return new Workshop("bald pause", 99);
-	}
+    @GET
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Workshop getAllRegistrations() {
+        return new Workshop("bald pause", 99);
+    }
 
-	@GET
-	@Path("{id}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Workshop byId(@PathParam("id") final int id) {
-		return new Workshop("withId", id);
-	}
+    @GET
+    @Path("{id}")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Workshop byId(@PathParam("id") final int id) {
+        return new Workshop("withId", id);
+    }
 
-	public Date getDate() {
-		return new Date();
-	}
+    public Date getDate() {
+        return new Date();
+    }
 
 }

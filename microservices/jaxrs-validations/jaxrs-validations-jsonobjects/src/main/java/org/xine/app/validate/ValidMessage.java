@@ -16,11 +16,11 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 public @interface ValidMessage {
 
-	String expected();
+    String expected();
 
-	String message() default "{org.xine.app.validate.ValidMessage}";
+    String message() default "{org.xine.app.validate.ValidMessage}";
 
-	Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-	Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

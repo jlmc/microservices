@@ -11,11 +11,11 @@ import javax.inject.Qualifier;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Severity {
 
-	Level value() default Level.ESCALATION;
+    Level value() default Level.ESCALATION;
 
-	public static enum Level {
-		HEARTBEAT, ESCALATION;
+    public static enum Level {
+        HEARTBEAT, ESCALATION;
 
-		private Level() {}
-	}
+        private Level() {}
+    }
 }

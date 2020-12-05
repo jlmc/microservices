@@ -12,12 +12,12 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.TEXT_PLAIN)
 public class PluginsResource {
 
-	@Inject
-	Plugins tester;
+    @Inject
+    Plugins tester;
 
-	@GET
-	public String modules() {
-		return tester.discoverPlugins();
-	}
+    @GET
+    public String modules() {
+        return tester.discoverPlugins();
+    }
 
 }

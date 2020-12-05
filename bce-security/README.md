@@ -27,9 +27,9 @@ Before I dive further into the security domain configuration, the database needs
 
 ```
 
-	CREATE TABLE Users(username VARCHAR(255) PRIMARY KEY, passwd VARCHAR(255))
-	CREATE TABLE UserRoles(username VARCHAR(255), role VARCHAR(32)) 
-	
+    CREATE TABLE Users(username VARCHAR(255) PRIMARY KEY, passwd VARCHAR(255))
+    CREATE TABLE UserRoles(username VARCHAR(255), role VARCHAR(32)) 
+    
 ```
  
  
@@ -38,7 +38,7 @@ Pre-filling the tables with at least one user for test proposes is the next step
 
 ```
 
-	java -cp %JBOSS_HOME%\modules\system\layers\base\org\picketbox\main\picketbox-4.0.21.Final.jar 	org.jboss.security.Base64Encoder <password> <MessageDigest>
+    java -cp %JBOSS_HOME%\modules\system\layers\base\org\picketbox\main\picketbox-4.0.21.Final.jar     org.jboss.security.Base64Encoder <password> <MessageDigest>
 
 ```
 
@@ -48,9 +48,9 @@ Now it's time to do some inserts into the Database:
 ```
 
 
-	INSERT INTO `wildfly`.`user` (`username`, `passwd`) VALUES ('myfear', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=');
+    INSERT INTO `wildfly`.`user` (`username`, `passwd`) VALUES ('myfear', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=');
 
-	INSERT INTO `wildfly`.`userroles` (`unsername`, `role`) VALUES ('myfear', 'ADMIN');
+    INSERT INTO `wildfly`.`userroles` (`unsername`, `role`) VALUES ('myfear', 'ADMIN');
 
 ```
 This was the last step outside of WildFly. Back to the server configuration and on to the sample application.
@@ -81,9 +81,9 @@ You notice, that there isn't a lot specific stuff to see in this web-application
 
 ```
 
-	<jboss-web>
-	    <security-domain>SECUREDOMAIN</security-domain>
-	</jboss-web>
+    <jboss-web>
+        <security-domain>SECUREDOMAIN</security-domain>
+    </jboss-web>
 
 ```
 That's about all the magic it needs to get started. If you now try to access the admin section of the sample app you are prompted with a login-form
@@ -98,9 +98,9 @@ Error-Messages are another helpful too. For security reasons, not much is logged
 
 ```
 
-	 <logger category="org.jboss.security">
-	        <level name="TRACE"/>
-	 </logger>
+     <logger category="org.jboss.security">
+            <level name="TRACE"/>
+     </logger>
 ```
 
 

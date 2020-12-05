@@ -7,10 +7,10 @@ import org.xine.cdidemos.business.tax.entity.Payroll;
 
 public class PayrollCalculatorReal implements PayrollCalculator {
 
-	@Override
-	public Payroll calcPayroll(Collection<Employeer> employeers) {
-		System.out.println("Real PayrollCalculatorReal");
-		return null;
-	}
+    @Override
+    public Payroll calcPayroll(Collection<Employeer> employeers) {
+        System.out.println("Real PayrollCalculatorReal");
+        return null;
+    }
 
 }

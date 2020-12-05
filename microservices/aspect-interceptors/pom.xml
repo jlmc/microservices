@@ -8,6 +8,6 @@
   <artifactId>aspect-interceptors</artifactId>
   <packaging>pom</packaging>
   <modules>
-  	<module>aspect-interceptors-basic</module>
+      <module>aspect-interceptors-basic</module>
   </modules>
 </project>

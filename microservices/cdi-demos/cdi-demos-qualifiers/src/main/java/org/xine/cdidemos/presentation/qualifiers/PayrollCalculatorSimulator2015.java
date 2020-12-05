@@ -19,23 +19,23 @@ import org.xine.cdidemos.business.tax.entity.Employeer;
 @WebServlet("/simulator2015")
 public class PayrollCalculatorSimulator2015 extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Inject
-	@Simulator(plantype = PlanType.VERSION_2015)
-	private PayrollCalculator payrollCalculator;
+    @Inject
+    @Simulator(plantype = PlanType.VERSION_2015)
+    private PayrollCalculator payrollCalculator;
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		final Employeer employeer1 = new Employeer.Builder().withBaseSalary(1000.0).build();
-		final Employeer employeer2 = new Employeer.Builder().withBaseSalary(2000.0).build();
-		final Employeer employeer3 = new Employeer.Builder().withBaseSalary(3000.0).build();
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        final Employeer employeer1 = new Employeer.Builder().withBaseSalary(1000.0).build();
+        final Employeer employeer2 = new Employeer.Builder().withBaseSalary(2000.0).build();
+        final Employeer employeer3 = new Employeer.Builder().withBaseSalary(3000.0).build();
 
-		final List<Employeer> employeers = Arrays.asList(employeer1, employeer2, employeer3);
+        final List<Employeer> employeers = Arrays.asList(employeer1, employeer2, employeer3);
 
-		this.payrollCalculator.calcPayroll(employeers);
+        this.payrollCalculator.calcPayroll(employeers);
 
-		resp.getOutputStream().print("All do with success");
-	}
+        resp.getOutputStream().print("All do with success");
+    }
 
 }

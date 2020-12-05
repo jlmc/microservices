@@ -9,14 +9,14 @@ import javax.ejb.TransactionAttributeType;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class DaoClient {
 
-	@EJB
-	CrudService crudService;
+    @EJB
+    CrudService crudService;
 
-	// public List<Book> find(String name, int numerOfPages) {
-	//
-	//
-	// this.crudService.findByNativeQuery(BooK.BY_NAME_AND_PAGES,
-	// WithAnnotations()
-	// }
+    // public List<Book> find(String name, int numerOfPages) {
+    //
+    //
+    // this.crudService.findByNativeQuery(BooK.BY_NAME_AND_PAGES,
+    // WithAnnotations()
+    // }
 
 }

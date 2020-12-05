@@ -17,49 +17,49 @@ import org.xine.navigator.presentation.infrastructure.MessagesHelper;
 @RequestScoped
 public class ReportManager implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Inject
-	MessagesHelper messagesHelper;
+    @Inject
+    MessagesHelper messagesHelper;
 
-	@Inject
-	ReportMngr bo;
+    @Inject
+    ReportMngr bo;
 
-	private Report report;
+    private Report report;
 
-	@PostConstruct
-	public void initialize() {
-		if (this.report == null) {
-			this.report = new Report();
-		}
-	}
+    @PostConstruct
+    public void initialize() {
+        if (this.report == null) {
+            this.report = new Report();
+        }
+    }
 
-	public Object save() {
+    public Object save() {
 
-		try {
-			System.out.println(this.report);
-			// save the thing
+        try {
+            System.out.println(this.report);
+            // save the thing
 
-			this.bo.save(this.report);
+            this.bo.save(this.report);
 
-			this.report = new Report();
+            this.report = new Report();
 
-			this.messagesHelper.addMessageFlash(new FacesMessage("Report created with sucess."));
+            this.messagesHelper.addMessageFlash(new FacesMessage("Report created with sucess."));
 
-			return "/reports/reportList?faces-redirect=true";
-		} catch (final Exception e) {
-			System.out.println(e.getCause());
-			this.messagesHelper.addMessageFlash(
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getCause().getMessage(), null));
-			return null;
-		}
-	}
+            return "/reports/reportList?faces-redirect=true";
+        } catch (final Exception e) {
+            System.out.println(e.getCause());
+            this.messagesHelper.addMessageFlash(
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getCause().getMessage(), null));
+            return null;
+        }
+    }
 
-	public Report getReport() {
-		return this.report;
-	}
+    public Report getReport() {
+        return this.report;
+    }
 
-	public void setReport(final Report report) {
-		this.report = report;
-	}
+    public void setReport(final Report report) {
+        this.report = report;
+    }
 }

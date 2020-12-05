@@ -11,19 +11,19 @@ import org.xine.channels.business.configuration.boundary.Configurator;
 @RequestScoped
 public class DefinitionsView {
 
-	@Inject
-	Configurator configurator;
-	@Inject
-	Instance<Integer> interval;
-	// @Inject
-	// SnapshotProvider snapshotProvider;
+    @Inject
+    Configurator configurator;
+    @Inject
+    Instance<Integer> interval;
+    // @Inject
+    // SnapshotProvider snapshotProvider;
 
-	public int getInterval() {
-		return this.interval.get().intValue();
-	}
-	//
-	// public Snapshot getSnapshot() throws Exception {
-	// return this.snapshotProvider.fetchSnapshot();
-	// }
+    public int getInterval() {
+        return this.interval.get().intValue();
+    }
+    //
+    // public Snapshot getSnapshot() throws Exception {
+    // return this.snapshotProvider.fetchSnapshot();
+    // }
 
 }

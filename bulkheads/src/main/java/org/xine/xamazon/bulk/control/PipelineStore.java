@@ -23,7 +23,7 @@ public class PipelineStore {
 
     @PreDestroy
     public void shutdown() {
-        this.pipelines.values().stream().forEach(Pipeline::shutdown);
+        this.pipelines.values().forEach(Pipeline::shutdown);
         this.pipelines.clear();
     }
 

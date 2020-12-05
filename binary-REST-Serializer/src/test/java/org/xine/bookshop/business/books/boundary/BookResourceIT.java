@@ -18,32 +18,32 @@ import org.xine.bookshop.business.restserialization.control.JavaSerializer;
 
 public class BookResourceIT {
 
-	private static final String RESOURCE_URI = "http://localhost:8080/binary-REST-Serializer/resources";
+    private static final String RESOURCE_URI = "http://localhost:8080/binary-REST-Serializer/resources";
 
-	private Client client;
+    private Client client;
 
-	@Before
-	public void init() {
-		this.client = ClientBuilder.newClient();
-		this.client.register(JavaSerializer.class)
-		.register(JavaDeserializer.class);
-	}
+    @Before
+    public void init() {
+        this.client = ClientBuilder.newClient();
+        this.client.register(JavaSerializer.class)
+        .register(JavaDeserializer.class);
+    }
 
-	@Test
-	public void get() {
-		final WebTarget target = this.client.target(RESOURCE_URI).path("book");
-		final Book book = target.request(CustomMediaType.SERIALIZATION_JAVA).get(Book.class);
+    @Test
+    public void get() {
+        final WebTarget target = this.client.target(RESOURCE_URI).path("book");
+        final Book book = target.request(CustomMediaType.SERIALIZATION_JAVA).get(Book.class);
 
-		Assert.assertNotNull(book);
-	}
+        Assert.assertNotNull(book);
+    }
 
-	@Test
-	public void post() {
-		final Response postResponse = this.client.target(RESOURCE_URI).path("book")
-				.request(CustomMediaType.SERIALIZATION_JAVA)
-				.post(Entity.entity(new Book(123L, "xyz"), CustomMediaType.SERIALIZATION_JAVA));
-		assertNotNull(postResponse);
+    @Test
+    public void post() {
+        final Response postResponse = this.client.target(RESOURCE_URI).path("book")
+                .request(CustomMediaType.SERIALIZATION_JAVA)
+                .post(Entity.entity(new Book(123L, "xyz"), CustomMediaType.SERIALIZATION_JAVA));
+        assertNotNull(postResponse);
 
-	}
+    }
 
 }

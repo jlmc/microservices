@@ -8,18 +8,18 @@ import org.xine.cdidemos.business.tax.entity.Employeer;
 public class TaxCalculatorTest {
 
 
-	@Test
-	public void testCalculateIncomeTax() {
-		final Employeer employeer = new Employeer.Builder().build();
+    @Test
+    public void testCalculateIncomeTax() {
+        final Employeer employeer = new Employeer.Builder().build();
 
-		final SalaryCalculator calculadoraSalarios = new SalaryCalculatorMock(3000.0);
+        final SalaryCalculator calculadoraSalarios = new SalaryCalculatorMock(3000.0);
 
-		final TaxCalculator taxCalculator = new TaxCalculator();
-		taxCalculator.salaryCalculator = calculadoraSalarios;
+        final TaxCalculator taxCalculator = new TaxCalculator();
+        taxCalculator.salaryCalculator = calculadoraSalarios;
 
-		final double tax = taxCalculator.calculateIncomeTax(employeer);
+        final double tax = taxCalculator.calculateIncomeTax(employeer);
 
-		Assert.assertEquals(129.4, tax, 0.0001);
-	}
+        Assert.assertEquals(129.4, tax, 0.0001);
+    }
 
 }

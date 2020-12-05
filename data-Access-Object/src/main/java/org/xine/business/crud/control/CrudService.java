@@ -28,9 +28,9 @@ public class CrudService {
         return this.em.find(type, id);
     }
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void delete(final Class type, final Object id) {
-		final Object ref = this.em.getReference(type, id);
+        final Object ref = this.em.getReference(type, id);
         this.em.remove(ref);
     }
 
@@ -38,35 +38,35 @@ public class CrudService {
         return this.em.merge(t);
     }
 
-	@SuppressWarnings("rawtypes")
-	public List findWithNamedQuery(final String namedQueryName) {
+    @SuppressWarnings("rawtypes")
+    public List findWithNamedQuery(final String namedQueryName) {
         return this.em.createNamedQuery(namedQueryName).getResultList();
     }
 
-	@SuppressWarnings("rawtypes")
-	public List findWithNamedQuery(final String namedQueryName, final Map<String, Object> parameters) {
+    @SuppressWarnings("rawtypes")
+    public List findWithNamedQuery(final String namedQueryName, final Map<String, Object> parameters) {
         return findWithNamedQuery(namedQueryName, parameters, 0);
     }
 
-	@SuppressWarnings("rawtypes")
-	public List findWithNamedQuery(final String queryName, final int resultLimit) {
+    @SuppressWarnings("rawtypes")
+    public List findWithNamedQuery(final String queryName, final int resultLimit) {
         return this.em.createNamedQuery(queryName).setMaxResults(resultLimit).getResultList();
     }
 
-	@SuppressWarnings("unchecked")
-	public <T> List<T> findByNativeQuery(final String sql, final Class<T> type) {
+    @SuppressWarnings("unchecked")
+    public <T> List<T> findByNativeQuery(final String sql, final Class<T> type) {
         return this.em.createNativeQuery(sql, type).getResultList();
     }
 
-	@SuppressWarnings("rawtypes")
-	public List findWithNamedQuery(final String namedQueryName, final Map<String, Object> parameters,
-			final int resultLimit) {
+    @SuppressWarnings("rawtypes")
+    public List findWithNamedQuery(final String namedQueryName, final Map<String, Object> parameters,
+            final int resultLimit) {
         final Query query = this.em.createNamedQuery(namedQueryName);
 
         if (resultLimit > 0) {
             query.setMaxResults(resultLimit);
         }
-        parameters.entrySet().forEach(entry -> query.setParameter(entry.getKey(), entry.getValue()));
+        parameters.forEach((key, value) -> query.setParameter(key, value));
 
         return query.getResultList();
     }

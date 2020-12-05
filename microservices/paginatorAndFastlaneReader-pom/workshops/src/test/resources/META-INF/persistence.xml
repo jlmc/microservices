@@ -8,8 +8,8 @@
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       
-      		<property name="eclipselink.logging.level" value="FINE"/>
-      		<property name="eclipselink.logging.parameters" value="true"/>
+              <property name="eclipselink.logging.level" value="FINE"/>
+              <property name="eclipselink.logging.parameters" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

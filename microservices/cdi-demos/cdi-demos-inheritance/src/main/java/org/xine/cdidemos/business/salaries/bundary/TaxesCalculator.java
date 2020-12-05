@@ -24,32 +24,32 @@ import org.xine.cdidemos.business.salaries.entity.Instruction;
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 @Stateless
 public class TaxesCalculator {
-	
-	@Inject
-	@TaxCal
-	SalariesPlanCalculator salariesPlanCalculator;
-	
-	@GET
-	@Path("{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response read(@PathParam("id") final Integer id, @Context final UriInfo uriInfo) {
 
-		try {
-			
-			final Employeer employeer = Employeer.Builder.init().withBaseSalary(1000)
-									.withYearOfAdmission(Year.now())
-									.withInstructionEmploee(Instruction.MASTER)
-									.withInstructionDuty(Instruction.GRADUATION)
-									.build();
+    @Inject
+    @TaxCal
+    SalariesPlanCalculator salariesPlanCalculator;
 
-			final double earningsEstimates = this.salariesPlanCalculator.earningsEstimates(employeer);
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response read(@PathParam("id") final Integer id, @Context final UriInfo uriInfo) {
 
-			return Response.ok(earningsEstimates).build();
+        try {
 
-		} catch (final Exception e) {
-			return Response.serverError().build();
-		}
+            final Employeer employeer = Employeer.Builder.init().withBaseSalary(1000)
+                                    .withYearOfAdmission(Year.now())
+                                    .withInstructionEmploee(Instruction.MASTER)
+                                    .withInstructionDuty(Instruction.GRADUATION)
+                                    .build();
 
-	}
+            final double earningsEstimates = this.salariesPlanCalculator.earningsEstimates(employeer);
+
+            return Response.ok(earningsEstimates).build();
+
+        } catch (final Exception e) {
+            return Response.serverError().build();
+        }
+
+    }
 
 }

@@ -33,51 +33,51 @@ import org.xine.javax.rs.validation.books.entity.Book;
 @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 public class BookResource {
 
-	private static Set<Book> books = Collections.synchronizedSet(new HashSet<>());
+    private static Set<Book> books = Collections.synchronizedSet(new HashSet<>());
 
-	@POST
-	@Path("create")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response create(
+    @POST
+    @Path("create")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response create(
 
-			@FormParam("id") 
-			@NotNull(message = "{book.id.notnull}")
-			@Pattern(regexp = "[0-9]+", message="{book.id.pattern}")
-			String id,
-			
-			@FormParam("title") 
-			@Size(min = 3, max = 10, message = "{book.title.size}")
-			String title, 
-			
-			@Context UriInfo info) {
+            @FormParam("id")
+            @NotNull(message = "{book.id.notnull}")
+            @Pattern(regexp = "[0-9]+", message="{book.id.pattern}")
+            String id,
 
-		final Book book = Book.of(Long.valueOf(id), title);
-		books.add(book);
-		final URI uri = info.getAbsolutePathBuilder().path("/" + book.getId()).build();
-		return Response.created(uri).entity(book).build();
-	}
+            @FormParam("title")
+            @Size(min = 3, max = 10, message = "{book.title.size}")
+            String title,
 
-	@POST
-	public Response post(@Valid Book book, @Context UriInfo info) {
-		books.add(book);
-		final URI uri = info.getAbsolutePathBuilder().path("/" + book.getId()).build();
-		return Response.created(uri).entity(book).build();
-	}
+            @Context UriInfo info) {
 
-	@GET
-	@Path("{id}")
-	public Response get(@PathParam("id") Long id) {
-		return books.stream().
-				filter(b -> id.equals(b.getId())).findAny().
-				map(ob -> Response.ok(ob).build()).orElse(Response.status(Status.NOT_FOUND).build());
-	}
+        final Book book = Book.of(Long.valueOf(id), title);
+        books.add(book);
+        final URI uri = info.getAbsolutePathBuilder().path("/" + book.getId()).build();
+        return Response.created(uri).entity(book).build();
+    }
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response get() {
-		final Collection<Book> values = new ArrayList<Book>(books);
-		final GenericEntity<Collection<Book>> genericEntity = new GenericEntity<Collection<Book>>(values) {};
-		return Response.ok(genericEntity).build();
-	}
+    @POST
+    public Response post(@Valid Book book, @Context UriInfo info) {
+        books.add(book);
+        final URI uri = info.getAbsolutePathBuilder().path("/" + book.getId()).build();
+        return Response.created(uri).entity(book).build();
+    }
+
+    @GET
+    @Path("{id}")
+    public Response get(@PathParam("id") Long id) {
+        return books.stream().
+                filter(b -> id.equals(b.getId())).findAny().
+                map(ob -> Response.ok(ob).build()).orElse(Response.status(Status.NOT_FOUND).build());
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response get() {
+        final Collection<Book> values = new ArrayList<Book>(books);
+        final GenericEntity<Collection<Book>> genericEntity = new GenericEntity<Collection<Book>>(values) {};
+        return Response.ok(genericEntity).build();
+    }
 
 }

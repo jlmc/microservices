@@ -10,19 +10,19 @@ import javax.ws.rs.ext.ExceptionMapper;
 //@javax.ws.rs.ext.Provider
 public class AccessLocalExceptionMapper implements ExceptionMapper<AccessLocalException> {
 
-	@Context
-	HttpServletRequest request;
+    @Context
+    HttpServletRequest request;
 
-	@Override
-	public Response toResponse(AccessLocalException exception) {
+    @Override
+    public Response toResponse(AccessLocalException exception) {
 
-		try {
-			this.request.logout();
-		} catch (final ServletException e) {
-		}
+        try {
+            this.request.logout();
+        } catch (final ServletException e) {
+        }
 
-		return Response.status(Response.Status.UNAUTHORIZED).build();
+        return Response.status(Response.Status.UNAUTHORIZED).build();
 
-	}
+    }
 
 }

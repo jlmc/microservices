@@ -36,9 +36,9 @@ public class InjectionBoundary {
     }
     
     public boolean differentLazyInstance(){
-		final Control lazyFirst = firstInstance.get();
+        final Control lazyFirst = firstInstance.get();
         ManualManagedContext.getInstance().shutdown();
-		final Control lazySecond = secondInstance.get();
+        final Control lazySecond = secondInstance.get();
         return lazyFirst != lazySecond;
     }
     

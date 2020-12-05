@@ -8,7 +8,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.Collection;
-import java.util.UUID;
 
 @Path("books")
 @Produces({MediaType.APPLICATION_JSON})

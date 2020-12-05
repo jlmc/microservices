@@ -15,56 +15,56 @@ import org.xine.cdidemos.business.resourcesmanager.boundary.FileManager;
 @RequestScoped
 public class HomeBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private String fileName;
-	private javax.servlet.http.Part photo;
-	
-	@Inject
-	FileManager bo;
+    private static final long serialVersionUID = 1L;
+    private String fileName;
+    private javax.servlet.http.Part photo;
 
-	public javax.servlet.http.Part getPhoto() {
-		return this.photo;
-	}
+    @Inject
+    FileManager bo;
 
-	public void setPhoto(final javax.servlet.http.Part photo) {
-		this.photo = photo;
-	}
+    public javax.servlet.http.Part getPhoto() {
+        return this.photo;
+    }
 
-	public String getFileName() {
-		return this.fileName;
-	}
+    public void setPhoto(final javax.servlet.http.Part photo) {
+        this.photo = photo;
+    }
 
-	public void setFileName(final String fileName) {
-		this.fileName = fileName;
-	}
+    public String getFileName() {
+        return this.fileName;
+    }
 
-	public void save() {
-		try (InputStream is = this.photo.getInputStream()) {
-			System.out.println("hello saving");
-			// final InputStream is = this.photo.getInputStream();
-			final byte[] photoAsBytes = toByteArray(this.photo.getInputStream());
+    public void setFileName(final String fileName) {
+        this.fileName = fileName;
+    }
 
-			System.out.println(this.photo.getName());
-			System.out.println(this.photo.getContentType());
-			System.out.println(this.photo.getHeaderNames());
-			
-			
-			this.bo.deposit(this.fileName, photoAsBytes);
+    public void save() {
+        try (InputStream is = this.photo.getInputStream()) {
+            System.out.println("hello saving");
+            // final InputStream is = this.photo.getInputStream();
+            final byte[] photoAsBytes = toByteArray(this.photo.getInputStream());
 
-		} catch (final IOException e) {
-			e.printStackTrace();
-		}
-	}
+            System.out.println(this.photo.getName());
+            System.out.println(this.photo.getContentType());
+            System.out.println(this.photo.getHeaderNames());
 
-	private byte[] toByteArray(final InputStream is) throws IOException {
-		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		int reads = is.read();
-		while (reads != -1) {
-			baos.write(reads);
-			reads = is.read();
-		}
-		return baos.toByteArray();
 
-	}
+            this.bo.deposit(this.fileName, photoAsBytes);
+
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private byte[] toByteArray(final InputStream is) throws IOException {
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        int reads = is.read();
+        while (reads != -1) {
+            baos.write(reads);
+            reads = is.read();
+        }
+        return baos.toByteArray();
+
+    }
 
 }

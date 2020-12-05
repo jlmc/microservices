@@ -8,16 +8,16 @@ import javax.ws.rs.ext.ExceptionMapper;
 //@javax.ws.rs.ext.Provider
 public class SecurityExceptionMapper implements ExceptionMapper<SecurityException> {
 
-	@Context
-	HttpServletRequest request;
+    @Context
+    HttpServletRequest request;
 
-	@Override
-	public Response toResponse(SecurityException exception) {
-		try {
-			this.request.logout();
-		} catch (final Exception e) {
-		}
-		return Response.status(Response.Status.UNAUTHORIZED).build();
-	}
+    @Override
+    public Response toResponse(SecurityException exception) {
+        try {
+            this.request.logout();
+        } catch (final Exception e) {
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).build();
+    }
 
 }

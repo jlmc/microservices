@@ -8,10 +8,10 @@ import org.xine.cdidemos.business.tax.entity.Payroll;
 @Simulator
 public class PayrollCalculatorSimulator implements PayrollCalculator {
 
-	@Override
-	public Payroll calcPayroll(Collection<Employeer> employeers) {
-		System.out.println("Payroll Calculator Simulator ");
-		return null;
-	}
+    @Override
+    public Payroll calcPayroll(Collection<Employeer> employeers) {
+        System.out.println("Payroll Calculator Simulator ");
+        return null;
+    }
 
 }

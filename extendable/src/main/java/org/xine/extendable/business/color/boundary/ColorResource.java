@@ -13,25 +13,25 @@ import org.xine.extendable.business.microscopes.method.MethodScopeEnabled;
 @Path("/color")
 @MethodScopeEnabled
 public class ColorResource {
-	@Inject
-	private Count count;
+    @Inject
+    private Count count;
 
-	@GET
-	@Path("/red")
-	public String red() {
-		return String.format("red, %s invocations", count.add());
-	}
+    @GET
+    @Path("/red")
+    public String red() {
+        return String.format("red, %s invocations", count.add());
+    }
 
-	@GET
-	@Path("/green")
-	public String green() {
-		return String.format("green, %s invocations", count.add());
-	}
+    @GET
+    @Path("/green")
+    public String green() {
+        return String.format("green, %s invocations", count.add());
+    }
 
-	@GET
-	@Path("/blue")
-	public String blue() {
-		return String.format("blue, %s invocations", count.add());
-	}
+    @GET
+    @Path("/blue")
+    public String blue() {
+        return String.format("blue, %s invocations", count.add());
+    }
 
 }

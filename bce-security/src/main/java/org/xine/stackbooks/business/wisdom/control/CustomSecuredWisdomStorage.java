@@ -13,21 +13,21 @@ import org.xine.stackbooks.business.security.entity.Permission;
 @Interceptors(Guard.class)
 public class CustomSecuredWisdomStorage {
 
-	private String wisdom;
+    private String wisdom;
 
-	@PostConstruct
-	public void initialize() {
-		this.wisdom = "Java Programming Language Rocks!!!";
-	}
+    @PostConstruct
+    public void initialize() {
+        this.wisdom = "Java Programming Language Rocks!!!";
+    }
 
-	@AllowedTo(Permission.WRITE)
-	public void wisdom(String wisdom) {
-		this.wisdom = wisdom;
-	}
+    @AllowedTo(Permission.WRITE)
+    public void wisdom(String wisdom) {
+        this.wisdom = wisdom;
+    }
 
-	@AllowedTo(Permission.READ)
-	public String wisdom() {
-		return this.wisdom;
-	}
+    @AllowedTo(Permission.READ)
+    public String wisdom() {
+        return this.wisdom;
+    }
 
 }

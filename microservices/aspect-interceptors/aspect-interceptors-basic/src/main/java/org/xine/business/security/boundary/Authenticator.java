@@ -12,16 +12,16 @@ import javax.interceptor.InvocationContext;
 @Priority(Interceptor.Priority.APPLICATION + 1)
 public class Authenticator {
 
-	@AroundInvoke
-	public Object authentic(final InvocationContext context) throws Exception {
-		final Method method = context.getMethod();
-		final Object target = context.getTarget();
-		final Object[] params = context.getParameters();
+    @AroundInvoke
+    public Object authentic(final InvocationContext context) throws Exception {
+        final Method method = context.getMethod();
+        final Object target = context.getTarget();
+        final Object[] params = context.getParameters();
 
-		System.out.println(String.format("Authenticator the method: '%s' " + "of the object: '%s' " + "with the params: '%s'",
-				method, target, params));
+        System.out.println(String.format("Authenticator the method: '%s' " + "of the object: '%s' " + "with the params: '%s'",
+                method, target, params));
 
-		return context.proceed();
-	}
+        return context.proceed();
+    }
 
 }

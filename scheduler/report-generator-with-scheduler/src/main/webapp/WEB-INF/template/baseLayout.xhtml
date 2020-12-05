@@ -2,48 +2,48 @@
 <!DOCTYPE html >
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
 
 
 <h:head>
-	<title>X Navigator</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	
-	<h:outputStylesheet library="css" name="bootstrap.css"/>
-	<h:outputScript library="js" name="jquery-2.1.4.min.js"/>
-	<h:outputScript library="js" name="bootstrap.js"/>
-	
-	
-	
+    <title>X Navigator</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <h:outputStylesheet library="css" name="bootstrap.css"/>
+    <h:outputScript library="js" name="jquery-2.1.4.min.js"/>
+    <h:outputScript library="js" name="bootstrap.js"/>
+
+
+
 <style type="text/css">
 .navbar-header button {
-	color: #fff;
+    color: #fff;
 }
 
 .fullscreen {
-	width: 100%;
+    width: 100%;
 }
 
 main {
-	padding-top: 50px;
-	padding-bottom: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 footer {
-	background: #333;
-	color: #fff;
-	text-align: center;
-	padding: 20px 0px;
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0px;
 }
 
 .tab-pane {
-	padding: 10px 5px;
+    padding: 10px 5px;
 }
 </style>
 
@@ -53,63 +53,63 @@ footer {
 <h:body>
 
 
-	<header>
-		<!-- 		<nav class="navbar navbar-inverse"> -->
-		<!-- 		<nav class="navbar navbar-inverse navbar-static-top"> -->
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+    <header>
+        <!--         <nav class="navbar navbar-inverse"> -->
+        <!--         <nav class="navbar navbar-inverse navbar-static-top"> -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
 
 
-			<div class="navbar-header">
-				<a href="#home" class="navbar-brand">X-Lighthouse</a>
-				<button type="button" class="navbar-toggle"
-					data-target=".navbar-collapse" data-toggle="collapse">Menu</button>
-			</div>
+            <div class="navbar-header">
+                <a href="#home" class="navbar-brand">X-Lighthouse</a>
+                <button type="button" class="navbar-toggle"
+                    data-target=".navbar-collapse" data-toggle="collapse">Menu</button>
+            </div>
 
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="#newthings">Reports</a></li>
-
-
-					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigator<span
-							class="caret"> </span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Scheduler</a></li>
-							<li><a href="#">Generator</a></li>
-						</ul></li>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#newthings">Reports</a></li>
 
 
-				</ul>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigator<span
+                            class="caret"> </span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Scheduler</a></li>
+                            <li><a href="#">Generator</a></li>
+                        </ul></li>
 
-				
-			</div>
-		</nav>
-	</header>
+
+                </ul>
+
+
+            </div>
+        </nav>
+    </header>
 
 <main>
-	<div class="container">
-		<div class="row">
-		
-			<div class="col-md-3">
-            	<div class="sidebar-nav">
-            		<div class="well">
-            			<ul class="nav">
-            				<ui:insert name="left-side"/>
-            			</ul>
-            		</div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="sidebar-nav">
+                    <div class="well">
+                        <ul class="nav">
+                            <ui:insert name="left-side"/>
+                        </ul>
+                    </div>
             
-            	</div>
-			</div>
-			
-			
-			<div class="col-md-9">
-				<div class="jumbotron">
-	
-					<ui:insert name="contentBody" />
-	
-				</div>
-			 </div>
-		</div>
-	</div>
+                </div>
+            </div>
+
+
+            <div class="col-md-9">
+                <div class="jumbotron">
+
+                    <ui:insert name="contentBody" />
+
+                </div>
+             </div>
+        </div>
+    </div>
 </main>
 
 
@@ -123,10 +123,10 @@ footer {
 
 
 
-	<footer>
-		<p>https://github.com/jlmc</p>
-		<p>https://twitter.com/costajlmpp</p>
-	</footer>
+    <footer>
+        <p>https://github.com/jlmc</p>
+        <p>https://twitter.com/costajlmpp</p>
+    </footer>
 
 
 

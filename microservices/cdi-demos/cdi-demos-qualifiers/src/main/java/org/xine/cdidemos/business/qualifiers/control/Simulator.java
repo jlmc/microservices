@@ -17,6 +17,6 @@ import javax.inject.Qualifier;
 @Qualifier
 public @interface Simulator {
 
-	PlanType plantype() default PlanType.VERSION_2016;
+    PlanType plantype() default PlanType.VERSION_2016;
 
 }

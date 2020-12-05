@@ -17,13 +17,13 @@ import org.xine.navigator.business.reports.entity.Report;
 @Produces(MediaType.TEXT_PLAIN)
 public class ReportMngrResource {
 
-	@GET
-	public Response reports() {
-		final List<Report> reports = new ArrayList<Report>(2);
-		reports.add(new Report(1L, "A"));
-		reports.add(new Report(2L, "B"));
+    @GET
+    public Response reports() {
+        final List<Report> reports = new ArrayList<Report>(2);
+        reports.add(new Report(1L, "A"));
+        reports.add(new Report(2L, "B"));
 
-		return Response.ok(reports).build();
-	}
+        return Response.ok(reports).build();
+    }
 
 }

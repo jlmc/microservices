@@ -10,35 +10,35 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
 public class Customer {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String name;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
 
-	protected Customer() {}
+    protected Customer() {}
 
-	public Customer(final String name) {
-		this.name = name;
-	}
+    public Customer(final String name) {
+        this.name = name;
+    }
 
-	public Long getId() {
-		return this.id;
-	}
+    public Long getId() {
+        return this.id;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
 
-	protected void setId(final Long id) {
-		this.id = id;
-	}
+    protected void setId(final Long id) {
+        this.id = id;
+    }
 
-	protected void setName(final String name) {
-		this.name = name;
-	}
+    protected void setName(final String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String toString() {
-		return "Customer [id=" + this.id + ", name=" + this.name + "]";
-	}
+    @Override
+    public String toString() {
+        return "Customer [id=" + this.id + ", name=" + this.name + "]";
+    }
 }

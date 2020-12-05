@@ -11,13 +11,13 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class NoResultExceptionMapper implements ExceptionMapper<NoResultException> {
 
-	@Context
-	private HttpHeaders headers;
+    @Context
+    private HttpHeaders headers;
 
-	@Override
-	public Response toResponse(NoResultException exception) {
-		return Response.status(Status.NOT_FOUND)
-				.build();
-	}
+    @Override
+    public Response toResponse(NoResultException exception) {
+        return Response.status(Status.NOT_FOUND)
+                .build();
+    }
 
 }

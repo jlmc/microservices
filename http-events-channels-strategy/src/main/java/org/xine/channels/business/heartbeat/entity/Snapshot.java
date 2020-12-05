@@ -18,61 +18,61 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 public class Snapshot {
 
-	@Id
-	@GeneratedValue
-	private long id;
-	@Temporal(TemporalType.TIME)
-	private Date monitoringTime;
-	private long usedHeapSize;
-	private int threadCount;
-	private int peakThreadCount;
+    @Id
+    @GeneratedValue
+    private long id;
+    @Temporal(TemporalType.TIME)
+    private Date monitoringTime;
+    private long usedHeapSize;
+    private int threadCount;
+    private int peakThreadCount;
 
-	@XmlTransient
-	@Transient
-	private String escalationChannel;
+    @XmlTransient
+    @Transient
+    private String escalationChannel;
 
-	public long getId() {
-		return this.id;
-	}
+    public long getId() {
+        return this.id;
+    }
 
-	public void setId(final long id) {
-		this.id = id;
-	}
+    public void setId(final long id) {
+        this.id = id;
+    }
 
-	public Date getMonitoringTime() {
-		return this.monitoringTime;
-	}
+    public Date getMonitoringTime() {
+        return this.monitoringTime;
+    }
 
-	public void setMonitoringTime(final Date monitoringTime) {
-		this.monitoringTime = monitoringTime;
-	}
+    public void setMonitoringTime(final Date monitoringTime) {
+        this.monitoringTime = monitoringTime;
+    }
 
-	public long getUsedHeapSize() {
-		return this.usedHeapSize;
-	}
+    public long getUsedHeapSize() {
+        return this.usedHeapSize;
+    }
 
-	public void setUsedHeapSize(final long usedHeapSize) {
-		this.usedHeapSize = usedHeapSize;
-	}
+    public void setUsedHeapSize(final long usedHeapSize) {
+        this.usedHeapSize = usedHeapSize;
+    }
 
-	public int getThreadCount() {
-		return this.threadCount;
-	}
+    public int getThreadCount() {
+        return this.threadCount;
+    }
 
-	public void setThreadCount(final int threadCount) {
-		this.threadCount = threadCount;
-	}
+    public void setThreadCount(final int threadCount) {
+        this.threadCount = threadCount;
+    }
 
-	public int getPeakThreadCount() {
-		return this.peakThreadCount;
-	}
+    public int getPeakThreadCount() {
+        return this.peakThreadCount;
+    }
 
-	public void setPeakThreadCount(final int peakThreadCount) {
-		this.peakThreadCount = peakThreadCount;
-	}
+    public void setPeakThreadCount(final int peakThreadCount) {
+        this.peakThreadCount = peakThreadCount;
+    }
 
-	public String getEscalationChannel() {
-		return this.escalationChannel;
-	}
+    public String getEscalationChannel() {
+        return this.escalationChannel;
+    }
 
 }

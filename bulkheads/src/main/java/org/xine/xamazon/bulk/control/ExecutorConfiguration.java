@@ -32,7 +32,7 @@ public class ExecutorConfiguration {
      * maxPoolSize twice the amount of cores, keepAliveTime is one second and
      * the queueCapacity is 100.
      */
-    public static final ExecutorConfiguration defaultConfiguration() {
+    public static ExecutorConfiguration defaultConfiguration() {
         return new ExecutorConfiguration();
     }
 

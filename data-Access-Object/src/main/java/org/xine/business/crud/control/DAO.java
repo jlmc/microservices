@@ -6,20 +6,20 @@ import java.util.Map;
 
 public interface DAO<K, T> {
 
-    public T create(T t);
+    T create(T t);
 
-    public T find(K id);
+    T find(K id);
 
-    public void delete(T t);
+    void delete(T t);
 
-    public T update(T t);
+    T update(T t);
 
-    public Collection<T> findByNamedQuery(String queryName);
+    Collection<T> findByNamedQuery(String queryName);
 
-    public Collection<T> findByNamedQuery(String queryName, int resultLimit);
+    Collection<T> findByNamedQuery(String queryName, int resultLimit);
 
-    public List<T> findByNamedQuery(String namedQueryName, Map<String, Object> parameters);
+    List<T> findByNamedQuery(String namedQueryName, Map<String, Object> parameters);
 
-    public List<T> findByNamedQuery(String namedQueryName, Map<String, Object> parameters, int resultLimit);
+    List<T> findByNamedQuery(String namedQueryName, Map<String, Object> parameters, int resultLimit);
 
 }

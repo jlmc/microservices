@@ -265,18 +265,18 @@ th {
 
   src: url("#{resource['/fonts/glyphicons-halflings-regular.eot']}");
    src: url("#{resource['/fonts/glyphicons-halflings-regular.eot?#iefix']}") format('embedded-opentype'), 
-  	   url("#{resource['/fonts/glyphicons-halflings-regular.woff2']}") format('woff2'), 
-  	   url("#{resource['/fonts/glyphicons-halflings-regular.woff']}") format('woff'), 
-  	   url("#{resource['/fonts/glyphicons-halflings-regular.ttf']}") format('truetype'), 
-  	   url("#{resource['/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular']}") format('svg');
+         url("#{resource['/fonts/glyphicons-halflings-regular.woff2']}") format('woff2'),
+         url("#{resource['/fonts/glyphicons-halflings-regular.woff']}") format('woff'),
+         url("#{resource['/fonts/glyphicons-halflings-regular.ttf']}") format('truetype'),
+         url("#{resource['/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular']}") format('svg');
 
 
 /*   src: url('/stackbooks/resources/fonts/glyphicons-halflings-regular.eot'); */
 /*   src: url('/stackbooks/resources/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),  */
-/*   	   url('/stackbooks/resources/fonts/glyphicons-halflings-regular.woff2') format('woff2'),  */
-/*   	   url('/stackbooks/resources/fonts/glyphicons-halflings-regular.woff') format('woff'),  */
-/*   	   url('/stackbooks/resources/fonts/glyphicons-halflings-regular.ttf') format('truetype'),  */
-/*   	   url('/stackbooks/resources/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg'); */
+/*          url('/stackbooks/resources/fonts/glyphicons-halflings-regular.woff2') format('woff2'),  */
+/*          url('/stackbooks/resources/fonts/glyphicons-halflings-regular.woff') format('woff'),  */
+/*          url('/stackbooks/resources/fonts/glyphicons-halflings-regular.ttf') format('truetype'),  */
+/*          url('/stackbooks/resources/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg'); */
 }
 .glyphicon {
   position: relative;

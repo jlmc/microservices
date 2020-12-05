@@ -1,6 +1,5 @@
 package org.jcosta.bookstore.book.boundary;
 
-import org.hibernate.query.Query;
 import org.jcosta.bookstore.ResourceAlreadyExistsException;
 import org.jcosta.bookstore.book.entity.Book;
 

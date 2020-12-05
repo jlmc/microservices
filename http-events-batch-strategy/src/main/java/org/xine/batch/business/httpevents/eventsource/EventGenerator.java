@@ -10,12 +10,12 @@ import javax.inject.Inject;
 
 @Singleton
 public class EventGenerator {
-	@Inject
-	Event<String> message;
+    @Inject
+    Event<String> message;
 
-	@Schedule(minute = "*", second = "*/1", hour = "*")
-	public void sendTime() {
-		this.message.fire(Date.from(Instant.now()).toString());
-		System.out.println(".");
-	}
+    @Schedule(minute = "*", second = "*/1", hour = "*")
+    public void sendTime() {
+        this.message.fire(Date.from(Instant.now()).toString());
+        System.out.println(".");
+    }
 }

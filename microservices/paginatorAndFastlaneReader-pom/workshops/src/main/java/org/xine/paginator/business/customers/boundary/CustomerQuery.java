@@ -18,66 +18,66 @@ import org.xine.paginator.business.customers.entity.Customer;
 @Stateful
 public class CustomerQuery implements Iterator<List<Customer>>{
 
-	@PersistenceContext
-	EntityManager em;
+    @PersistenceContext
+    EntityManager em;
 
-	private int index = 0;
-	private int pageSize = 10;
-	private boolean next = true;
+    private int index = 0;
+    private int pageSize = 10;
+    private boolean next = true;
 
-	public void setPageSize(final int pageSize) {
-		this.pageSize = pageSize;
-	}
+    public void setPageSize(final int pageSize) {
+        this.pageSize = pageSize;
+    }
 
-	@Override
-	public List<Customer> next() {
-		List<Customer> retVal = null;
+    @Override
+    public List<Customer> next() {
+        List<Customer> retVal = null;
 
-		// final Query query = this.em.createQuery("SELECT c FROM Customer c");
-		// query.setFirstResult(getFirst());
-		// query.setMaxResults(this.pageSize);
-		//
-		// retVal = query.getResultList();
+        // final Query query = this.em.createQuery("SELECT c FROM Customer c");
+        // query.setFirstResult(getFirst());
+        // query.setMaxResults(this.pageSize);
+        //
+        // retVal = query.getResultList();
 
-		final CriteriaBuilder builder = this.em.getCriteriaBuilder();
-		final CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class);
-		final Root<Customer> from = criteria.from(Customer.class);
-		criteria.select(from);
-		criteria.orderBy(builder.asc(from.get("id")));
+        final CriteriaBuilder builder = this.em.getCriteriaBuilder();
+        final CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class);
+        final Root<Customer> from = criteria.from(Customer.class);
+        criteria.select(from);
+        criteria.orderBy(builder.asc(from.get("id")));
 
-		final TypedQuery<Customer> createQuery = this.em.createQuery(criteria);
-		createQuery.setFirstResult(getFirst());
-		createQuery.setMaxResults(this.pageSize);
+        final TypedQuery<Customer> createQuery = this.em.createQuery(criteria);
+        createQuery.setFirstResult(getFirst());
+        createQuery.setMaxResults(this.pageSize);
 
 
-		retVal = createQuery.getResultList();
+        retVal = createQuery.getResultList();
 
-		if (retVal.isEmpty()) {
-			this.next = false;
-			retVal = Collections.emptyList();
-		}
-		this.index++;
-		return retVal;
-	}
+        if (retVal.isEmpty()) {
+            this.next = false;
+            retVal = Collections.emptyList();
+        }
+        this.index++;
+        return retVal;
+    }
 
-	private int getFirst() {
-		return this.index * this.pageSize;
-	}
+    private int getFirst() {
+        return this.index * this.pageSize;
+    }
 
-	@Override
-	public boolean hasNext() {
-		return this.next;
-	}
+    @Override
+    public boolean hasNext() {
+        return this.next;
+    }
 
-	@Override
-	public void remove() {
-		throw new UnsupportedOperationException("Operation remove it is not supported...");
-	}
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("Operation remove it is not supported...");
+    }
 
-	@Remove
-	public void close() {
-		this.em.clear();
-		this.em.close();
-	}
+    @Remove
+    public void close() {
+        this.em.clear();
+        this.em.close();
+    }
 
 }

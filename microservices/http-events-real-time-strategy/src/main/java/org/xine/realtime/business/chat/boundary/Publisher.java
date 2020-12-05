@@ -16,17 +16,17 @@ import org.xine.realtime.business.chat.control.BrowserWindow;
 @WebServlet(name = "Publisher", urlPatterns = { "/publisher" }, asyncSupported = true)
 public class Publisher extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Inject
-	Event<BrowserWindow> listeners;
+    @Inject
+    Event<BrowserWindow> listeners;
 
-	@Override
-	protected void doGet(final HttpServletRequest req, final HttpServletResponse resp)
-			throws ServletException, IOException {
-		req.startAsync();
-		final AsyncContext asyncContext = req.getAsyncContext();
-		this.listeners.fire(new BrowserWindow(asyncContext));
-	}
+    @Override
+    protected void doGet(final HttpServletRequest req, final HttpServletResponse resp)
+            throws ServletException, IOException {
+        req.startAsync();
+        final AsyncContext asyncContext = req.getAsyncContext();
+        this.listeners.fire(new BrowserWindow(asyncContext));
+    }
 
 }

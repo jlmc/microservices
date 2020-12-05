@@ -15,44 +15,44 @@ import org.xine.navigator.business.reports.entity.Report;
 @ViewScoped
 public class ReportList implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Inject
-	ReportMngr bo;
+    @Inject
+    ReportMngr bo;
 
-	private Collection<Report> reports;
+    private Collection<Report> reports;
 
-	private int pageNum = 0;
-	private int pageSize = 10;
+    private int pageNum = 0;
+    private int pageSize = 10;
 
-	@PostConstruct
-	public void initialize() {
-		next();
+    @PostConstruct
+    public void initialize() {
+        next();
 
-	}
+    }
 
-	public Collection<Report> getReports() {
-		return this.reports;
-	}
+    public Collection<Report> getReports() {
+        return this.reports;
+    }
 
-	public int getPageNum() {
-		return this.pageNum;
-	}
+    public int getPageNum() {
+        return this.pageNum;
+    }
 
-	public void setPageNum(final int pageNum) {
-		this.pageNum = pageNum;
-	}
+    public void setPageNum(final int pageNum) {
+        this.pageNum = pageNum;
+    }
 
-	public int getPageSize() {
-		return this.pageSize;
-	}
+    public int getPageSize() {
+        return this.pageSize;
+    }
 
-	public void setPageSize(final int pageSize) {
-		this.pageSize = pageSize;
-	}
+    public void setPageSize(final int pageSize) {
+        this.pageSize = pageSize;
+    }
 
-	public void next() {
-		this.reports = this.bo.loadReport(this.pageNum, this.pageSize);
-	}
+    public void next() {
+        this.reports = this.bo.loadReport(this.pageNum, this.pageSize);
+    }
 
 }

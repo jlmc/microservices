@@ -11,16 +11,16 @@ import javax.persistence.PersistenceContext;
 
 public class EntityManagerInjector {
 
-	@PersistenceContext
-	EntityManager em;
+    @PersistenceContext
+    EntityManager em;
 
-	@AroundInvoke
-	public Object associateEntityManagerWithCurrentThread(final InvocationContext ic) throws Exception {
-		associateWithThread(this.em);
-		try {
-			return ic.proceed();
-		} finally {
-			cleanupThread();
-		}
-	}
+    @AroundInvoke
+    public Object associateEntityManagerWithCurrentThread(final InvocationContext ic) throws Exception {
+        associateWithThread(this.em);
+        try {
+            return ic.proceed();
+        } finally {
+            cleanupThread();
+        }
+    }
 }

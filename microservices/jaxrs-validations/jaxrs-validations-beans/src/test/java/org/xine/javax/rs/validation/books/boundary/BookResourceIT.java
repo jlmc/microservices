@@ -36,18 +36,18 @@ public class BookResourceIT {
     private static final Logger LOGGER = Logger.getLogger(BookResourceIT.class.getName());
     
     
-	// @Inject
-	// BookResource bookResource;
+    // @Inject
+    // BookResource bookResource;
 
     @Deployment
     public static Archive<?> createDeployment() {
         final WebArchive war = 
                 ShrinkWrap.create(WebArchive.class, "jaxrsvalidationbeans.war")
                         .addClasses(BookResource.class, JAXRSConfiguration.class, Book.class).
-						// addAsResource("ValidationMessages.properties",
-						// "ValidationMessages.properties").
-						// addAsResource("ValidationMessages_pt.properties",
-						// "ValidatValidationMessages_pt.properties").
+                        // addAsResource("ValidationMessages.properties",
+                        // "ValidationMessages.properties").
+                        // addAsResource("ValidationMessages_pt.properties",
+                        // "ValidatValidationMessages_pt.properties").
                 addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
         // System.out.println(archive.toString(true));
         
@@ -62,7 +62,7 @@ public class BookResourceIT {
     public void shouldCreateBook(@ArquillianResource final URL baseURL) {
         System.out.println("base: " + baseURL);
         
-		final Book book = Book.of(1L, "simple");
+        final Book book = Book.of(1L, "simple");
 
         final Client client = 
                 ClientBuilder.newBuilder().
@@ -78,13 +78,13 @@ public class BookResourceIT {
         assertEquals(book, response.readEntity(Book.class));
     }
     
-	@Test
-	@InSequence(2)
-	@RunAsClient
+    @Test
+    @InSequence(2)
+    @RunAsClient
     public void shouldGetBook(@ArquillianResource final URL baseURL) {
         System.out.println("base: " + baseURL);
         
-		final Book book = Book.of(1L, "simple");
+        final Book book = Book.of(1L, "simple");
 
         final Client client = 
                 ClientBuilder.newBuilder().
@@ -103,9 +103,9 @@ public class BookResourceIT {
     }
     
     
-	@Test
-	@InSequence(3)
-	@RunAsClient
+    @Test
+    @InSequence(3)
+    @RunAsClient
     public void shouldReturnAValidationErrorWhenCreatingABook(@ArquillianResource final URL baseURL) {
         System.out.println("base: " + baseURL);
         

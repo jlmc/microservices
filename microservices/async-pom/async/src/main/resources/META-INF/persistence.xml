@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="async" transaction-type="JTA">
-	
-	
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:jboss/datasources/demoDS2</jta-data-source>
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
-	
-	
-		<properties>
-			<!-- values: none - (nothing) No schema creation or deletion will take 
-				place. -->
-			<!-- create - The provider will create the database artifacts on application 
-				deployment. The artifacts will remain unchanged after application redeployment. -->
-			<!-- drop-and-create - Any artifacts in the database will be deleted, 
-				and the provider will create the database artifacts on deployment -->
-			<!-- drop - Any artifacts in the database will be deleted on application 
-				deployment. -->
-				
-			<!-- none | create | drop-and-create | drop-->
-			<property name="javax.persistence.schema-generation.database.action" value="none"/>
-			<property name="javax.persistence.schema-generation.create-source" value="metadata" />
-			<property name="javax.persistence.schema-generation.drop-source" value="metadata" />
-<!-- 			<property name="javax.persistence.sql-load-script-source" value="insert.sql"/> -->
-			
-			<!-- validate | update | create | create-drop -->
-			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
-						<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
-<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" /> -->
-		
-		</properties>
-	
-	</persistence-unit>
+    <persistence-unit name="async" transaction-type="JTA">
+
+
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>java:jboss/datasources/demoDS2</jta-data-source>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+
+        <properties>
+            <!-- values: none - (nothing) No schema creation or deletion will take
+                place. -->
+            <!-- create - The provider will create the database artifacts on application
+                deployment. The artifacts will remain unchanged after application redeployment. -->
+            <!-- drop-and-create - Any artifacts in the database will be deleted,
+                and the provider will create the database artifacts on deployment -->
+            <!-- drop - Any artifacts in the database will be deleted on application
+                deployment. -->
+
+            <!-- none | create | drop-and-create | drop-->
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            <property name="javax.persistence.schema-generation.create-source" value="metadata" />
+            <property name="javax.persistence.schema-generation.drop-source" value="metadata" />
+<!--             <property name="javax.persistence.sql-load-script-source" value="insert.sql"/> -->
+
+            <!-- validate | update | create | create-drop -->
+            <!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+                        <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+<!--             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" /> -->
+
+        </properties>
+
+    </persistence-unit>
 </persistence>

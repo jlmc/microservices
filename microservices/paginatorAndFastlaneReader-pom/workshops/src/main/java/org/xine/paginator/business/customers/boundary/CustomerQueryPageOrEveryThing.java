@@ -12,21 +12,21 @@ import org.xine.paginator.business.customers.entity.Customer;
 @Stateless
 public class CustomerQueryPageOrEveryThing {
 
-	@PersistenceContext
-	EntityManager em;
+    @PersistenceContext
+    EntityManager em;
 
-	private static final int MAX_PAGE_SIZE = 100;
+    private static final int MAX_PAGE_SIZE = 100;
 
-	public List<Customer> getAllCustomers(int maxResults) {
-		if (maxResults < 0 || maxResults > MAX_PAGE_SIZE) {
-			maxResults = MAX_PAGE_SIZE;
-		} else {
-			maxResults += 1;
-		}
+    public List<Customer> getAllCustomers(int maxResults) {
+        if (maxResults < 0 || maxResults > MAX_PAGE_SIZE) {
+            maxResults = MAX_PAGE_SIZE;
+        } else {
+            maxResults += 1;
+        }
 
-		final TypedQuery<Customer> createNamedQuery = this.em.createNamedQuery("Customer.findAll", Customer.class);
-		createNamedQuery.setMaxResults(maxResults);
-		return createNamedQuery.getResultList();
-	}
+        final TypedQuery<Customer> createNamedQuery = this.em.createNamedQuery("Customer.findAll", Customer.class);
+        createNamedQuery.setMaxResults(maxResults);
+        return createNamedQuery.getResultList();
+    }
 
 }

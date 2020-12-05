@@ -14,13 +14,13 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.TEXT_PLAIN)
 public class Messager {
 
-	@Inject
-	Event<String> pull;
+    @Inject
+    Event<String> pull;
 
-	@GET
-	public Response message() {
-		this.pull.fire("hello world");
-		return Response.ok().build();
-	}
+    @GET
+    public Response message() {
+        this.pull.fire("hello world");
+        return Response.ok().build();
+    }
 
 }

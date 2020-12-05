@@ -16,12 +16,12 @@ import javax.inject.Qualifier;
 @Qualifier
 public @interface Serialization {
 
-	public enum PlanType {
-		DEFAULT, OPTIMIZED;
-	}
+    public enum PlanType {
+        DEFAULT, OPTIMIZED;
+    }
 
 
-	PlanType plantype() default PlanType.DEFAULT;
+    PlanType plantype() default PlanType.DEFAULT;
 
 
 }

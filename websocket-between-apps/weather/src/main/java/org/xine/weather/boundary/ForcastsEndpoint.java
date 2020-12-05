@@ -15,28 +15,28 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/forcasts")
 public class ForcastsEndpoint {
 
-	private Session session;
+    private Session session;
 
-	@OnOpen
-	public void onOpen(Session session, EndpointConfig endpointConfig) {
-		this.session = session;
-	}
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig endpointConfig) {
+        this.session = session;
+    }
 
-	public void sendWeatherForcast(String message) {
-		try {
-			if (session != null && session.isOpen()) {
-				session.getBasicRemote().sendText(message);
-			}
-		} catch (final IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    public void sendWeatherForcast(String message) {
+        try {
+            if (session != null && session.isOpen()) {
+                session.getBasicRemote().sendText(message);
+            }
+        } catch (final IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-	}
+    }
 
-	@Schedule(hour = "*", minute = "*", second = "*/2")
-	public void ticker() {
-		System.out.println(".");
-		sendWeatherForcast("xine weather: " + System.currentTimeMillis());
-	}
+    @Schedule(hour = "*", minute = "*", second = "*/2")
+    public void ticker() {
+        System.out.println(".");
+        sendWeatherForcast("xine weather: " + System.currentTimeMillis());
+    }
 }

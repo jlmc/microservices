@@ -12,34 +12,34 @@ import org.xine.business.registations.entity.Workshop;
 @Presenter
 public class Index {
 
-	@EJB
-	WorkshopRegistration ws;
+    @EJB
+    WorkshopRegistration ws;
 
-	@Inject
-	Logger logger;
+    @Inject
+    Logger logger;
 
-	private final Workshop workshop = new Workshop();
+    private final Workshop workshop = new Workshop();
 
-	@PostConstruct
-	public void onInitialize() {
-		// not needed -> workshop
-		this.logger.info("Initialized !");
-	}
+    @PostConstruct
+    public void onInitialize() {
+        // not needed -> workshop
+        this.logger.info("Initialized !");
+    }
 
-	public Workshop getWorkshop() {
-		return this.workshop;
-	}
+    public Workshop getWorkshop() {
+        return this.workshop;
+    }
 
-	public Object newRegistration() {
-		try {
-			this.ws.register(this.workshop);
-		} catch (final Exception e) {
-			throw new IllegalStateException("Cannot invoke boundary");
-		}
-		return "registered";
-	}
+    public Object newRegistration() {
+        try {
+            this.ws.register(this.workshop);
+        } catch (final Exception e) {
+            throw new IllegalStateException("Cannot invoke boundary");
+        }
+        return "registered";
+    }
 
-	public String getHello() {
-		return "Novatec from ejb @" + this.ws.getDate();
-	}
+    public String getHello() {
+        return "Novatec from ejb @" + this.ws.getDate();
+    }
 }

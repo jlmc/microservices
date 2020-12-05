@@ -15,35 +15,35 @@ import javax.servlet.annotation.WebFilter;
 @WebFilter("/*")
 public class Authenticator implements Filter {
 
-	@Inject
-	Logger logger;
+    @Inject
+    Logger logger;
 
-	@Override
-	public void init(final FilterConfig filterConfig) throws ServletException {}
-	 
-	/*
-	@Override
-	public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain) throws IOException, ServletException {
-		final HttpServletRequest req = (HttpServletRequest) request;
-		final HttpServletResponse resp = (HttpServletResponse) response;
-		if (req.authenticate(resp)) {
-			chain.doFilter(req, resp);
-		}
-	}
-	*/
+    @Override
+    public void init(final FilterConfig filterConfig) throws ServletException {}
 
-	@Override
-	public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
-			throws IOException, ServletException {
+    /*
+    @Override
+    public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain) throws IOException, ServletException {
+        final HttpServletRequest req = (HttpServletRequest) request;
+        final HttpServletResponse resp = (HttpServletResponse) response;
+        if (req.authenticate(resp)) {
+            chain.doFilter(req, resp);
+        }
+    }
+    */
 
-		this.logger.info("request....");
+    @Override
+    public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
+            throws IOException, ServletException {
 
-		// for now just change of responsability
-		chain.doFilter(request, response);
-	}
+        this.logger.info("request....");
 
-	@Override
-	public void destroy() {
-	}
+        // for now just change of responsability
+        chain.doFilter(request, response);
+    }
+
+    @Override
+    public void destroy() {
+    }
 
 }

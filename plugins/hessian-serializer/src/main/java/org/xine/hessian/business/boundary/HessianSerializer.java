@@ -12,19 +12,19 @@ import com.caucho.hessian.io.Hessian2StreamingOutput;
 @Serialization(plantype = PlanType.OPTIMIZED)
 public class HessianSerializer implements Serializer {
 
-	@Override
-	public byte[] serialize(Serializer object) {
-		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    @Override
+    public byte[] serialize(Serializer object) {
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-		final Hessian2StreamingOutput out = new Hessian2StreamingOutput(baos);
-		try {
-			out.writeObject(object);
-			out.flush();
-		} catch (final IOException iOException) {
-			throw new RuntimeException("Cannot serialize: " + object, iOException);
-		}
+        final Hessian2StreamingOutput out = new Hessian2StreamingOutput(baos);
+        try {
+            out.writeObject(object);
+            out.flush();
+        } catch (final IOException iOException) {
+            throw new RuntimeException("Cannot serialize: " + object, iOException);
+        }
 
-		return baos.toByteArray();
-	}
+        return baos.toByteArray();
+    }
 
 }

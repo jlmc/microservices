@@ -14,19 +14,19 @@ import org.xine.business.reports.entity.Report;
 @Stateless
 public class ReportSender {
 
-	@Inject
-	Logger logger;
+    @Inject
+    Logger logger;
 
-	@Inject
-	ReportRepository repository;
+    @Inject
+    ReportRepository repository;
 
-	@Schedule(hour = "*", minute = "*/3")
-	public void dump() {
-		this.logger.info(String.format("dunping %s",
-				LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))));
+    @Schedule(hour = "*", minute = "*/3")
+    public void dump() {
+        this.logger.info(String.format("dunping %s",
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))));
 
-		final Collection<Report> reports = this.repository.loadReports();
-		reports.forEach(System.out::println);
+        final Collection<Report> reports = this.repository.loadReports();
+        reports.forEach(System.out::println);
 
-	}
+    }
 }

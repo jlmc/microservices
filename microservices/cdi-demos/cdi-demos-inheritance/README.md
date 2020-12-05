@@ -6,14 +6,14 @@ Vamos tomar como exemplo a classe <b>SalariesPlanCalculator2013</b> e a classe <
 
 ```
 
-	@TaxCal
-	public class SalariesPlanCalculator2013 implements SalariesPlanCalculator {
-	
-		@Override
-		public double earningsEstimates(final Employeer employee) {
-			System.out.println("SalariesPlanCalculator2013");
-			return 5;
-	}
+    @TaxCal
+    public class SalariesPlanCalculator2013 implements SalariesPlanCalculator {
+    
+        @Override
+        public double earningsEstimates(final Employeer employee) {
+            System.out.println("SalariesPlanCalculator2013");
+            return 5;
+    }
 ```
 
 Para enriquecer nossa análise, adicionamos um qualificador novo, que usaremos apenas nesse exemplo: 
@@ -25,25 +25,25 @@ Agora vejamos a calculadora assíncrona.
 
 ```
 
-	@Alternative
-	@Priority(javax.interceptor.Interceptor.Priority.APPLICATION)
-	public class SalariesPlanCalculator2013Asynchronous extends SalariesPlanCalculator2013 {
-		
-		@Override
-		public double earningsEstimates(final Employeer employee) {
-			System.out.println("SalariesPlanCalculator2013Asynchronous");
-			return 10;
-		}
-	
-	}
+    @Alternative
+    @Priority(javax.interceptor.Interceptor.Priority.APPLICATION)
+    public class SalariesPlanCalculator2013Asynchronous extends SalariesPlanCalculator2013 {
+        
+        @Override
+        public double earningsEstimates(final Employeer employee) {
+            System.out.println("SalariesPlanCalculator2013Asynchronous");
+            return 10;
+        }
+    
+    }
 ```
 
 ###conseguimos predizer como a CDI irá resolver a seguinte dependência:
 
 ```
 
-	@Inject
-	private SalariesPlanCalculator calculator;
+    @Inject
+    private SalariesPlanCalculator calculator;
 ```
 
 
@@ -54,8 +54,8 @@ Mas qual seria o resultado se o trecho que solicita a injeção da dependência 
 
 ```
 
-	@Inject @TaxCal
-	private SalariesPlanCalculator calculator;
+    @Inject @TaxCal
+    private SalariesPlanCalculator calculator;
 ```
 
 Nesse caso, seria injetada uma instância da classe SalariesPlanCalculator2013, pois sua subclasse não possui o qualificador <b>@TaxCal</b>. 
@@ -78,16 +78,16 @@ Para resolver essa questão, a CDI disponibiliza a anotação @Specializes, que 
 
 ```
 
-	@Specializes @Assincr
-	public class SalariesPlanCalculator2013Asynchronous extends SalariesPlanCalculator2013 {
-	
-		@Override
-		public double earningsEstimates(final Employeer employee) {
-			System.out.println("SalariesPlanCalculator2013Asynchronous");
-			return 10;
-		}
+    @Specializes @Assincr
+    public class SalariesPlanCalculator2013Asynchronous extends SalariesPlanCalculator2013 {
+    
+        @Override
+        public double earningsEstimates(final Employeer employee) {
+            System.out.println("SalariesPlanCalculator2013Asynchronous");
+            return 10;
+        }
 
-	}
+    }
 ```
 
 

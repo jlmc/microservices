@@ -13,17 +13,17 @@ import org.xine.bookshop.business.restserialization.control.CustomMediaType;
 @Stateless
 public class BookResource {
 
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, CustomMediaType.SERIALIZATION_JAVA })
-	public Book getBook() {
-		return new Book(1L, "my thisng Book");
-	}
+    @GET
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, CustomMediaType.SERIALIZATION_JAVA })
+    public Book getBook() {
+        return new Book(1L, "my thisng Book");
+    }
 
-	@POST
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, CustomMediaType.SERIALIZATION_JAVA })
-	public void saveBook(final Book book) {
-		System.out.println(book);
+    @POST
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, CustomMediaType.SERIALIZATION_JAVA })
+    public void saveBook(final Book book) {
+        System.out.println(book);
 
-	}
+    }
 
 }

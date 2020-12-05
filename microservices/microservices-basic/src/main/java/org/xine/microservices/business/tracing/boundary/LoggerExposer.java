@@ -11,14 +11,14 @@ import javax.enterprise.inject.spi.InjectionPoint;
 @ApplicationScoped
 public class LoggerExposer implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Produces
-	@Dependent
-	public Logger exposer(InjectionPoint ip) {
-		final String loggerName = ip.getMember().getDeclaringClass().getName();
-		return Logger.getLogger(loggerName);
-	}
+    @Produces
+    @Dependent
+    public Logger exposer(InjectionPoint ip) {
+        final String loggerName = ip.getMember().getDeclaringClass().getName();
+        return Logger.getLogger(loggerName);
+    }
 
 }
 

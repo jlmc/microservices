@@ -17,21 +17,21 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.TEXT_PLAIN)
 public class BookResource {
 
-	@Inject
-	Logger tracer;
+    @Inject
+    Logger tracer;
 
-	@GET
-	public String book() {
-		this.tracer.info("get Method: .... ");
-		return "java EE rocks";
-	}
+    @GET
+    public String book() {
+        this.tracer.info("get Method: .... ");
+        return "java EE rocks";
+    }
 
-	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.TEXT_HTML)
-	public String update(@FormParam("wisdom") String wisdom) {
-		this.tracer.info("Post request:  " + wisdom);
-		return "thanks!";
-	}
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_HTML)
+    public String update(@FormParam("wisdom") String wisdom) {
+        this.tracer.info("Post request:  " + wisdom);
+        return "thanks!";
+    }
 
 }

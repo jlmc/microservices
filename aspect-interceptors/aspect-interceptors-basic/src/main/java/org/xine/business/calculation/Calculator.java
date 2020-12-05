@@ -8,11 +8,11 @@ import org.xine.business.security.boundary.Secure;
 @Stateless
 public class Calculator {
 
-	@Auditable
-	@Secure
-	public Double calc() {
-		System.out.println("Hello friends from calculator");
-		return Double.valueOf(5.0D);
-	}
+    @Auditable
+    @Secure
+    public Double calc() {
+        System.out.println("Hello friends from calculator");
+        return Double.valueOf(5.0D);
+    }
 
 }

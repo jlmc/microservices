@@ -1,6 +1,5 @@
 package io.github.jlmc.bookshelf.boundary.books;
 
-import io.github.jlmc.bookshelf.domain.entities.Book;
 import io.github.jlmc.bookshelf.domain.services.Bookshelf;
 
 import javax.enterprise.context.RequestScoped;

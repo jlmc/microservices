@@ -15,23 +15,23 @@ import org.xine.business.reports.entity.Report;
 @Stateless
 public class ReportRepository {
 
-	@PersistenceContext
-	EntityManager em;
+    @PersistenceContext
+    EntityManager em;
 
-	public Collection<Report> loadReports() {
-		final CriteriaBuilder builder = this.em.getCriteriaBuilder();
-		final CriteriaQuery<Report> criteria = builder.createQuery(Report.class);
+    public Collection<Report> loadReports() {
+        final CriteriaBuilder builder = this.em.getCriteriaBuilder();
+        final CriteriaQuery<Report> criteria = builder.createQuery(Report.class);
 
-		final Root<Report> from = criteria.from(Report.class);
-		criteria.select(from);
+        final Root<Report> from = criteria.from(Report.class);
+        criteria.select(from);
 
-		final TypedQuery<Report> query = this.em.createQuery(criteria);
+        final TypedQuery<Report> query = this.em.createQuery(criteria);
 
-		return query.getResultList();
-	}
+        return query.getResultList();
+    }
 
-	public Report add(final Report report) {
-		return this.em.merge(report);
-	}
+    public Report add(final Report report) {
+        return this.em.merge(report);
+    }
 
 }

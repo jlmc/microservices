@@ -13,44 +13,44 @@ import org.xine.paginator.business.customers.entity.Customer;
 
 public class CustomerQueryTest {
 
-	private EntityManager em;
-	private EntityTransaction et;
+    private EntityManager em;
+    private EntityTransaction et;
 
-	private CustomerQuery query;
+    private CustomerQuery query;
 
-	@Before
-	public void initialize() throws Exception {
-		this.em = Persistence.createEntityManagerFactory("integration-test").createEntityManager();
-		this.et = this.em.getTransaction();
+    @Before
+    public void initialize() {
+        this.em = Persistence.createEntityManagerFactory("integration-test").createEntityManager();
+        this.et = this.em.getTransaction();
 
-		this.query = new CustomerQuery();
-		this.query.em = this.em;
+        this.query = new CustomerQuery();
+        this.query.em = this.em;
 
-		// fill the customers repository
-		this.et.begin();
-		for (int i = 0; i < 50; i++) {
-			this.em.persist(new Customer("Duke " + i));
-		}
-		this.et.commit();
-	}
+        // fill the customers repository
+        this.et.begin();
+        for (int i = 0; i < 50; i++) {
+            this.em.persist(new Customer("Duke " + i));
+        }
+        this.et.commit();
+    }
 
-	@Test
-	public void test() {
-		while (this.query.hasNext()) {
-			final List<Customer> customers = this.query.next();
-			System.out.println("Size: " + customers.size());
+    @Test
+    public void test() {
+        while (this.query.hasNext()) {
+            final List<Customer> customers = this.query.next();
+            System.out.println("Size: " + customers.size());
 
-			customers.forEach(System.out::println);
-		}
-	}
+            customers.forEach(System.out::println);
+        }
+    }
 
-	@After
-	public void cleanUp() {
-		this.et.begin();
-		this.em.createQuery("delete from Customer").executeUpdate();
-		this.et.commit();
+    @After
+    public void cleanUp() {
+        this.et.begin();
+        this.em.createQuery("delete from Customer").executeUpdate();
+        this.et.commit();
 
-	}
+    }
 
 
 }

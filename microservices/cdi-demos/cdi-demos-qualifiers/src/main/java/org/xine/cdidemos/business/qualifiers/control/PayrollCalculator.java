@@ -7,6 +7,6 @@ import org.xine.cdidemos.business.tax.entity.Payroll;
 
 public interface PayrollCalculator {
 
-	public Payroll calcPayroll(Collection<Employeer> employeers);
+    public Payroll calcPayroll(Collection<Employeer> employeers);
 
 }

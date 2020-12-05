@@ -9,14 +9,14 @@ import javax.enterprise.concurrent.ManagedScheduledExecutorService;
 @Startup
 public class ReportSchedulerLaucher {
 
-	// @Resource(lookup="java:comp/DefaultManagedExecutorService")
-	// ManagedExecutorService executor;
+    // @Resource(lookup="java:comp/DefaultManagedExecutorService")
+    // ManagedExecutorService executor;
 
-	// InitialContext ctx = new InitialContext();
-	// ManagedScheduledExecutorService executor
-	// =(ManagedScheduledExecutorService)ctx.lookup("java:comp/DefaultManagedScheduledExecutorService");
+    // InitialContext ctx = new InitialContext();
+    // ManagedScheduledExecutorService executor
+    // =(ManagedScheduledExecutorService)ctx.lookup("java:comp/DefaultManagedScheduledExecutorService");
 
-	@Resource(lookup = "java:comp/DefaultManagedScheduledExecutorService")
-	ManagedScheduledExecutorService executor;
+    @Resource(lookup = "java:comp/DefaultManagedScheduledExecutorService")
+    ManagedScheduledExecutorService executor;
 
 }

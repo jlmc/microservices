@@ -7,10 +7,10 @@ import javax.enterprise.inject.spi.InjectionPoint;
 
 public class LoggerExposer {
 
-	@Produces
-	public Logger expose(final InjectionPoint ip) {
-		final String loggerName = ip.getMember().getDeclaringClass().getName();
-		return Logger.getLogger(loggerName);
-	}
+    @Produces
+    public Logger expose(final InjectionPoint ip) {
+        final String loggerName = ip.getMember().getDeclaringClass().getName();
+        return Logger.getLogger(loggerName);
+    }
 
 }

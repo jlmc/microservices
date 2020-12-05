@@ -14,28 +14,28 @@ import org.xine.business.calculation.Calculator;
 @WebServlet(name = "GivingNumber", urlPatterns = { "/GivingNumber/*" })
 public class GivingNumber extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Inject
-	Calculator calc;
+    @Inject
+    Calculator calc;
 
-	@Override
-	protected void doGet(
-			final HttpServletRequest request,
-			final HttpServletResponse response)
-					throws ServletException, IOException {
+    @Override
+    protected void doGet(
+            final HttpServletRequest request,
+            final HttpServletResponse response)
+                    throws ServletException, IOException {
 
-		request.getParameter("number");
-		final Double value = this.calc.calc();
-		response.getWriter().println(value);
-	}
+        request.getParameter("number");
+        final Double value = this.calc.calc();
+        response.getWriter().println(value);
+    }
 
-	@Override
-	protected void doPost(
-			final HttpServletRequest request,
-			final HttpServletResponse response)
-					throws ServletException, IOException {
-		doGet(request, response);
-	}
+    @Override
+    protected void doPost(
+            final HttpServletRequest request,
+            final HttpServletResponse response)
+                    throws ServletException, IOException {
+        doGet(request, response);
+    }
 
 }

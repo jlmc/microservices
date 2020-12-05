@@ -18,22 +18,22 @@ import javax.ws.rs.ext.Provider;
 @Consumes(CustomMediaType.SERIALIZATION_JAVA)
 public class JavaDeserializer implements MessageBodyReader<Object> {
 
-	public boolean isReadable(final Class<?> type,
-			final Type genericType,
-			final Annotation[] annotations,
-			final MediaType mediaType) {
-		return Serializable.class.isAssignableFrom(type);
-	}
+    public boolean isReadable(final Class<?> type,
+            final Type genericType,
+            final Annotation[] annotations,
+            final MediaType mediaType) {
+        return Serializable.class.isAssignableFrom(type);
+    }
 
-	public Object readFrom(final Class<Object> type, final Type genericType, final Annotation[] annotations,
-			final MediaType mediaType, final MultivaluedMap<String, String> httpHeaders, final InputStream entityStream)
-					throws IOException, WebApplicationException {
-		try {
-			final ObjectInputStream in = new ObjectInputStream(entityStream);
-			return in.readObject();
-		} catch (final ClassNotFoundException ex) {
-			throw new IOException("Cannot find class for: " + type.getName(), ex);
-		}
-	}
+    public Object readFrom(final Class<Object> type, final Type genericType, final Annotation[] annotations,
+            final MediaType mediaType, final MultivaluedMap<String, String> httpHeaders, final InputStream entityStream)
+                    throws IOException, WebApplicationException {
+        try {
+            final ObjectInputStream in = new ObjectInputStream(entityStream);
+            return in.readObject();
+        } catch (final ClassNotFoundException ex) {
+            throw new IOException("Cannot find class for: " + type.getName(), ex);
+        }
+    }
 
 }

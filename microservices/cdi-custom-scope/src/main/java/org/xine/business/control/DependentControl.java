@@ -8,26 +8,26 @@ import javax.annotation.PreDestroy;
 
 public class DependentControl implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public final static AtomicInteger INSTANCE_COUNTER = new AtomicInteger(0);
+    public final static AtomicInteger INSTANCE_COUNTER = new AtomicInteger(0);
 
-	public DependentControl() {
-		// nothing
-	}
+    public DependentControl() {
+        // nothing
+    }
 
-	@PostConstruct
-	public void onCreate() {
-		INSTANCE_COUNTER.incrementAndGet();
-	}
+    @PostConstruct
+    public void onCreate() {
+        INSTANCE_COUNTER.incrementAndGet();
+    }
 
-	public String execute() {
-		return "+";
-	}
+    public String execute() {
+        return "+";
+    }
 
-	@PreDestroy
-	public void onDestroy() {
-		System.out.println(this.getClass().getName() + " onDestroy");
-		INSTANCE_COUNTER.decrementAndGet();
-	}
+    @PreDestroy
+    public void onDestroy() {
+        System.out.println(this.getClass().getName() + " onDestroy");
+        INSTANCE_COUNTER.decrementAndGet();
+    }
 }

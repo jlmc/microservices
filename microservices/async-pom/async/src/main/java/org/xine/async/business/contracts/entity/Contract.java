@@ -25,75 +25,75 @@ import javax.persistence.Table;
 @Table(name="t_contract")
 public class Contract implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	   
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String client;
-	private BigDecimal balance;
+    private static final long serialVersionUID = 1L;
 
-	@ElementCollection
-	@CollectionTable(name = "t_part", joinColumns = @JoinColumn(name = "contract_Id", foreignKey = @ForeignKey(name = "FK_T_CONTRACT")))
-	private Set<Part> parts = new HashSet<>(0);
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String client;
+    private BigDecimal balance;
 
-	public Contract() {
-		super();
-	}   
-	public Long getId() {
-		return this.id;
-	}
+    @ElementCollection
+    @CollectionTable(name = "t_part", joinColumns = @JoinColumn(name = "contract_Id", foreignKey = @ForeignKey(name = "FK_T_CONTRACT")))
+    private Set<Part> parts = new HashSet<>(0);
 
-	public void setId(Long id) {
-		this.id = id;
-	}   
-	public String getClient() {
-		return this.client;
-	}
+    public Contract() {
+        super();
+    }
+    public Long getId() {
+        return this.id;
+    }
 
-	public void setClient(String client) {
-		this.client = client;
-	}   
-	public BigDecimal getBalance() {
-		return this.balance;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getClient() {
+        return this.client;
+    }
 
-	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
-	}
+    public void setClient(String client) {
+        this.client = client;
+    }
+    public BigDecimal getBalance() {
+        return this.balance;
+    }
 
-	public Set<Part> getParts() {
-		return Collections.unmodifiableSet(this.parts);
-	}
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
 
-	protected void setParts(Set<Part> parts) {
-		this.parts = parts;
-	}
+    public Set<Part> getParts() {
+        return Collections.unmodifiableSet(this.parts);
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(this.id);
-	}
+    protected void setParts(Set<Part> parts) {
+        this.parts = parts;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final Contract other = (Contract) obj;
-		return Objects.equals(this.id, other.id);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
+    }
 
-	public BigDecimal ajuster(Double percentage) {
-		final BigDecimal multiply = this.balance.multiply(BigDecimal.valueOf(percentage));
-		this.balance = this.balance.add(multiply);
-		return this.balance;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Contract other = (Contract) obj;
+        return Objects.equals(this.id, other.id);
+    }
+
+    public BigDecimal ajuster(Double percentage) {
+        final BigDecimal multiply = this.balance.multiply(BigDecimal.valueOf(percentage));
+        this.balance = this.balance.add(multiply);
+        return this.balance;
+    }
    
 }

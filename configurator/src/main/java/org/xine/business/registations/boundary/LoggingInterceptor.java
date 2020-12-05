@@ -10,17 +10,17 @@ import javax.interceptor.InvocationContext;
 
 public class LoggingInterceptor {
 
-	@Inject
-	Logger logger;
+    @Inject
+    Logger logger;
 
-	@Resource
-	SessionContext sc;
+    @Resource
+    SessionContext sc;
 
-	@AroundInvoke
-	public Object log(final InvocationContext ic) throws Exception {
-		this.logger.info("---------- " + ic.getMethod() + " " + this.sc.getCallerPrincipal());
+    @AroundInvoke
+    public Object log(final InvocationContext ic) throws Exception {
+        this.logger.info("---------- " + ic.getMethod() + " " + this.sc.getCallerPrincipal());
 
-		return ic.proceed();
-	}
+        return ic.proceed();
+    }
 
 }

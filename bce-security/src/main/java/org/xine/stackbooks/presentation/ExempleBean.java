@@ -12,24 +12,24 @@ import org.xine.stackbooks.business.security.entity.User;
 @RequestScoped
 public class ExempleBean {
 
-	private final String username = "this will be the username";
+    private final String username = "this will be the username";
 
-	@Inject
-	private Principal principal;
+    @Inject
+    private Principal principal;
 
-	@Inject
-	private User myUser;
+    @Inject
+    private User myUser;
 
-	public String getUsername() {
-		return this.username;
-	}
+    public String getUsername() {
+        return this.username;
+    }
 
-	public String getPrincipalName() {
-		return this.principal.getName();
-	}
+    public String getPrincipalName() {
+        return this.principal.getName();
+    }
 
-	public String getMyUser() {
-		return String.valueOf(this.myUser);
-	}
+    public String getMyUser() {
+        return String.valueOf(this.myUser);
+    }
 
 }

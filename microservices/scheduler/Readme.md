@@ -40,18 +40,18 @@ You can then obtain ManagedScheduledExecutorService like so:
 
 ```
 
-	InitialContext ctx = new InitialContext();
-	ManagedScheduledExecutorService executor =
-			(ManagedScheduledExecutorService)ctx.lookup("java:comp/DefaultManagedScheduledExecutorService");
+    InitialContext ctx = new InitialContext();
+    ManagedScheduledExecutorService executor =
+            (ManagedScheduledExecutorService)ctx.lookup("java:comp/DefaultManagedScheduledExecutorService");
 ```
 
 You can also inject ManagedScheduledExecutorService into the application using
 
 ```
 
-	@Resource:
-	@Resource(lookup="java:comp/DefaultManagedScheduledExecutorService")
-	ManagedScheduledExecutorService executor;
+    @Resource:
+    @Resource(lookup="java:comp/DefaultManagedScheduledExecutorService")
+    ManagedScheduledExecutorService executor;
 ```
 
 ## Conventions 

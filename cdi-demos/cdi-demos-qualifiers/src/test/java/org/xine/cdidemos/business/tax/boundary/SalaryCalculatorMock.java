@@ -8,15 +8,15 @@ import org.xine.cdidemos.business.tax.entity.Employeer;
 @Vetoed
 public class SalaryCalculatorMock extends SalaryCalculator {
 
-	private final double salaryFixed;
+    private final double salaryFixed;
 
-	public SalaryCalculatorMock(double salaryFixed) {
-		this.salaryFixed = salaryFixed;
-	}
+    public SalaryCalculatorMock(double salaryFixed) {
+        this.salaryFixed = salaryFixed;
+    }
 
-	@Override
-	public double calculateSalary(Employeer employeer) {
-		return this.salaryFixed;
-	}
+    @Override
+    public double calculateSalary(Employeer employeer) {
+        return this.salaryFixed;
+    }
 
 }

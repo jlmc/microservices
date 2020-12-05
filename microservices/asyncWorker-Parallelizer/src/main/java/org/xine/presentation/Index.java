@@ -12,25 +12,25 @@ import org.xine.business.push.boundary.Parallelizer;
 @RequestScoped
 public class Index {
 
-	@Max(100)
-	@Min(1)
-	private int number = 10;
+    @Max(100)
+    @Min(1)
+    private int number = 10;
 
-	@Inject
-	Parallelizer parallelizer;
+    @Inject
+    Parallelizer parallelizer;
 
-	public int getNumber() {
-		return this.number;
-	}
+    public int getNumber() {
+        return this.number;
+    }
 
-	public void setNumber(final int number) {
-		this.number = number;
-	}
+    public void setNumber(final int number) {
+        this.number = number;
+    }
 
-	public Object basicexecution() {
-		// final List<Long> execute =
-		this.parallelizer.execute(this.number);
-		return null;
-	}
+    public Object basicexecution() {
+        // final List<Long> execute =
+        this.parallelizer.execute(this.number);
+        return null;
+    }
 
 }

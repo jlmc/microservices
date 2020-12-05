@@ -8,10 +8,10 @@
   <artifactId>scheduler</artifactId>
   <packaging>pom</packaging>
   <modules>
-  	<module>static-scheduler</module>
-  	
-  	<module>referrer-scavenger-timer</module>
-  	<module>basic-schedule</module>
-  	<module>report-generator-with-scheduler</module>
+      <module>static-scheduler</module>
+
+      <module>referrer-scavenger-timer</module>
+      <module>basic-schedule</module>
+      <module>report-generator-with-scheduler</module>
   </modules>
 </project>

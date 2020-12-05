@@ -10,12 +10,12 @@ import javax.faces.context.FacesContext;
 @ApplicationScoped
 public class FacesContextProducer implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Produces
-	@RequestScoped
-	public FacesContext get() {
-		return FacesContext.getCurrentInstance();
-	}
+    @Produces
+    @RequestScoped
+    public FacesContext get() {
+        return FacesContext.getCurrentInstance();
+    }
 
 }

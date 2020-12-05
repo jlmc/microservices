@@ -21,108 +21,108 @@ import org.xine.async.business.contracts.entity.Part;
 
 @Stateless
 public class ContractFinancial {
-	@PersistenceContext(unitName = "async")
-	EntityManager em;
+    @PersistenceContext(unitName = "async")
+    EntityManager em;
 
-	@Inject
-	ContractAdjusterFinancial contractAdjusterFinancial;
+    @Inject
+    ContractAdjusterFinancial contractAdjusterFinancial;
 
-	@Resource
-	ManagedExecutorService services;
+    @Resource
+    ManagedExecutorService services;
 
-	/**
-	 * this solution is not so good because, using this way we will have just
-	 * one Transaction.
-	 * 
-	 * As a consequence we are required to join all the tasks at the end so they
-	 * can be persisted. So if you can choise the implementation ajusterAllContractsAsync.
-	 */
-	public BigDecimal ajusterAllContractsAsyncWithCallable(Double percentage)
-			throws InterruptedException, ExecutionException {
-		final List<Contract> contracts = this.em
-				.createQuery("select distinct c from Contract c join fetch c.parts where 1=1", Contract.class)
-				.getResultList();
+    /**
+     * this solution is not so good because, using this way we will have just
+     * one Transaction.
+     *
+     * As a consequence we are required to join all the tasks at the end so they
+     * can be persisted. So if you can choise the implementation ajusterAllContractsAsync.
+     */
+    public BigDecimal ajusterAllContractsAsyncWithCallable(Double percentage)
+            throws InterruptedException, ExecutionException {
+        final List<Contract> contracts = this.em
+                .createQuery("select distinct c from Contract c join fetch c.parts where 1=1", Contract.class)
+                .getResultList();
 
-		final List<Future<BigDecimal>> promisses = new ArrayList<Future<BigDecimal>>();
+        final List<Future<BigDecimal>> promisses = new ArrayList<Future<BigDecimal>>();
 
-		for (final Contract contract : contracts) {
-			promisses.add(this.services.submit(new ContractAdjusterTask(contract, percentage)));
-			// services.invokeAll(null)
-		}
+        for (final Contract contract : contracts) {
+            promisses.add(this.services.submit(new ContractAdjusterTask(contract, percentage)));
+            // services.invokeAll(null)
+        }
 
-		// join all the tasks
-		BigDecimal contractsAllTotal = BigDecimal.ZERO;
-		while (!promisses.isEmpty()) {
-			final List<Future<BigDecimal>> completedPromisses = new ArrayList<>();
-			for (final Future<BigDecimal> promisse : promisses) {
-				if (promisse.isDone()) {
-					final BigDecimal bigDecimal = promisse.get();
-					contractsAllTotal = contractsAllTotal.add(bigDecimal);
+        // join all the tasks
+        BigDecimal contractsAllTotal = BigDecimal.ZERO;
+        while (!promisses.isEmpty()) {
+            final List<Future<BigDecimal>> completedPromisses = new ArrayList<>();
+            for (final Future<BigDecimal> promisse : promisses) {
+                if (promisse.isDone()) {
+                    final BigDecimal bigDecimal = promisse.get();
+                    contractsAllTotal = contractsAllTotal.add(bigDecimal);
 
-					completedPromisses.add(promisse);
-				}
-			}
+                    completedPromisses.add(promisse);
+                }
+            }
 
-			promisses.removeAll(completedPromisses);
-		}
+            promisses.removeAll(completedPromisses);
+        }
 
-		return contractsAllTotal;
-	}
+        return contractsAllTotal;
+    }
 
-	public BigDecimal ajusterAllContractsAsync(Double percentage) throws InterruptedException, ExecutionException {
-		final List<Contract> contracts = this.em.createQuery("select c from Contract c where 1=1", Contract.class)
-				.getResultList();
+    public BigDecimal ajusterAllContractsAsync(Double percentage) throws InterruptedException, ExecutionException {
+        final List<Contract> contracts = this.em.createQuery("select c from Contract c where 1=1", Contract.class)
+                .getResultList();
 
-		final List<Future<BigDecimal>> promisses = new ArrayList<Future<BigDecimal>>();
+        final List<Future<BigDecimal>> promisses = new ArrayList<Future<BigDecimal>>();
 
-		for (final Contract contract : contracts) {
-			promisses.add(this.contractAdjusterFinancial.ajusterContract(percentage, contract));
-		}
+        for (final Contract contract : contracts) {
+            promisses.add(this.contractAdjusterFinancial.ajusterContract(percentage, contract));
+        }
 
-		// join all the tasks, although this is not necessary
-		BigDecimal contractsAllTotal = BigDecimal.ZERO;
-		while (!promisses.isEmpty()) {
-			final List<Future<BigDecimal>> completedPromisses = new ArrayList<>();
-			for (final Future<BigDecimal> promisse : promisses) {
-				if (promisse.isDone()) {
-					final BigDecimal bigDecimal = promisse.get();
-					contractsAllTotal = contractsAllTotal.add(bigDecimal);
+        // join all the tasks, although this is not necessary
+        BigDecimal contractsAllTotal = BigDecimal.ZERO;
+        while (!promisses.isEmpty()) {
+            final List<Future<BigDecimal>> completedPromisses = new ArrayList<>();
+            for (final Future<BigDecimal> promisse : promisses) {
+                if (promisse.isDone()) {
+                    final BigDecimal bigDecimal = promisse.get();
+                    contractsAllTotal = contractsAllTotal.add(bigDecimal);
 
-					completedPromisses.add(promisse);
-				}
-			}
+                    completedPromisses.add(promisse);
+                }
+            }
 
-			promisses.removeAll(completedPromisses);
-		}
+            promisses.removeAll(completedPromisses);
+        }
 
-		return contractsAllTotal;
-	}
+        return contractsAllTotal;
+    }
 
 
-	public BigDecimal ajusterAllContracts(Double percentage) {
-		final List<Contract> contracts =
-					this.em.createQuery("select c from Contract c where 1=1", Contract.class)
-							.getResultList();
+    public BigDecimal ajusterAllContracts(Double percentage) {
+        final List<Contract> contracts =
+                    this.em.createQuery("select c from Contract c where 1=1", Contract.class)
+                            .getResultList();
 
-		final LocalDateTime now = LocalDateTime.now();
+        final LocalDateTime now = LocalDateTime.now();
 
-		BigDecimal contractsTotal = BigDecimal.ZERO;
+        BigDecimal contractsTotal = BigDecimal.ZERO;
 
-		for (final Contract contract : contracts) {
-			BigDecimal sumOfParts = BigDecimal.ZERO;
-			for (final Part part : contract.getParts()) {
-				if (part.getDueDate().compareTo(now) > 0) {
-					part.add(percentage);
-				}
-				sumOfParts = sumOfParts.add(part.getValue());
-			}
+        for (final Contract contract : contracts) {
+            BigDecimal sumOfParts = BigDecimal.ZERO;
+            for (final Part part : contract.getParts()) {
+                if (part.getDueDate().compareTo(now) > 0) {
+                    part.add(percentage);
+                }
+                sumOfParts = sumOfParts.add(part.getValue());
+            }
 
-			contract.setBalance(sumOfParts);
+            contract.setBalance(sumOfParts);
 
-			contractsTotal = contractsTotal.add(contract.getBalance());
+            contractsTotal = contractsTotal.add(contract.getBalance());
 
-		}
+        }
 
-		return contractsTotal;
-	}
+        return contractsTotal;
+    }
 }

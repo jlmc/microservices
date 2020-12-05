@@ -7,34 +7,34 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class OrderItem implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String product;
-	private Integer qty;
+    private String product;
+    private Integer qty;
 
-	protected OrderItem() {
-	}
+    protected OrderItem() {
+    }
 
-	public OrderItem(final String product, final Integer qty) {
-		this.product = product;
-		this.qty = qty;
-	}
+    public OrderItem(final String product, final Integer qty) {
+        this.product = product;
+        this.qty = qty;
+    }
 
 
-	public String getProduct() {
-		return this.product;
-	}
+    public String getProduct() {
+        return this.product;
+    }
 
-	public Integer getQty() {
-		return this.qty;
-	}
+    public Integer getQty() {
+        return this.qty;
+    }
 
-	protected void setProduct(final String product) {
-		this.product = product;
-	}
+    protected void setProduct(final String product) {
+        this.product = product;
+    }
 
-	protected void setQty(final Integer qty) {
-		this.qty = qty;
-	}
+    protected void setQty(final Integer qty) {
+        this.qty = qty;
+    }
 
 }

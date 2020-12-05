@@ -1,36 +1,39 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.xine</groupId>
-  <artifactId>microservices</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <modules>
-    	<module>microservices-basic</module>
-    	<module>microservices-basic-client</module>
-    	<module>bce-security</module>
-   	  <module>paginatorAndFastlaneReader-pom</module> 
-    	<module>configurator</module>
-    	<module>asyncWorker-Parallelizer</module>
-    	<module>fat-entity-strategy</module>
-    	<module>data-Access-Object</module>
-    	<module>decorators</module>
-    	<module>http-events-real-time-strategy</module>
-    	<module>http-events-batch-strategy</module>
-    	<module>http-events-channels-strategy</module>
-    	<module>aspect-interceptors</module>
-    	<module>cdi-demos</module>
-    	<module>scheduler</module>
-    	<module>binary-REST-Serializer</module>
-    	<module>plugins</module>
-    	<module>jaxrs-validations</module>
-    	<module>cdi-custom-scope</module>
-    	<module>async-pom</module>
-      <module>jax-rs-async</module>
-      <module>extendable</module>
-      <module>websocket-between-apps</module>
-      <module>bulkheads</module>
-      <module>hibernate-in-payara</module>
-  </modules>
-  
-  
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.xine</groupId>
+    <artifactId>microservices</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>microservices-basic</module>
+        <module>microservices-basic-client</module>
+        <module>bce-security</module>
+        <module>paginatorAndFastlaneReader-pom</module>
+        <module>configurator</module>
+        <module>asyncWorker-Parallelizer</module>
+        <module>fat-entity-strategy</module>
+        <module>data-Access-Object</module>
+        <module>decorators</module>
+        <module>http-events-real-time-strategy</module>
+        <module>http-events-batch-strategy</module>
+        <module>http-events-channels-strategy</module>
+        <module>aspect-interceptors</module>
+        <module>cdi-demos</module>
+        <module>scheduler</module>
+        <module>binary-REST-Serializer</module>
+        <module>plugins</module>
+        <module>jaxrs-validations</module>
+        <module>cdi-custom-scope</module>
+        <module>async-pom</module>
+        <module>jax-rs-async</module>
+        <module>extendable</module>
+        <module>websocket-between-apps</module>
+        <module>bulkheads</module>
+        <module>hibernate-in-payara</module>
+        <module>self-inject</module>
+        <module>sse-service</module>
+    </modules>
+
+
 </project>

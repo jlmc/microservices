@@ -22,7 +22,7 @@ public class BookDao implements DAO<Integer, Book> {
 
     @PersistenceContext
     private EntityManager em;
-	private TypedQuery<Book> query;
+    private TypedQuery<Book> query;
 
     @Override
     public Book create(final Book t) {
@@ -73,9 +73,9 @@ public class BookDao implements DAO<Integer, Book> {
             , final Map<String, Object> parameters
             , final int resultLimit) {
 
-		this.query = this.em.createNamedQuery(namedQueryName, Book.class);
+        this.query = this.em.createNamedQuery(namedQueryName, Book.class);
 
-        parameters.entrySet().forEach(entry -> this.query.setParameter(entry.getKey(), entry.getValue()));
+        parameters.forEach((key, value) -> this.query.setParameter(key, value));
 
         if (resultLimit > 0) {
             this.query.setMaxResults(resultLimit);

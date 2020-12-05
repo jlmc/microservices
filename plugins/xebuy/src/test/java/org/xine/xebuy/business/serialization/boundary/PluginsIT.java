@@ -39,54 +39,54 @@ import com.sun.tools.ws.wscompile.Plugin;
 public class PluginsIT {
 
 
-	@Inject
-	@Any
-	Instance<Serializer> plugins;
+    @Inject
+    @Any
+    Instance<Serializer> plugins;
 
-	@Inject
-	@Serialization(plantype = PlanType.OPTIMIZED)
-	Serializer optimized;
+    @Inject
+    @Serialization(plantype = PlanType.OPTIMIZED)
+    Serializer optimized;
 
-	@Inject
-	@Serialization(plantype = PlanType.DEFAULT)
-	Serializer standard;
+    @Inject
+    @Serialization(plantype = PlanType.DEFAULT)
+    Serializer standard;
 
-	@Deployment
-	public static JavaArchive createTestArchive() {
-		return ShrinkWrap.create(JavaArchive.class, "plugins.jar")
-				.addClasses(Plugin.class, JavaSerializer.class, HessianSerializer.class, NullSerializer.class)
-				.addAsManifestResource(new ByteArrayAsset("<beans/>".getBytes()), ArchivePaths.create("beans.xml"));
-	}
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "plugins.jar")
+                .addClasses(Plugin.class, JavaSerializer.class, HessianSerializer.class, NullSerializer.class)
+                .addAsManifestResource(new ByteArrayAsset("<beans/>".getBytes()), ArchivePaths.create("beans.xml"));
+    }
 
-	@Test
-	public void discoverPlugins() {
-		assertTrue(plugins.isAmbiguous());
-		assertFalse(plugins.isUnsatisfied());
-		final List<Class> serializers = new ArrayList<>();
-		for (final Serializer serializer : plugins) {
-			serializers.add(serializer.getClass());
-		}
-		assertTrue(serializers.contains(JavaSerializer.class));
-		assertTrue(serializers.contains(HessianSerializer.class));
-		assertTrue(serializers.contains(org.xine.xebuy.business.serialization.boundary.NullSerializer.class));
-		assertThat(serializers.size(), is(3));
-	}
+    @Test
+    public void discoverPlugins() {
+        assertTrue(plugins.isAmbiguous());
+        assertFalse(plugins.isUnsatisfied());
+        final List<Class> serializers = new ArrayList<>();
+        for (final Serializer serializer : plugins) {
+            serializers.add(serializer.getClass());
+        }
+        assertTrue(serializers.contains(JavaSerializer.class));
+        assertTrue(serializers.contains(HessianSerializer.class));
+        assertTrue(serializers.contains(org.xine.xebuy.business.serialization.boundary.NullSerializer.class));
+        assertThat(serializers.size(), is(3));
+    }
 
-	@Test
-	public void defaultInjection() {
-		assertNotNull(standard);
-	}
+    @Test
+    public void defaultInjection() {
+        assertNotNull(standard);
+    }
 
-	@Test
-	public void optimizedInjection() {
-		assertNotNull(optimized);
-	}
+    @Test
+    public void optimizedInjection() {
+        assertNotNull(optimized);
+    }
 
-	@Test
-	public void dynamicSelection() {
-		final Serializer actual = plugins.select(new SerializationType(Serialization.PlanType.DEFAULT)).get();
-		assertThat(actual, instanceOf(standard.getClass()));
-	}
+    @Test
+    public void dynamicSelection() {
+        final Serializer actual = plugins.select(new SerializationType(Serialization.PlanType.DEFAULT)).get();
+        assertThat(actual, instanceOf(standard.getClass()));
+    }
 
 }
 
@@ -129,11 +129,11 @@ public class PluginsIT {
 // assertNotNull(optimized);
 // }
 
-	/*
-	 * @Deployment public static JavaArchive createDeployment() { return
-	 * ShrinkWrap.create(JavaArchive.class) .addClass(Funcionario.class)
-	 * .addClass(CalculadoraSalarios.class)
-	 * .addClass(CalculadoraSalariosDezPorcento.class) .addAsManifestResource(
-	 * EmptyAsset.INSTANCE, "beans.xml"); }
-	 */
+    /*
+     * @Deployment public static JavaArchive createDeployment() { return
+     * ShrinkWrap.create(JavaArchive.class) .addClass(Funcionario.class)
+     * .addClass(CalculadoraSalarios.class)
+     * .addClass(CalculadoraSalariosDezPorcento.class) .addAsManifestResource(
+     * EmptyAsset.INSTANCE, "beans.xml"); }
+     */
 // }

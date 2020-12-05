@@ -11,13 +11,13 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 public class JsonDateSerializer extends JsonSerializer<LocalDateTime> {
 
-	private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-	@Override
-	public void serialize(LocalDateTime date, JsonGenerator generator, SerializerProvider arg2)
-			throws IOException, JsonProcessingException {
-		final String dateString = date.format(this.formatter);
-		generator.writeString(dateString);
+    @Override
+    public void serialize(LocalDateTime date, JsonGenerator generator, SerializerProvider arg2)
+            throws IOException, JsonProcessingException {
+        final String dateString = date.format(this.formatter);
+        generator.writeString(dateString);
 
-	}
+    }
 }

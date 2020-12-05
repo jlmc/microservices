@@ -12,19 +12,19 @@ import javax.ws.rs.Path;
 @Path("horinca")
 public class SpiritsResource {
 
-	@GET
-	public JsonObject get() {
-		return Json.createObjectBuilder().
-				add("name", "dracula").
-				add("strength", 42).
-				build();
-	}
+    @GET
+    public JsonObject get() {
+        return Json.createObjectBuilder().
+                add("name", "dracula").
+                add("strength", 42).
+                build();
+    }
 
-	@GET
-	@Path("all")
-	public JsonArray getAll() throws IOException {
-		try (InputStream stream = this.getClass().getResourceAsStream("/test.json")) {
-			return Json.createReader(stream).readArray();
-		}
-	}
+    @GET
+    @Path("all")
+    public JsonArray getAll() throws IOException {
+        try (InputStream stream = this.getClass().getResourceAsStream("/test.json")) {
+            return Json.createReader(stream).readArray();
+        }
+    }
 }

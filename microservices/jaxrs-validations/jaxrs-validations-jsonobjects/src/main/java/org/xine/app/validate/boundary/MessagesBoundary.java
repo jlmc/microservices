@@ -10,11 +10,11 @@ import org.xine.app.validate.ValidMessage;
 @Path("messages")
 public class MessagesBoundary {
 
-	@POST
-	// @Consumes(MediaType.APPLICATION_JSON)
-	public Response save(@ValidMessage(expected = "duke") JsonObject input) {
-		System.out.println("input = " + input);
-		return Response.ok(input).build();
-	}
+    @POST
+    // @Consumes(MediaType.APPLICATION_JSON)
+    public Response save(@ValidMessage(expected = "duke") JsonObject input) {
+        System.out.println("input = " + input);
+        return Response.ok(input).build();
+    }
 
 }

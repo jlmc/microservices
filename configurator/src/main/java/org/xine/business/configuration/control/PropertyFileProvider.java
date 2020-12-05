@@ -8,14 +8,14 @@ import org.xine.business.configuration.boundary.ProviderType;
 @ProviderType(ProviderType.Type.LOCAL)
 public class PropertyFileProvider implements MapProvider {
 
-	@Override
-	public Map<String, String> getConfiguration() {
-		return new HashMap<String, String>() {
-			private static final long serialVersionUID = 1L;
-			{
-				put("maxNumberOfRegistrations", "41");
-			}
-		};
-	}
+    @Override
+    public Map<String, String> getConfiguration() {
+        return new HashMap<String, String>() {
+            private static final long serialVersionUID = 1L;
+            {
+                put("maxNumberOfRegistrations", "41");
+            }
+        };
+    }
 
 }

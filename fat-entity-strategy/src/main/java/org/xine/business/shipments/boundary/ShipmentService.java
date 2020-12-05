@@ -10,12 +10,12 @@ import org.xine.business.threadlocals.control.EntityManagerInjector;
 @Interceptors(EntityManagerInjector.class)
 public class ShipmentService {
 
-	public Load createLoad(final String product, final Integer qty) {
-		return new Load.Builder().withItem(product, qty)
-				.build();
-	}
+    public Load createLoad(final String product, final Integer qty) {
+        return new Load.Builder().withItem(product, qty)
+                .build();
+    }
 
-	public Load find(final Long id) {
-		return Load.find(id);
-	}
+    public Load find(final Long id) {
+        return Load.find(id);
+    }
 }

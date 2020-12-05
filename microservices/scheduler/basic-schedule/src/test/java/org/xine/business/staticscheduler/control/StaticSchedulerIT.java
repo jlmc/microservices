@@ -17,21 +17,21 @@ import org.xine.business.staticscheduler.control.StaticScheduler;
 @RunWith(Arquillian.class)
 public class StaticSchedulerIT {
 
-	@Inject
-	StaticScheduler scheduler;
+    @Inject
+    StaticScheduler scheduler;
 
-	@Deployment
-	public static JavaArchive createTestArchive() {
-		return ShrinkWrap.create(JavaArchive.class, "scheduler.jar")
-				.addClasses(StaticScheduler.class)
-				.addAsManifestResource(
-						new ByteArrayAsset("<beans/>".getBytes()),
-						ArchivePaths.create("beans.xml"));
-	}
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "scheduler.jar")
+                .addClasses(StaticScheduler.class)
+                .addAsManifestResource(
+                        new ByteArrayAsset("<beans/>".getBytes()),
+                        ArchivePaths.create("beans.xml"));
+    }
 
-	@Test
-	public void testExecute() {
-		Assert.assertNotNull(this.scheduler);
-	}
+    @Test
+    public void testExecute() {
+        Assert.assertNotNull(this.scheduler);
+    }
 
 }
