@@ -125,8 +125,18 @@ public class BookResources {
     @PUT
     @Path("/{id: \\d+}")
     public Response update(@PathParam("id") Integer id,
+                           @Context Request request,
                            @RequestBody(content = @Content(schema = @Schema(implementation = Book.class)))
                            @Valid @ConvertGroup(from = Default.class, to = Validations.Update.class) Book book) {
+
+        Book existing = books.findById(id);
+        Date lastModification = Date.from(existing.getLastModified());
+
+        Response.ResponseBuilder builder = request.evaluatePreconditions(lastModification);
+
+        if (builder != null) {
+            return builder.build();
+        }
 
         books.update(id, book);
         return Response.noContent().build();

@@ -467,6 +467,47 @@ public class SubscriptionResource {
 }
 ```
 
+--- 
+
+## Concurrency
+
+N- ow that we have a good idea of how to boost the performance of our JAX-RS services using HTTP caching, we need to look at how to scale applications that update resources on our server. The way RESTful updates work is that the client fetches a representation of a resource through a GET request. It then modifies the representation locally and PUTs or POSTs the modified representation back to the server. This is all fine and dandy if there is only one client at a time modifying the resource, but what if the resource is being modified concurrently? Because the client is working with a snapshot, this data could become stale if another client modifies the resource while the snapshot is being processed.
+
+The HTTP specification has a solution to this problem through the use of conditional PUTs or POSTs. 
+``
+- This technique is very similar to how cache revalidation and conditional GETs work. 
+1. The client first starts out by fetching the resource. For example, let’s say our client wants to update a customer in a RESTful customer directory. 
+2. It would first start off by submitting GET /books/999 to pull down the current representation of the specific book it wants to update. The response might look something like this:
+
+```http request
+HTTP/1.1 200 OK
+Content-Type: application/json
+Cache-Control: max-age=1000
+ETag: "3141271342554322343200"
+Last-Modified: Tue, 15 May 2013 09:56 EST
+{"id":999, "title":"hello"}
+```
+
+- In order to do a conditional update, we need either an `ETag` or `Last-Modified` header. 
+- This information tells the server which snapshot version we have modified when we perform our update. 
+- It is sent along within the `If-Match` or `If-Unmodified-Since` header when we do our `PUT` or `POST` request. The `If-Match` header is initialized with the `ETag` value of the snapshot.
+- The `If-Unmodified-Since` header is initialized with the value of `Last-Modified` header. So, our update request might look like this:
+
+```http request
+PUT /books/999 HTTP/1.1
+If-Match: "3141271342554322343200"
+If-Unmodified-Since: Tue, 15 May 2013 09:56 EST
+Content-Type: application/json
+{"title":"hello world"}
+```
+
+
+You are not required to send both the `If-Match` and `If-Unmodified-Since` headers. One or the other is sufficient to perform a conditional PUT or POST. 
+- When the server receives this request, it checks to see if the current `ETag` of the resource matches the value of the `If-Match` header and also to see if the timestamp on the resource matches the `If-Unmodified-Since` header. 
+- If these conditions are not met, the server will return an error response code of **412, “Precondition Failed.”** This tells the client that the representation it is updating was modified concurrently and that it should retry. If the conditions are met, the service performs the update and sends a success response code back to the client.
+
+
+
 ---
 
 # Links

@@ -26,6 +26,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.util.Date;
 
 @Tag(name = "Subscriptions", description = "Subscriptions Api")
 
@@ -65,6 +66,7 @@ public class SubscriptionResource {
         return Response.ok(subscription)
                 .cacheControl(cacheControl)
                 .tag(tag)
+                .lastModified(Date.from(subscription.getLastModified()))
                 .build();
     }
 
@@ -85,7 +87,19 @@ public class SubscriptionResource {
 
     @POST
     @Path("/{id: \\d+}/approvement")
-    public Response approve(@PathParam("id") Integer id) {
+    public Response approve(@PathParam("id") Integer id, @Context Request request) {
+        Subscription existing = subscriptions.findById(id);
+        String hash = existing.hash(encryptor);
+        EntityTag tag = new EntityTag(hash, true);
+        Date lastModification = Date.from(existing.getLastModified());
+
+        Response.ResponseBuilder builder = request.evaluatePreconditions(lastModification, tag);
+
+        if (builder != null) {
+            // Preconditions not met!
+            builder.build();
+        }
+
         subscriptions.approve(id);
 
         return Response.noContent().build();
@@ -99,6 +113,4 @@ public class SubscriptionResource {
 
         return Response.ok(isApproved).build();
     }
-
-
 }
