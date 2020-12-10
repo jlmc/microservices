@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="dev" transaction-type="JTA">
+        <jta-data-source>java:comp/DefaultDataSource</jta-data-source>
+        <!--
+        <jta-data-source>java:jboss/datasources/appDS</jta-data-source>
+        -->
+        <!--<jta-data-source>jdbc/__default</jta-data-source>-->
+        <!--<jta-data-source>jdbc/__postgres</jta-data-source>-->
+        <properties>
+
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <!--
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="javax.persistence.sql-load-script-source" value="db/metadatos.sql" />
+            -->
+
+            <property name="javax.persistence.sql-load-script-source" value="data/inserts.sql"/>
+
+
+            <!--
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="/Users/costax/Documents/own/projects/jakartaee/microprofile/aeolus-system/aeolus/scripts/create-schema.sql"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="/Users/costax/Documents/own/projects/jakartaee/microprofile/aeolus-system/aeolus/scripts/drop-schema.sql"/>
+            -->
+
+            <!-- Hibernate-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="false"/>
+
+            <property name="hibernate.jdbc.batch_size" value="10"/>
+            <property name="hibernate.order_inserts" value="true"/>
+            <property name="hibernate.order_updates" value="true"/>
+            <property name="hibernate.criteria.literal_handling_mode" value="bind"/>
+            <property name="hibernate.query.in_clause_parameter_padding" value="true"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>
