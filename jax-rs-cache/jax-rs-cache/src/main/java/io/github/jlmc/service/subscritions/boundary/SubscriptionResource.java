@@ -1,5 +1,7 @@
 package io.github.jlmc.service.subscritions.boundary;
 
+import io.github.jlmc.chassis.hashing.Encryption;
+import io.github.jlmc.chassis.hashing.Encryptor;
 import io.github.jlmc.chassis.validations.Validations;
 import io.github.jlmc.service.subscritions.control.Subscriptions;
 import io.github.jlmc.service.subscritions.entity.Subscription;
@@ -10,10 +12,19 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.groups.ConvertGroup;
 import javax.validation.groups.Default;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.CacheControl;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.EntityTag;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 
 @Tag(name = "Subscriptions", description = "Subscriptions Api")
@@ -26,21 +37,45 @@ public class SubscriptionResource {
     @Inject
     Subscriptions subscriptions;
 
+    @Inject
+    @Encryption(type = Encryption.Type.MD5)
+    Encryptor encryptor;
+
     @GET
     @Path("/{id: \\d+}")
-    public Response findById(@PathParam("id") Integer id) {
+    public Response findById(@PathParam("id") Integer id, @Context Request request) {
         Subscription subscription = subscriptions.findById(id);
 
-        return Response.ok(subscription).build();
+        String hash = subscription.hash(encryptor);
+        EntityTag tag = new EntityTag(hash, true);
+
+        CacheControl cacheControl = new CacheControl();
+        cacheControl.setMaxAge(60);
+        cacheControl.setPrivate(false);
+        cacheControl.setNoTransform(true);
+
+        Response.ResponseBuilder builder = request.evaluatePreconditions(tag);
+        if (builder != null) {
+            // sending 304 not modified
+            return builder
+                    .cacheControl(cacheControl)
+                    .build();
+        }
+
+        return Response.ok(subscription)
+                .cacheControl(cacheControl)
+                .tag(tag)
+                .build();
     }
 
     @POST
     public Response create(@RequestBody
                            @Valid @ConvertGroup(from = Default.class, to = Validations.SubscriptionCreation.class)
-                           Subscription subscription) {
+                                   Subscription subscription, @Context UriInfo uriInfo) {
         Subscription created = subscriptions.create(subscription);
 
-        URI uri = UriBuilder.fromMethod(SubscriptionResource.class, "findById").build(created.getId());
+        URI uri = uriInfo.getAbsolutePathBuilder().path("/{id}").build(created.getId());
+
         return Response.created(uri)
                 .entity(created)
                 .build();

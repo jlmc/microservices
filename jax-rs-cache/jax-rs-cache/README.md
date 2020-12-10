@@ -307,10 +307,167 @@ public class BookResources {
 ```
 
 
+### ETag
+
+The `ETag` header is a pseudounique identifier that represents the version of the data sent back. Its value is any arbitrary quoted string and is usually an MD5 hash. Here’s an example response:
+
+```http request
+HTTP/1.1 200 OK
+Content-Type: application/json
+Cache-Control: max-age=1000
+ETag: "3141271342554322343200"
+{"title": "hello duke"}
+```
+
+- Like the `Last-Modified` header, when the client caches this response, it should also cache the `ETag` value. 
+- When the cache expires after 1,000 seconds, the client performs a revalidation request with the `If-None-Match` header that contains the value of the cached `ETag`. For example:
+
+```http request
+GET /subscriptions/123 HTTP/1.1
+If-None-Match: "3141271342554322343200"
+```
+
+- When a service receives this GET request, it tries to match the current `ETag` hash of the resource with the one provided within the `If-None-Match` header. 
+- If the tags don’t match, the server will send back a 200, “OK,” response with the new representation of the resource. 
+- Otherwise, If it hasn’t been changed, the server will respond with 304, “Not Modified,” and return no representation. 
+- In both cases, the server should send an updated Cache-Control and ETag header if appropriate.
 
 
 
-----
+One final thing about `ETags` is they come in two flavors: strong and weak. 
+
+  - A **strong ETag** should change whenever any bit of the resource’s representation changes. 
+  - A **weak ETag** changes only on semantically significant events. 
+    - Weak ETags are identified with a W/ prefix. For example:
+      ```http request
+        HTTP/1.1 200 OK
+        Content-Type: application/xml
+        Cache-Control: max-age=1000
+        ETag: W/"3141271342554322343200"
+        <customer id="123">...</customer>
+      ```
+
+
+  - Weak ETags give applications a bit more flexibility to reduce network traffic, as a cache can be revalidated when there have been only minor changes to the resource.
+
+  - JAX-RS has a simple class called `javax.ws.rs.core.EntityTag` that represents the ETag header: 
+    ```java
+    public class EntityTag {
+      public EntityTag(String value) {...}
+      public EntityTag(String value, boolean weak) {...}
+      public static EntityTag valueOf(String value) throws IllegalArgumentException {...}
+      public boolean isWeak() {...}
+      public String getValue() {...}
+    }
+    ```
+    
+  - It is constructed with a string value and optionally with a flag telling the object if it is a weak ETag or not. 
+  - The getValue() and isWeak() methods return these values on demand.
+
+  - To help with conditional GETs, JAX-RS provides an injectable helper class called `javax.ws.rs.core.Request`:
+    ```java
+    public interface Request {
+        ...
+        ResponseBuilder evaluatePreconditions(EntityTag eTag);
+        ResponseBuilder evaluatePreconditions(Date lastModified);
+        ResponseBuilder evaluatePreconditions(Date lastModified, EntityTag eTag);
+    }
+    ```
+
+  - The overloaded `evaluatePreconditions()` methods take a `javax.ws.rs.core.EntityTag`, a `java.util.Date` that represents the last modified timestamp, or both. 
+  - These values should be current, as they will be compared with the values of the `If-Modified-Since`, `If-Unmodified-Since`, or `If-None-Match` headers sent with the request. 
+  - If these headers don’t exist or if the request header values don’t pass revalidation, this method returns null and you should send back a 200, “OK,” response with the new representation of the resource. 
+  - If the method does not return null, it returns a preinitialized instance of a ResponseBuilder with the response code preset to 304. For example:
+
+1. create a test resource:
+```shell
+curl -v -X POST "http://localhost:8080/resources/subscriptions" -H "accept: */*" -H "Content-Type: application/json" -d "{\"reader\":\"Max Payner\",\"book\":{\"id\":999,\"title\":\"Effective java\"}}"
+```
+
+2. Get the created resource:
+```shell
+curl -v -X GET "http://localhost:8080/resources/subscriptions/1"
+```
+```http request
+
+GET /resources/subscriptions/1 HTTP/1.1
+Host: localhost:8080
+User-Agent: curl/7.64.1
+Accept: */*
+ 
+HTTP/1.1 200 OK
+Connection: keep-alive
+ETag: W/"a3ecd218fd65c7a8f7fb69a438f44ab7"
+Cache-Control: no-transform, max-age=60
+Content-Type: application/json
+Content-Length: 94
+Date: Thu, 10 Dec 2020 04:00:14 GMT
+
+{"id":1,"reader":"Max Payner","book":{"id":999,"title":"Effective java"},"status":"SUBMITTED"}
+```
+
+3. Now that we have the Etag we can perform a Get request:
+```shell
+curl -v -X GET "http://localhost:8080/resources/subscriptions/1" -H'If-None-Match: W/"a3ecd218fd65c7a8f7fb69a438f44ab7"'
+```
+
+```http request
+GET /resources/subscriptions/1 HTTP/1.1
+Host: localhost:8080
+Accept: */*
+If-None-Match: W/"a3ecd218fd65c7a8f7fb69a438f44ab7"
+ 
+HTTP/1.1 304 Not Modified
+ETag: W/"a3ecd218fd65c7a8f7fb69a438f44ab7"
+Cache-Control: no-transform, max-age=60
+Date: Thu, 10 Dec 2020 04:06:20 GMT
+```
+
+
+The Code that implement the behavior is the fowling:
+```java
+@Path("/subscriptions")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+public class SubscriptionResource {
+
+    @Inject
+    Subscriptions subscriptions;
+
+    @Inject
+    @Encryption(type = Encryption.Type.MD5)
+    Encryptor encryptor;
+
+    @GET
+    @Path("/{id: \\d+}")
+    public Response findById(@PathParam("id") Integer id, @Context Request request) {
+        Subscription subscription = subscriptions.findById(id);
+
+        String hash = subscription.hash(encryptor);
+        EntityTag tag = new EntityTag(hash, true);
+
+        CacheControl cacheControl = new CacheControl();
+        cacheControl.setMaxAge(60);
+        cacheControl.setPrivate(false);
+        cacheControl.setNoTransform(true);
+
+        Response.ResponseBuilder builder = request.evaluatePreconditions(tag);
+        if (builder != null) {
+            // sending 304 not modified
+            return builder
+                    .cacheControl(cacheControl)
+                    .build();
+        }
+
+        return Response.ok(subscription)
+                .cacheControl(cacheControl)
+                .tag(tag)
+                .build();
+    }
+}
+```
+
+---
 
 # Links
 
@@ -320,6 +477,18 @@ public class BookResources {
 
  - http://localhost:8080/resources/ping
 ```
+
+
+```shell
+curl -X PUT "http://localhost:8080/resources/books/998" -H "accept: */*" -H "Content-Type: application/json" -d '{"title":"string"}'
+
+curl -X POST "http://localhost:8080/resources/books/998" -H "accept: */*" -H "Content-Type: application/json" -d '{"title":"string"}'
+
+curl -X GET "http://localhost:8080/resources/books/998" -H "accept:application/json"
+
+```
+
+
 
 ---
 

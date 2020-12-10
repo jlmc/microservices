@@ -1,5 +1,6 @@
 package io.github.jlmc.service.subscritions.entity;
 
+import io.github.jlmc.chassis.hashing.Encryptor;
 import io.github.jlmc.chassis.jsonb.JsonbRepresentation;
 import io.github.jlmc.chassis.validations.Validations;
 import io.github.jlmc.service.books.entity.Book;
@@ -21,8 +22,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Schema(name = "Subscription")
 
@@ -123,4 +127,11 @@ public class Subscription {
     }
 
 
+    public String hash(Encryptor encryptor) {
+        String txt = Stream.of(this.id, this.status, this.reader, this.lastModified)
+                .map(Objects::toString)
+                .collect(Collectors.joining("$"));
+
+        return encryptor.hash(txt);
+    }
 }
