@@ -4,6 +4,9 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+@Tag(name = "Ping", description = "Ping Api")
 
 @Path("ping")
 public class PingResource {
