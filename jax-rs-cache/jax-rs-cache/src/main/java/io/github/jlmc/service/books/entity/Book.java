@@ -20,7 +20,7 @@ import java.time.Instant;
 @Entity
 public class Book {
 
-    @Schema(hidden = true, readOnly = true)
+    @Schema(readOnly = true)
     @Null(groups = {Validations.Creation.class, Validations.Update.class})
 
     @Id
