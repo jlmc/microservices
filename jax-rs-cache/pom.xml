@@ -9,5 +9,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>jax-rs-cache</module>
+        <module>jax-rs-cache-st</module>
     </modules>
 </project>

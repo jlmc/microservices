@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jax-rs-cache-service</artifactId>
+        <groupId>io.github.jlmc</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>jax-rs-cache-st</artifactId>
+
+    <properties>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
+       <!-- <jersey.version>2.32</jersey.version>-->
+        <jersey.version>2.30.1</jersey.version>
+    </properties>
+
+
+    <dependencies>
+
+        <!-- To allow to inject microprofile configurations -->
+        <dependency>
+            <groupId>io.smallrye.config</groupId>
+            <artifactId>smallrye-config</artifactId>
+            <version>1.8.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.6.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.6.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+        Jersey is the reference implementation of JAX-RS 2.1.
+        The following Jersey dependencies are required in order to run a JAX-RS 2.1 client with JSON-P and JSON-B mapping outside of an enterprise container.
+        Jersey client version 2.6 implements the JAX-RS 2.1 API.
+        The following dependencies add the client runtime to a project:
+        -->
+
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>${jersey.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+            <version>${jersey.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--If JSON objects should be mapped using JSON-P, the following dependency is required as well: -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-processing</artifactId>
+            <version>${jersey.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--
+            The Previous dependency already adds an implementation for JSON-P 1.1, namely Glassfish javax.json.
+            If JSON objects should be mapped using JSON-B, the following dependency is added instead of or additionally to the previous one:
+
+            This transitively adds the Yasson dependency, the reference implementation of JSON-B.
+            These dependencies enable the project to use the JAX-RS 2.1 client together with JSON-P or JSON-B binding:
+        -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-binding</artifactId>
+            <version>${jersey.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-binding</artifactId>
+            <version>2.30.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <!--Necessary to remove the error: WARNING: The following warnings have been detected: WARNING: HK2 failure has been detected in a code that does not run in an active Jersey Error scope.-->
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>2.1.6</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.6.2</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+
+    </dependencies>
+
+</project>
