@@ -14,7 +14,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
 
-        <version.gson>2.2.4</version.gson>
+        <version.gson>2.8.9</version.gson>
         <version.commons-io>2.4</version.commons-io>
         <version.commons-codec>1.7</version.commons-codec>
         <junit.version>4.13.1</junit.version>
